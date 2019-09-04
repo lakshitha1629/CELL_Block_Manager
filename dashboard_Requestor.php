@@ -214,49 +214,40 @@ else
                 <input type="text" name="reason" class="form-control" placeholder="Reason" maxlength="100">
             </div>
     </div>
-  <button class="btn btn-success" onclick='phpadd()' type="submit">ADD</button>
-  <p onload="loadImage()">
+<input class="btn btn-success" type=submit value="ADD" name="submit1">
+
 </form>
-<script>
-function loadImage() {
-    alert("Image is loaded");
-}
+<?php 
 
-function phpadd() {
-  var phpadd= <?php 
-    
-    require_once ('connect.php');
-    
-   $date = date('Y-m-d');
-    //$date = $_POST['date'];
-    $cell = $_POST['cell'];
-    $site_name = $_POST['site'];
-    $controller = $_POST['controller'];
-    $requestor = $_POST['requestor'];
-    $reason = $_POST['reason'];
-    
-    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason')";
-    //echo $qry;
-    if (!mysqli_query($con,$qry))
-      {
-      die('Error: ' . mysqli_error());
-      }
-    echo "Your record added Successfull";
-     
-    
-    ?> //call the php add function
-  alert(phpadd) // result in undefined
-}
+if(isset($_POST['submit1'])){ 
+  require_once ('connect.php');
+  $date = date('Y-m-d');
+   //$date = $_POST['date'];
+   $cell = $_POST['cell'];
+   $site_name = $_POST['site'];
+   $controller = $_POST['controller'];
+   $requestor = $_POST['requestor'];
+   $reason = $_POST['reason'];
+   
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason')";
+   //echo $qry;
+   if (!mysqli_query($con,$qry))
+     {
+     die('Error: ' . mysqli_error());
+     }
+   echo "Your record added Successfull";
+  }
 
 
-</script>
+?>
+
       
          </div>
         </div>
        
     
         
-        <!-- DataTables Example -->
+        <!-- DataTables  -->
         <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
@@ -272,16 +263,18 @@ $qry = "SELECT * FROM cbm_cell_block";
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>   
     <tr> 
-          <td> <font face="Cambria">Date</font> </td> 
-          <td> <font face="Cambria">Cell</font> </td> 
-          <td> <font face="Cambria">Site_name</font> </td> 
-          <td> <font face="Cambria">Controller</font> </td> 
-          <td> <font face="Cambria">Requestor</font> </td> 
-          <td> <font face="Cambria">Reason</font> </td> 
-      </tr></thead>';
+    <th>Date</th> 
+    <th>Cell </th> 
+    <th>Site_name </th> 
+    <th>Controller </th> 
+    <th>Requestor</th> 
+    <th>Reason</th> 
+    <th>Delete</th> 
+        </tr></thead>';
  
 if ($res = $con->query($qry)) {
     while ($row = $res->fetch_assoc()) {
+        $id=$row["cell_id"];
         $field1name = $row["date"];
         $field2name = $row["cell"];
         $field3name = $row["site_name"];
@@ -289,15 +282,17 @@ if ($res = $con->query($qry)) {
         $field5name = $row["requestor"];
         $field6name = $row["reason"]; 
         						
-        echo '<tr> 
-                  <td>'.$field1name.'</td> 
-                  <td>'.$field2name.'</td> 
-                  <td>'.$field3name.'</td> 
-                  <td>'.$field4name.'</td> 
-                  <td>'.$field5name.'</td>
-                  <td>'.$field6name.'</td>  
-              </tr>';
+        echo "<tr> 
+                  <td>".$field1name."</td> 
+                  <td>".$field2name."</td> 
+                  <td>".$field3name."</td> 
+                  <td>".$field4name."</td> 
+                  <td>".$field5name."</td> 
+                  <td>".$field6name."</td>
+                  <td><a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['cell_id']."\" type='button' class='btn btn-danger'>Delete</a></td> 
+              </tr>";
     }
+ 
     $res->free();
 } 
 ?></table>
