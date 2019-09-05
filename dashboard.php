@@ -109,14 +109,18 @@ require_once ('connect.php');
 $qry = "SELECT * FROM cbm_cell_block";           
  
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-<thead>   
-    <tr> 
+    <thead>   
+       <tr> 
           <th>Date</th> 
           <th>Cell </th> 
           <th>Site_name </th> 
           <th>Controller </th> 
           <th>Requestor</th> 
           <th>Reason</th> 
+          <th>Block</th>
+          <th>Block_remarks</th>
+          <th>Deblock</th>
+          <th>Deblock_remarks</th>
       </tr></thead>
       
       <tfoot>
@@ -127,28 +131,46 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
       <th>Controller </th> 
       <th>Requestor</th> 
       <th>Reason</th> 
+      <th>Block</th>
+      <th>Block_remarks</th>
+      <th>Deblock</th>
+      <th>Deblock_remarks</th> 
       </tr>
     </tfoot>';
-      
     
 if ($res = $con->query($qry)) {
     while ($row = $res->fetch_assoc()) {
+        $id=$row["cell_id"];
         $field1name = $row["date"];
         $field2name = $row["cell"];
         $field3name = $row["site_name"];
         $field4name = $row["controller"]; 
         $field5name = $row["requestor"];
         $field6name = $row["reason"]; 
-        						
+        $field7name = $row["block"]; 
+
+        //(`cell_id`, `date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, 
+        //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`)
+    
         echo '<tr> 
                   <td>'.$field1name.'</td> 
                   <td>'.$field2name.'</td> 
                   <td>'.$field3name.'</td> 
                   <td>'.$field4name.'</td> 
                   <td>'.$field5name.'</td>
-                  <td>'.$field6name.'</td>  
+                  <td>'.$field6name.'</td> 
+                  <td>
+                  <a href=\"add_block.php?id=".$row['cell_id']."\">
+                  <select name="block">
+                  <option value="'.$field7name.'">Select Option</option>
+                  <option value="Block">Block</option>
+                  <option value="Unblock">Unblock</option>
+                  </select></a>
+                  </td> 
+ 
               </tr>';
     }
+    
     $res->free();
 } 
 ?></table>

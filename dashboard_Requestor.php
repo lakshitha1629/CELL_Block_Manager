@@ -137,8 +137,9 @@ if(!empty($_FILES['excelfile']['name']))
                     $controller = $row[2];
                     $requestor = $row[3];
                     $reason = $row[4];
+                    $active='1';
 
-                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason')";
+                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`,`active`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active')";
                     $res = mysqli_query($con,$qry);
 
                 }
@@ -228,8 +229,9 @@ if(isset($_POST['submit1'])){
    $controller = $_POST['controller'];
    $requestor = $_POST['requestor'];
    $reason = $_POST['reason'];
+   $active='1';
    
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason')";
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active')";
    //echo $qry;
    if (!mysqli_query($con,$qry))
      {
@@ -254,7 +256,7 @@ if(isset($_POST['submit1'])){
             CELL Block Table</div>
           <div class="card-body">
             <div class="table-responsive">
-              <?php 
+<?php 
               
 require_once ('connect.php');
 
