@@ -75,7 +75,14 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5">26 New Block Messages!</div>
+                <div class="mr-5"><?php 
+                require_once ('connect.php');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block1'];
+                }?> New Block Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">View Details</span>
@@ -121,6 +128,7 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
           <th>Block_remarks</th>
           <th>Deblock</th>
           <th>Deblock_remarks</th>
+          <th>Update</th>
       </tr></thead>
       
       <tfoot>
@@ -134,7 +142,8 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
       <th>Block</th>
       <th>Block_remarks</th>
       <th>Deblock</th>
-      <th>Deblock_remarks</th> 
+      <th>Deblock_remarks</th>
+      <th>Update</th> 
       </tr>
     </tfoot>';
     
@@ -160,13 +169,17 @@ if ($res = $con->query($qry)) {
                   <td>'.$field5name.'</td>
                   <td>'.$field6name.'</td> 
                   <td>
-                  <a href=\"add_block.php?id=".$row['cell_id']."\">
-                  <select name="block">
-                  <option value="'.$field7name.'">Select Option</option>
+                  <select class="opt">
+                  <option value="0">Select Option</option>
                   <option value="Block">Block</option>
                   <option value="Unblock">Unblock</option>
-                  </select></a>
-                  </td> 
+                  </select>
+                  </td>
+                  <td><input type="text" name="Block_remarks"></td>
+                  <td style="text-align: center;"><input type="checkbox" name="vehicle" value="Bike"></td>
+                  <td><input type="text" name="Deblock_remarks"></td>
+                  <td><a type="button" class="btn btn-info">Update</a></td> 
+          
  
               </tr>';
     }
