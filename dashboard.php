@@ -114,17 +114,58 @@
                     <div align="left">
                         <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
                     </div>
-                    <br />
+                    <br/>
                     <div class="table-responsive">
-                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                              <th width="5%"></th>
-                              <th>Block</th>
-                              <th>Block_remarks</th>
-                              <th>Deblock</th>
-                              <th>Deblock_remarks</th>
-                            </thead>
-                            <tbody></tbody>
+<?php               
+    require_once ('connect.php');
+              
+    $qry = "SELECT * FROM cbm_cell_block";      
+    echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>   
+        <tr> 
+        <th>Date</th> 
+        <th>Cell </th> 
+        <th>Site_name </th> 
+        <th>Controller </th> 
+        <th>Requestor</th> 
+        <th>Reason</th> 
+        <th width="5%"></th>
+        <th>Block</th>
+        <th>Block_remarks</th>
+        <th>Deblock</th>
+        <th>Deblock_remarks</th> 
+      </tr></thead>';             
+                          
+
+if ($res = $con->query($qry)) {
+    while ($row = $res->fetch_assoc()) {
+     //   $id=$row["id"];
+        $field1name = $row["date"];
+        $field2name = $row["cell"];
+        $field3name = $row["site_name"];
+        $field4name = $row["controller"]; 
+        $field5name = $row["requestor"];
+        $field6name = $row["reason"]; 
+        						
+        echo "<tr> 
+                  <td>".$field1name."</td> 
+                  <td>".$field2name."</td> 
+                  <td>".$field3name."</td> 
+                  <td>".$field4name."</td> 
+                  <td>".$field5name."</td> 
+                  <td>".$field6name."</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  </tr>";
+    }
+ 
+    $res->free();
+} 
+?>
+                            
                         </table>
                     </div>
                 </form>         
@@ -211,16 +252,14 @@ $(document).ready(function(){
                 var html = '';
                 for(var count = 0; count < data.length; count++)
                 {
-                    html += '<tr>';
+                    //html += '<tr>';
                     html += '<td><input type="checkbox" id="'+data[count].id+'" data-block="'+data[count].block+'" data-block_by="'+data[count].block_by+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
                     html += '<td>'+data[count].block+'</td>';
-
                     html += '<td>'+data[count].block_by+'</td>';
-                    
                     html += '<td>'+data[count].deblock+'</td>';
                     html += '<td>'+data[count].deblock_remarks+'</td></tr>';
                 }
-                $('tbody').html(html);
+                $('#body').html(html);
             }
         });
     }
@@ -233,8 +272,7 @@ $(document).ready(function(){
         if(this.checked)
         {
             html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
-            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';
-           
+            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
             html += '<td><input type="text" name="block_by[]" class="form-control" value="'+$(this).data("block_by")+'" /></td>';
             html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
             html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
