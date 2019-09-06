@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="css/sb-admin.css" rel="stylesheet">
+  <script src="jquery/jquery.min.js"></script>
 
 </head>
 
@@ -77,12 +79,12 @@
                 </div>
                 <div class="mr-5"><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block'";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Unblock'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> New Block Messages!</div>
+                }?> New Cell Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">View Details</span>
@@ -108,90 +110,27 @@
             <i class="fas fa-table"></i>
             CELL Block Table</div>
           <div class="card-body">
-            <div class="table-responsive">
-              <?php 
-              
-require_once ('connect.php');
+          <form method="post" id="update_form">
+                    <div align="left">
+                        <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
+                    </div>
+                    <br />
+                    <div class="table-responsive">
+                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <th width="5%"></th>
+                              <th>Block</th>
+                              <th>Block_remarks</th>
+                              <th>Deblock</th>
+                              <th>Deblock_remarks</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </form>         
 
-$qry = "SELECT * FROM cbm_cell_block";           
- 
-echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <thead>   
-       <tr> 
-          <th>Date</th> 
-          <th>Cell </th> 
-          <th>Site_name </th> 
-          <th>Controller </th> 
-          <th>Requestor</th> 
-          <th>Reason</th> 
-          <th>Block</th>
-          <th>Block_remarks</th>
-          <th>Deblock</th>
-          <th>Deblock_remarks</th>
-          <th>Update</th>
-      </tr></thead>
-      
-      <tfoot>
-      <tr>
-      <th>Date</th> 
-      <th>Cell </th> 
-      <th>Site_name </th> 
-      <th>Controller </th> 
-      <th>Requestor</th> 
-      <th>Reason</th> 
-      <th>Block</th>
-      <th>Block_remarks</th>
-      <th>Deblock</th>
-      <th>Deblock_remarks</th>
-      <th>Update</th> 
-      </tr>
-    </tfoot>';
-    
-if ($res = $con->query($qry)) {
-    while ($row = $res->fetch_assoc()) {
-        $id=$row["cell_id"];
-        $field1name = $row["date"];
-        $field2name = $row["cell"];
-        $field3name = $row["site_name"];
-        $field4name = $row["controller"]; 
-        $field5name = $row["requestor"];
-        $field6name = $row["reason"]; 
-        $field7name = $row["block"]; 
-
-        //(`cell_id`, `date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, 
-        //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`)
-    
-        echo '<tr> 
-                  <td>'.$field1name.'</td> 
-                  <td>'.$field2name.'</td> 
-                  <td>'.$field3name.'</td> 
-                  <td>'.$field4name.'</td> 
-                  <td>'.$field5name.'</td>
-                  <td>'.$field6name.'</td> 
-                  <td>
-                  <select class="opt">
-                  <option value="0">Select Option</option>
-                  <option value="Block">Block</option>
-                  <option value="Unblock">Unblock</option>
-                  </select>
-                  </td>
-                  <td><input type="text" name="Block_remarks"></td>
-                  <td style="text-align: center;"><input type="checkbox" name="vehicle" value="Bike"></td>
-                  <td><input type="text" name="Deblock_remarks"></td>
-                  <td><a type="button" class="btn btn-info">Update</a></td> 
-          
- 
-              </tr>';
-    }
-    
-    $res->free();
-} 
-?></table>
 </div>
 </div>
-</div>
-
-
 </div>        
       <!-- /.container-fluid -->
 
@@ -256,3 +195,78 @@ if ($res = $con->query($qry)) {
 </body>
 
 </html>
+
+<!--jQuary-->
+<script>  
+$(document).ready(function(){  
+    
+    function fetch_data()
+    {
+        $.ajax({
+            url:"update_select.php",
+            method:"POST",
+            dataType:"json",
+            success:function(data)
+            {
+                var html = '';
+                for(var count = 0; count < data.length; count++)
+                {
+                    html += '<tr>';
+                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-block="'+data[count].block+'" data-block_by="'+data[count].block_by+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
+                    html += '<td>'+data[count].block+'</td>';
+
+                    html += '<td>'+data[count].block_by+'</td>';
+                    
+                    html += '<td>'+data[count].deblock+'</td>';
+                    html += '<td>'+data[count].deblock_remarks+'</td></tr>';
+                }
+                $('tbody').html(html);
+            }
+        });
+    }
+    //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, 
+    //`deblock_date`, `deblock_time`, `deblock_remarks`, `active
+    fetch_data();
+
+    $(document).on('click', '.check_box', function(){
+        var html = '';
+        if(this.checked)
+        {
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
+            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';
+           
+            html += '<td><input type="text" name="block_by[]" class="form-control" value="'+$(this).data("block_by")+'" /></td>';
+            html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
+            html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
+        }
+        else
+        {
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
+            html += '<td>'+$(this).data('block')+'</td>';
+            html += '<td>'+$(this).data('block_by')+'</td>';
+            html += '<td>'+$(this).data('deblock')+'</td>';
+            html += '<td>'+$(this).data('deblock_remarks')+'</td>';            
+        }
+        $(this).closest('tr').html(html);
+        $('#block'+$(this).attr('id')+'').val($(this).data('block'));
+    });
+
+    $('#update_form').on('submit', function(event){
+        event.preventDefault();
+        if($('.check_box:checked').length > 0)
+        {
+            $.ajax({
+                url:"multiple_update.php",
+                method:"POST",
+                data:$(this).serialize(),
+                success:function()
+                {
+                    alert('Data Updated');
+                    fetch_data();
+                }
+            })
+        }
+    });
+
+});  
+</script>

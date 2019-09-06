@@ -137,9 +137,10 @@ if(!empty($_FILES['excelfile']['name']))
                     $controller = $row[2];
                     $requestor = $row[3];
                     $reason = $row[4];
+                    $block ='Unblock';
                     $active='1';
 
-                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`,`active`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active')";
+                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
                     $res = mysqli_query($con,$qry);
 
                 }
@@ -229,9 +230,10 @@ if(isset($_POST['submit1'])){
    $controller = $_POST['controller'];
    $requestor = $_POST['requestor'];
    $reason = $_POST['reason'];
+   $block ='Unblock';
    $active='1';
    
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active')";
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
    //echo $qry;
    if (!mysqli_query($con,$qry))
      {
@@ -276,7 +278,7 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
  
 if ($res = $con->query($qry)) {
     while ($row = $res->fetch_assoc()) {
-        $id=$row["cell_id"];
+        $id=$row["id"];
         $field1name = $row["date"];
         $field2name = $row["cell"];
         $field3name = $row["site_name"];
@@ -291,7 +293,7 @@ if ($res = $con->query($qry)) {
                   <td>".$field4name."</td> 
                   <td>".$field5name."</td> 
                   <td>".$field6name."</td>
-                  <td><a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['cell_id']."\" type='button' class='btn btn-danger'>Delete</a></td> 
+                  <td><a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn btn-danger'>Delete</a></td> 
               </tr>";
     }
  
