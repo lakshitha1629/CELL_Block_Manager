@@ -1,3 +1,10 @@
+<?php
+include('functions.php');
+if (!isLoggedIn()) {
+	$_SESSION['msg'] = "You must log in first";
+	header('location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +36,14 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-       
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
+        <?php if (isset($_SESSION['success'])) : ?>
+					<p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i> 
+        </p>
+        <?php endif ?> 
+                  <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
+        <a class="dropdown-item" href="dashboard_Requestor.php?logout='1'">Logout</a>
         </div>
       </li>
     </ul>
@@ -207,7 +219,7 @@ else
             </div>
          <div class="col-md-4 mb-3">
          <label>Requestor :</label>
-         <input type="text" name="requestor" class="form-control" placeholder="Requestor Name" maxlength="40">
+         <input type="text" name="requestor" class="form-control" placeholder="<?php echo $_SESSION['user_name'];?>" maxlength="40" readonly>
     </div>
     </div>
 
@@ -224,16 +236,17 @@ else
 
 if(isset($_POST['submit1'])){ 
   require_once ('connect.php');
+  date_default_timezone_set('Asia/Colombo');
   $date = date('Y-m-d');
    //$date = $_POST['date'];
    $cell = $_POST['cell'];
    $site_name = $_POST['site'];
    $controller = $_POST['controller'];
-   $requestor = $_POST['requestor'];
+   $requestor = $_SESSION['user_name'];
    $reason = $_POST['reason'];
    $block ='Unblock';
    $active='1';
-   
+   //`id`, `date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
    //echo $qry;
    if (!mysqli_query($con,$qry))
@@ -342,7 +355,7 @@ if ($res = $con->query($qry)) {
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>

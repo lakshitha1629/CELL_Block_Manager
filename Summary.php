@@ -1,3 +1,10 @@
+<?php
+include('functions.php');
+if (!isLoggedIn()) {
+	$_SESSION['msg'] = "You must log in first";
+	header('location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +32,16 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
      
-      <li class="nav-item dropdown no-arrow">
+    <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-       
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown"> 
+        <?php if (isset($_SESSION['success'])) : ?>
+					<p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i> 
+        </p>
+        <?php endif ?> 
+        <a class="dropdown-item" href="dashboard.php?logout='1'">Logout</a>
         </div>
       </li>
     </ul>
@@ -96,8 +106,8 @@
                   <th>Block_by</th>
                   <th>Block_time</th>
                   <th>Block_remarks</th>          
+                  <th>Deblock</th>
                   <th>Deblock_by</th>
-                  <th>Deblock_date</th>
                   <th>Deblock_time</th>        
                   <th>Deblock_remarks</th> 
                       </tr></thead>';
@@ -116,7 +126,7 @@
                       $field9name = $row["block_time"];
                       $field10name = $row["block_remarks"];
                       $field11name = $row["deblock"];
-                      $field12name = $row["deblock_date"];
+                      $field12name = $row["deblock_by"];
                       $field13name = $row["deblock_time"];
                       $field14name = $row["deblock_remarks"];
 

@@ -1,4 +1,13 @@
-<?php session_start();?>
+<?php 
+	include('functions.php');
+
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: login.php');
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +40,14 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-       
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
+        <?php if (isset($_SESSION['success'])) : ?>
+					<p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i> 
+        </p>
+        <?php endif ?> 
+          <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
+        <a class="dropdown-item" href="Admin_dashboard.php?logout='1'">Logout</a>
         </div>
       </li>
     </ul>
@@ -201,7 +215,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>
@@ -246,7 +260,7 @@ $(document).ready(function(){
                 for(var count = 0; count < data.length; count++)
                 {
                     html += '<tr>';
-                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-controller="'+data[count].controller+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_by="'+data[count].block_by+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
+                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-controller="'+data[count].controller+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_remarks="'+data[count].block_remarks+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
                     html += '<td>'+data[count].date+'</td>';
                     html += '<td>'+data[count].cell+'</td>';
                     html += '<td>'+data[count].site_name+'</td>';
@@ -254,7 +268,7 @@ $(document).ready(function(){
                     html += '<td>'+data[count].requestor+'</td>';
                     html += '<td>'+data[count].reason+'</td>';
                     html += '<td>'+data[count].block+'</td>';
-                    html += '<td>'+data[count].block_by+'</td>';
+                    html += '<td>'+data[count].block_remarks+'</td>';
                     html += '<td>'+data[count].deblock+'</td>';
                     html += '<td>'+data[count].deblock_remarks+'</td></tr>';
                 }
@@ -272,7 +286,7 @@ $(document).ready(function(){
         if(this.checked)
         {   
             
-            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
             html += '<td><input type="hidden" name="date[]" class="form-control" value="'+$(this).data("date")+'" />'+$(this).data("date")+'</td>';
             html += '<td><input type="hidden" name="cell[]" class="form-control" value="'+$(this).data("cell")+'" />'+$(this).data("cell")+'</td>';
             html += '<td><input type="hidden" name="site_name[]" class="form-control" value="'+$(this).data("site_name")+'" />'+$(this).data("site_name")+'</td>';
@@ -280,7 +294,7 @@ $(document).ready(function(){
             html += '<td><input type="hidden" name="requestor[]" class="form-control" value="'+$(this).data("requestor")+'" />'+$(this).data("requestor")+'</td>';
             html += '<td><input type="hidden" name="reason[]" class="form-control" value="'+$(this).data("reason")+'" />'+$(this).data("reason")+'</td>';
             html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
-            html += '<td><input type="text" name="block_by[]" class="form-control" value="'+$(this).data("block_by")+'" /></td>';
+            html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
            // html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
             html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock" /></td>';
             html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
@@ -289,7 +303,7 @@ $(document).ready(function(){
         }
         else
         {           
-            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
             html += '<td>'+$(this).data('date')+'</td>';
             html += '<td>'+$(this).data('cell')+'</td>';
             html += '<td>'+$(this).data('site_name')+'</td>';
@@ -297,7 +311,7 @@ $(document).ready(function(){
             html += '<td>'+$(this).data('requestor')+'</td>';
             html += '<td>'+$(this).data('reason')+'</td>';
             html += '<td>'+$(this).data('block')+'</td>';
-            html += '<td>'+$(this).data('block_by')+'</td>';
+            html += '<td>'+$(this).data('block_remarks')+'</td>';
             html += '<td>'+$(this).data('deblock')+'</td>';
             html += '<td>'+$(this).data('deblock_remarks')+'</td>';            
         }

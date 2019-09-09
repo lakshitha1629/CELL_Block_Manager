@@ -102,8 +102,8 @@
                   <th>Block_by</th>
                   <th>Block_time</th>
                   <th>Block_remarks</th>          
+                  <th>Deblock</th>
                   <th>Deblock_by</th>
-                  <th>Deblock_date</th>
                   <th>Deblock_time</th>        
                   <th>Deblock_remarks</th> 
                       </tr></thead>';
@@ -122,7 +122,7 @@
                       $field9name = $row["block_time"];
                       $field10name = $row["block_remarks"];
                       $field11name = $row["deblock"];
-                      $field12name = $row["deblock_date"];
+                      $field12name = $row["deblock_by"];
                       $field13name = $row["deblock_time"];
                       $field14name = $row["deblock_remarks"];
 
