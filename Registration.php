@@ -69,6 +69,12 @@
           <span>Summary</span></a>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Report.php">
+          <i class="fa fa-chart-area"></i>
+          <span>Reports</span></a>
+        </a>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="Registration.php">
           <i class="fas fa-fw fa-user"></i>

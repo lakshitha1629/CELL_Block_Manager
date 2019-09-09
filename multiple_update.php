@@ -33,7 +33,6 @@ date_default_timezone_set('Asia/Colombo');
   WHERE id = :id
   ";
 
-
   if($deblock[$count]=='Deblock'){
     $data = array(
    
@@ -49,6 +48,22 @@ date_default_timezone_set('Asia/Colombo');
   SET deblock = :deblock, deblock_remarks = :deblock_remarks, deblock_by = :deblock_by, deblock_time = :deblock_time
   WHERE id = :id
   ";
+
+  }elseif($deblock[$count]!='Deblock'){
+    $data = array(
+   
+      ':deblock' => ' ',
+      ':deblock_remarks'   => ' ',
+      ':deblock_by'   => ' ',
+      ':deblock_time'   => NULL,
+      ':deblock_remarks'   => ' ',
+      ':id'   => $id[$count]
+     );
+  $query = "
+UPDATE cbm_cell_block 
+SET deblock = :deblock, deblock_remarks = :deblock_remarks, deblock_by = :deblock_by, deblock_time = :deblock_time
+WHERE id = :id
+";
 
   }
   $statement = $connect->prepare($query);

@@ -70,6 +70,12 @@
           <span>Summary</span></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="Report.php">
+          <i class="fas fa-chart-area"></i>
+          <span>Reports</span></a>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="Registration.php">
           <i class="fas fa-fw fa-user"></i>
           <span>User Registration</span></a>
@@ -293,10 +299,10 @@ $(document).ready(function(){
             html += '<td><input type="hidden" name="controller[]" class="form-control" value="'+$(this).data("controller")+'" />'+$(this).data("controller")+'</td>';
             html += '<td><input type="hidden" name="requestor[]" class="form-control" value="'+$(this).data("requestor")+'" />'+$(this).data("requestor")+'</td>';
             html += '<td><input type="hidden" name="reason[]" class="form-control" value="'+$(this).data("reason")+'" />'+$(this).data("reason")+'</td>';
-            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
+            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
             html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
            // html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
-            html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock" /></td>';
+            html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock"/></td>';
             html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
           
     
