@@ -75,7 +75,7 @@
           <div class="col-xl-3 col-sm-6 mb-3">
             
         </div>
-
+        </div>
 
 <!-- Uploader --->
 <div class="card col-xl-12 col-sm-12 mb-3">
@@ -99,6 +99,7 @@
                     <button class="btn btn-success">Upload</button>
                 </div>
             </form>
+            
 <?php 
 use Box\Spout\Reader\ReaderFactory;
 use Box\Spout\Common\Type;
@@ -192,7 +193,7 @@ else
             </div>
             <div class="col-md-4 mb-3">
                 <label>Cell :</label>
-                <input type="text" name="cell" class="form-control" placeholder="Cell Number" maxlength="20">
+                <input type="text" name="cell" class="form-control" placeholder="Cell Name" maxlength="20">
             </div>
         <div class="col-md-4 mb-3">
                  <label>Site Name :</label>

@@ -17,7 +17,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="dashboard.php">Welcome</a>
+    <a class="navbar-brand mr-1" href="Admin_dashboard.php">Welcome</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -45,15 +45,20 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="Admin_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Summary.php">
+        <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Summary</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Registration.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>User Registration</span></a>
       </li>
     </ul>
 
@@ -64,13 +69,13 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="dashboard.php">Dashboard</a>
+            <a href="Admin_dashboard.php">Dashboard</a>
           </li>
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
         <!-- Icon Cards-->
-        <div >
+        <div class="">
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
@@ -93,12 +98,17 @@
                 </span>
               </a>
             </div>
+            </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
             
           </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            
         </div>
-
+        </div>
           <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
@@ -236,7 +246,7 @@ $(document).ready(function(){
                 for(var count = 0; count < data.length; count++)
                 {
                     html += '<tr>';
-                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-controller="'+data[count].controller+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_remarks="'+data[count].block_remarks+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
+                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-controller="'+data[count].controller+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_by="'+data[count].block_by+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
                     html += '<td>'+data[count].date+'</td>';
                     html += '<td>'+data[count].cell+'</td>';
                     html += '<td>'+data[count].site_name+'</td>';
@@ -244,7 +254,7 @@ $(document).ready(function(){
                     html += '<td>'+data[count].requestor+'</td>';
                     html += '<td>'+data[count].reason+'</td>';
                     html += '<td>'+data[count].block+'</td>';
-                    html += '<td>'+data[count].block_remarks+'</td>';
+                    html += '<td>'+data[count].block_by+'</td>';
                     html += '<td>'+data[count].deblock+'</td>';
                     html += '<td>'+data[count].deblock_remarks+'</td></tr>';
                 }
@@ -262,15 +272,15 @@ $(document).ready(function(){
         if(this.checked)
         {   
             
-            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
             html += '<td><input type="hidden" name="date[]" class="form-control" value="'+$(this).data("date")+'" />'+$(this).data("date")+'</td>';
             html += '<td><input type="hidden" name="cell[]" class="form-control" value="'+$(this).data("cell")+'" />'+$(this).data("cell")+'</td>';
             html += '<td><input type="hidden" name="site_name[]" class="form-control" value="'+$(this).data("site_name")+'" />'+$(this).data("site_name")+'</td>';
             html += '<td><input type="hidden" name="controller[]" class="form-control" value="'+$(this).data("controller")+'" />'+$(this).data("controller")+'</td>';
             html += '<td><input type="hidden" name="requestor[]" class="form-control" value="'+$(this).data("requestor")+'" />'+$(this).data("requestor")+'</td>';
             html += '<td><input type="hidden" name="reason[]" class="form-control" value="'+$(this).data("reason")+'" />'+$(this).data("reason")+'</td>';
-            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
-            html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
+            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
+            html += '<td><input type="text" name="block_by[]" class="form-control" value="'+$(this).data("block_by")+'" /></td>';
            // html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
             html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock" /></td>';
             html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
@@ -279,7 +289,7 @@ $(document).ready(function(){
         }
         else
         {           
-            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-controller="'+$(this).data('controller')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_by="'+$(this).data('block_by')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
             html += '<td>'+$(this).data('date')+'</td>';
             html += '<td>'+$(this).data('cell')+'</td>';
             html += '<td>'+$(this).data('site_name')+'</td>';
@@ -287,7 +297,7 @@ $(document).ready(function(){
             html += '<td>'+$(this).data('requestor')+'</td>';
             html += '<td>'+$(this).data('reason')+'</td>';
             html += '<td>'+$(this).data('block')+'</td>';
-            html += '<td>'+$(this).data('block_remarks')+'</td>';
+            html += '<td>'+$(this).data('block_by')+'</td>';
             html += '<td>'+$(this).data('deblock')+'</td>';
             html += '<td>'+$(this).data('deblock_remarks')+'</td>';            
         }

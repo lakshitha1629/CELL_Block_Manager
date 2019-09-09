@@ -44,16 +44,22 @@
     <ul class="sidebar navbar-nav">
       
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="Admin_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
           </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="Summary.php">
+        <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Summary</span></a>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Registration.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>User Registration</span>
+          </a>
       </li>
     </ul>
 
