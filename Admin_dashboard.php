@@ -104,15 +104,15 @@
                 </div>
                 <div class="mr-5"><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Unblock'";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> New Cell Messages!</div>
+                }?> Pending Cell Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
+                <span class="float-left">Unblock Messages Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>

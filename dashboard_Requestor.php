@@ -151,7 +151,7 @@ if(!empty($_FILES['excelfile']['name']))
                   // $requestor = $row[3];
                     $requestor = $_SESSION['user_name'];
                     $reason = $row[4];
-                    $block ='Unblock';
+                    $block ='Pending..';
                     $active='1';
 
                     $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
@@ -245,7 +245,7 @@ if(isset($_POST['submit1'])){
    $controller = $_POST['controller'];
    $requestor = $_SESSION['user_name'];
    $reason = $_POST['reason'];
-   $block ='Unblock';
+   $block ='Pending..';
    $active='1';
    //`id`, `date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
@@ -288,6 +288,7 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
     <th>Controller </th> 
     <th>Requestor</th> 
     <th>Reason</th> 
+    <th>Block</th>
     <th>Delete</th> 
         </tr></thead>';
  
@@ -300,6 +301,7 @@ if ($res = $con->query($qry)) {
         $field4name = $row["controller"]; 
         $field5name = $row["requestor"];
         $field6name = $row["reason"]; 
+        $field7name = $row["block"]; 
         						
         echo "<tr> 
                   <td>".$field1name."</td> 
@@ -308,6 +310,7 @@ if ($res = $con->query($qry)) {
                   <td>".$field4name."</td> 
                   <td>".$field5name."</td> 
                   <td>".$field6name."</td>
+                  <td>".$field7name."</td>
                   <td><a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn btn-danger'>Delete</a></td> 
               </tr>";
     }
