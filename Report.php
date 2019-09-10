@@ -1,3 +1,13 @@
+<?php 
+	include('functions.php');
+
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: login.php');
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +39,14 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-       
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
+        <?php if (isset($_SESSION['success'])) : ?>
+					<p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i> 
+        </p>
+        <?php endif ?> 
+          <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
+        <a class="dropdown-item" href="Admin_dashboard.php?logout='1'">Logout</a>
         </div>
       </li>
     </ul>
@@ -39,7 +54,6 @@
   </nav>
 
   <div id="wrapper">
-
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       
@@ -49,13 +63,13 @@
           <span>Dashboard</span>
           </a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Summary</span></a>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="Report.php">
           <i class="fas fa-chart-area"></i>
           <span>Reports</span></a>
@@ -250,7 +264,7 @@ if(isset($_POST['export'])){
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>
