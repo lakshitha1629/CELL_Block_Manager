@@ -144,7 +144,7 @@ if(!empty($_FILES['excelfile']['name']))
 
                   date_default_timezone_set('Asia/Colombo');
 
-                    $date = date('Y-m-d');
+                    $date = date('Y-m-d H:i:s');
                     $cell = $row[0];
                     $site_name = $row[1];
                     $controller = $row[2];
@@ -238,7 +238,7 @@ else
 if(isset($_POST['submit1'])){ 
   require_once ('connect.php');
   date_default_timezone_set('Asia/Colombo');
-  $date = date('Y-m-d');
+  $date = date('Y-m-d H:i:s');
    //$date = $_POST['date'];
    $cell = $_POST['cell'];
    $site_name = $_POST['site'];

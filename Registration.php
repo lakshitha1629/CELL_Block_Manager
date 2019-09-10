@@ -55,8 +55,7 @@
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      
-      <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="Admin_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
@@ -64,14 +63,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Summary</span></a>
+          <i class="fas fa-chart-area"></i>
+          <span>Daily Report</span></a>
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="Registration.php">
+          <i class="fas fa-fw fa-list"></i>
+          <span>Summary</span>
+          </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="Report.php">
-          <i class="fa fa-chart-area"></i>
-          <span>Reports</span></a>
+          <i class="fas fa-fw fa-table"></i>
+          <span>Excel Exporter</span></a>
         </a>
       </li>
       <li class="nav-item active">

@@ -58,27 +58,35 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item active">
+    <li class="nav-item active">
         <a class="nav-link" href="Admin_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
-        </a>
+          </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Summary</span></a>
+          <i class="fas fa-chart-area"></i>
+          <span>Daily Report</span></a>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Registration.php">
+          <i class="fas fa-fw fa-list"></i>
+          <span>Summary</span>
+          </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Report.php">
-          <i class="fas fa-chart-area"></i>
-          <span>Reports</span></a>
+          <i class="fas fa-fw fa-table"></i>
+          <span>Excel Exporter</span></a>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Registration.php">
           <i class="fas fa-fw fa-user"></i>
-          <span>User Registration</span></a>
+          <span>User Registration</span>
+          </a>
       </li>
     </ul>
 
@@ -95,7 +103,7 @@
         </ol>
 
         <!-- Icon Cards-->
-        <div class="">
+        <div class="row">
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
@@ -112,7 +120,7 @@
                 }?> Pending Cell Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Unblock Messages Details</span>
+                <span class="float-left">Pending Messages Details</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
@@ -137,7 +145,7 @@
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
-                        <input type="submit" onClick="window.location.reload();" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
+                        <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
                     </div>
                     <br/>
                     <div class="table-responsive">

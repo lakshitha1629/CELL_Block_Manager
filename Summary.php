@@ -63,7 +63,7 @@ if (!isLoggedIn()) {
       <li class="nav-item active">
         <a class="nav-link" href="Summary.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Summary</span></a>
+          <span>Daily Report</span></a>
         </a>
       </li>
     </ul>
@@ -80,9 +80,32 @@ if (!isLoggedIn()) {
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
-        
-        <!-- Icon Cards-->
-        <div class="row">
+           <!-- Icon Cards-->
+           <div class="row">
+           <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-comments"></i>
+                </div>
+                <div class="mr-5"><b><i><?php 
+                require_once ('connect.php');
+                $date3 = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND `date` LIKE '$date3%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block1'];
+                }?> Pending Cell Messages!</b></i></div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="#">
+                <span class="float-left">Pending Messages Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
         <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">
@@ -91,15 +114,16 @@ if (!isLoggedIn()) {
                 </div>
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block'";           
+                $date1 = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block' AND `date` LIKE '$date1%'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> Site Blocks!</b></i></div>
+                }?> Daily Blocks!</b></i></div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Today Site Blocks Count</span>
+                <span class="float-left">Today Blocks Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
@@ -114,15 +138,16 @@ if (!isLoggedIn()) {
                 </div>
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`deblock`) as de FROM cbm_cell_block";           
+                $date2 = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as de FROM cbm_cell_block WHERE deblock='Deblock' AND `date` LIKE '$date2%'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['de'];
-                }?>  Site Deblocks!</b></i></div>
+                }?>  Daily Deblocks!</b></i></div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Today Site Deblocks Count</span>
+                <span class="float-left">Today Deblocks Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
@@ -130,7 +155,6 @@ if (!isLoggedIn()) {
             </div>
           </div>
         </div>
-
 
           <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
@@ -143,7 +167,7 @@ if (!isLoggedIn()) {
               
               require_once ('connect.php');
               $date = date('Y-m-d');
-              $qry = "SELECT * FROM cbm_cell_block WHERE `date`= '$date'";                  
+              $qry = "SELECT * FROM cbm_cell_block WHERE `date` LIKE '$date%'";                  
                
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   

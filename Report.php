@@ -56,8 +56,7 @@
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      
-      <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="Admin_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
@@ -65,14 +64,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Summary</span></a>
+          <i class="fas fa-chart-area"></i>
+          <span>Daily Report</span></a>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Registration.php">
+          <i class="fas fa-fw fa-list"></i>
+          <span>Summary</span>
+          </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="Report.php">
-          <i class="fas fa-chart-area"></i>
-          <span>Reports</span></a>
+          <i class="fas fa-fw fa-table"></i>
+          <span>Excel Exporter</span></a>
         </a>
       </li>
       <li class="nav-item">
@@ -106,12 +111,12 @@
             <i class="fas fa-file"></i>
             Export Details Form</div>
           <div class="card-body">
-        <form method = "post" action = "">
+        <form method = "post" action = "export.php">
         <div class="form-row">
               <div class="col-md-8 mb-3">  
                <label>Date Range:</label>
-                <input  class="col-md-4" type="date" name="date1" maxlength="10" required  >
-               to <input  class="col-md-4" type="date" name="date2"  maxlength="10" required >
+                <input  class="col-md-4" type="date" name="date1" maxlength="10" required >
+               to <input  class="col-md-4" type="date" name="date2"  maxlength="10" required  >
        
          </div>
            
@@ -121,83 +126,7 @@
 
 </form>
 </div>
-<?php 
 
-if(isset($_POST['export'])){ 
-  require_once ('connect.php');
-  $output = '';
-  $date = date('Y-m-d');
-  $date1=$_POST['date1'];
-  $date2=$_POST['date2'];
-  
- //  $query = "SELECT * FROM cbm_cell_block WHERE `date`= '$date'";
-   $query = "SELECT * FROM cbm_cell_block WHERE `date` BETWEEN '$date1' AND '$date2'";
-   $result = mysqli_query($con, $query);
-   if(mysqli_num_rows($result) > 0)
-   {
-    $output .= '
-     <table class="table" bordered="1">  
-     <tr> 
-     <th>Date</th> 
-     <th>Cell </th> 
-     <th>Site_name </th> 
-     <th>Controller </th> 
-     <th>Requestor</th> 
-     <th>Reason</th> 
-     <th>Block</th>
-     <th>Block_by</th>
-     <th>Block_time</th>
-     <th>Block_remarks</th>          
-     <th>Deblock</th>
-     <th>Deblock_by</th>
-     <th>Deblock_time</th>        
-     <th>Deblock_remarks</th> 
-         </tr>
-    ';
-    while($row = mysqli_fetch_array($result))
-    {
-      $id=$row["id"];
-      $field1name = $row["date"];
-      $field2name = $row["cell"];
-      $field3name = $row["site_name"];
-      $field4name = $row["controller"]; 
-      $field5name = $row["requestor"];
-      $field6name = $row["reason"]; 
-      $field7name = $row["block"];
-      $field8name = $row["block_by"];
-      $field9name = $row["block_time"];
-      $field10name = $row["block_remarks"];
-      $field11name = $row["deblock"];
-      $field12name = $row["deblock_by"];
-      $field13name = $row["deblock_time"];
-      $field14name = $row["deblock_remarks"];
-
-                  $output .= "<tr> 
-                                <td>".$field1name."</td> 
-                                <td>".$field2name."</td> 
-                                <td>".$field3name."</td> 
-                                <td>".$field4name."</td> 
-                                <td>".$field5name."</td> 
-                                <td>".$field6name."</td>
-                                <td>".$field7name."</td> 
-                                <td>".$field8name."</td> 
-                                <td>".$field9name."</td> 
-                                <td>".$field10name."</td> 
-                                <td>".$field11name."</td> 
-                                <td>".$field12name."</td>
-                                <td>".$field13name."</td> 
-                                <td>".$field14name."</td> 
-                                </tr>";
-    }
-    $output .= '</table>';
-    header('Content-Type: application/xls');
-    header('Content-Disposition: attachment; filename=download.xls');
-    echo $output;
-   }else{
-     echo "Enter the correct date range";
-   }
-  }
-  ?>
         </div>
     </div>
 </div>
@@ -213,12 +142,12 @@ if(isset($_POST['export'])){
             <i class="fas fa-file"></i>
             Export Details Form</div>
           <div class="card-body">
-        <form method = "post" action = "">
+        <form method = "post" action = "export_all.php">
         <div class="form-row">
               <div class="col-md-8 mb-3">  
                <label>Export Full File:</label>
        
-<input class="btn btn-success" type=submit value="Export" >
+<input class="btn btn-success" type="submit" name="export1" value="Export" >
          </div>
            
             </div>
