@@ -148,7 +148,8 @@ if(!empty($_FILES['excelfile']['name']))
                     $cell = $row[0];
                     $site_name = $row[1];
                     $controller = $row[2];
-                    $requestor = $row[3];
+                  // $requestor = $row[3];
+                    $requestor = $_SESSION['user_name'];
                     $reason = $row[4];
                     $block ='Unblock';
                     $active='1';
@@ -275,8 +276,8 @@ if(isset($_POST['submit1'])){
 <?php 
               
 require_once ('connect.php');
-
-$qry = "SELECT * FROM cbm_cell_block";           
+$user = $_SESSION['user_name'];
+$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user'";           
  
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>   
