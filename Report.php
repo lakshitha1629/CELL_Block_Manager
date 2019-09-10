@@ -85,13 +85,136 @@
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Today CELL Block Table</div>
+            Date Range Table to Excel Export</div>
           <div class="card-body">
+          <div class="card col-xl-12 col-sm-12 mb-3">
+          <div class="card-header">
+            <i class="fas fa-file"></i>
+            Export Details Form</div>
+          <div class="card-body">
+        <form method = "post" action = "">
+        <div class="form-row">
+              <div class="col-md-8 mb-3">  
+               <label>Date Range:</label>
+                <input  class="col-md-4" type="date" name="date1" maxlength="10" required  >
+               to <input  class="col-md-4" type="date" name="date2"  maxlength="10" required >
+       
+         </div>
+           
+            </div>
+    
+<input class="btn btn-success" type=submit value="Export" name="export">
 
+</form>
+</div>
+<?php 
+
+if(isset($_POST['export'])){ 
+  require_once ('connect.php');
+  $output = '';
+  $date = date('Y-m-d');
+  $date1=$_POST['date1'];
+  $date2=$_POST['date2'];
+  
+ //  $query = "SELECT * FROM cbm_cell_block WHERE `date`= '$date'";
+   $query = "SELECT * FROM cbm_cell_block WHERE `date` BETWEEN '$date1' AND '$date2'";
+   $result = mysqli_query($con, $query);
+   if(mysqli_num_rows($result) > 0)
+   {
+    $output .= '
+     <table class="table" bordered="1">  
+     <tr> 
+     <th>Date</th> 
+     <th>Cell </th> 
+     <th>Site_name </th> 
+     <th>Controller </th> 
+     <th>Requestor</th> 
+     <th>Reason</th> 
+     <th>Block</th>
+     <th>Block_by</th>
+     <th>Block_time</th>
+     <th>Block_remarks</th>          
+     <th>Deblock</th>
+     <th>Deblock_by</th>
+     <th>Deblock_time</th>        
+     <th>Deblock_remarks</th> 
+         </tr>
+    ';
+    while($row = mysqli_fetch_array($result))
+    {
+      $id=$row["id"];
+      $field1name = $row["date"];
+      $field2name = $row["cell"];
+      $field3name = $row["site_name"];
+      $field4name = $row["controller"]; 
+      $field5name = $row["requestor"];
+      $field6name = $row["reason"]; 
+      $field7name = $row["block"];
+      $field8name = $row["block_by"];
+      $field9name = $row["block_time"];
+      $field10name = $row["block_remarks"];
+      $field11name = $row["deblock"];
+      $field12name = $row["deblock_by"];
+      $field13name = $row["deblock_time"];
+      $field14name = $row["deblock_remarks"];
+
+                  $output .= "<tr> 
+                                <td>".$field1name."</td> 
+                                <td>".$field2name."</td> 
+                                <td>".$field3name."</td> 
+                                <td>".$field4name."</td> 
+                                <td>".$field5name."</td> 
+                                <td>".$field6name."</td>
+                                <td>".$field7name."</td> 
+                                <td>".$field8name."</td> 
+                                <td>".$field9name."</td> 
+                                <td>".$field10name."</td> 
+                                <td>".$field11name."</td> 
+                                <td>".$field12name."</td>
+                                <td>".$field13name."</td> 
+                                <td>".$field14name."</td> 
+                                </tr>";
+    }
+    $output .= '</table>';
+    header('Content-Type: application/xls');
+    header('Content-Disposition: attachment; filename=download.xls');
+    echo $output;
+   }else{
+     echo "Enter the correct date range";
+   }
+  }
+  ?>
         </div>
     </div>
 </div>
 
+         <!-- Export  -->
+         <div class="card col-xl-12 col-sm-12 mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Full Table to Excel Export</div>
+          <div class="card-body">
+          <div class="card col-xl-12 col-sm-12 mb-3">
+          <div class="card-header">
+            <i class="fas fa-file"></i>
+            Export Details Form</div>
+          <div class="card-body">
+        <form method = "post" action = "">
+        <div class="form-row">
+              <div class="col-md-8 mb-3">  
+               <label>Export Full File:</label>
+       
+<input class="btn btn-success" type=submit value="Export" >
+         </div>
+           
+            </div>
+    
+
+  </form>
+   </div>
+  </div>
+ </div>
+</div>
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->

@@ -91,7 +91,8 @@
                 </div>
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block'";           
+                $date1 = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block' AND `date`= '$date1'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
@@ -114,7 +115,8 @@
                 </div>
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
-                $qry = "SELECT COUNT(`deblock`) as de FROM cbm_cell_block";           
+                $date2 = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as de FROM cbm_cell_block WHERE deblock='Deblock' AND `date`= '$date2'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
