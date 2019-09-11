@@ -59,6 +59,12 @@ if (!isLoggedIn()) {
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="Details_Requestor.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Request Details</span></a>
+      </li>
     </ul>
 
     <div id="content-wrapper">

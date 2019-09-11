@@ -68,7 +68,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Registration.php">
+        <a class="nav-link" href="new_summary.php">
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
           </a>

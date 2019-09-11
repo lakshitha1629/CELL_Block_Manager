@@ -69,7 +69,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Registration.php">
+        <a class="nav-link" href="new_summary.php">
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
           </a>
@@ -104,17 +104,17 @@
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Date Range Table to Excel Export</div>
+            Date Range Excel Exporter</div>
           <div class="card-body">
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-file"></i>
-            Export Details Form</div>
+            Export Cell Details Form</div>
           <div class="card-body">
         <form method = "post" action = "export.php">
         <div class="form-row">
               <div class="col-md-8 mb-3">  
-               <label>Date Range:</label>
+               <label>Date Range : </label>
                 <input  class="col-md-4" type="date" name="date1" maxlength="10" required >
                to <input  class="col-md-4" type="date" name="date2"  maxlength="10" required  >
        
@@ -135,17 +135,17 @@
          <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Full Table to Excel Export</div>
+            Full Cell Table Excel Exporter</div>
           <div class="card-body">
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-file"></i>
-            Export Details Form</div>
+            Export Cell Details Form</div>
           <div class="card-body">
         <form method = "post" action = "export_all.php">
         <div class="form-row">
               <div class="col-md-8 mb-3">  
-               <label>Export Full File:</label>
+               <label>Export Full File : </label>
        
 <input class="btn btn-success" type="submit" name="export1" value="Export" >
          </div>

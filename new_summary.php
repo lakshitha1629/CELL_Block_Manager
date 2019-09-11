@@ -64,13 +64,13 @@
           <span>Dashboard</span>
           </a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-chart-area"></i>
           <span>Daily Report</span></a>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="new_summary.php">
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
@@ -104,72 +104,44 @@
 
         <!-- Icon Cards-->
         <div class="row">
-           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
+           <div class="col-xl-5 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5"><b><i><?php 
-                require_once ('connect.php');
-                $date3 = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND `date` LIKE '$date3%'";           
-
-                $res = $con->query($qry);
-                while ($data1 = $res->fetch_assoc()){
-                echo $data1['block1'];
-                }?> Pending Cell Messages!</b></i></div>
+                <div class="mr-2">Daily Details!</div>
+                        <ul>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                        </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+                <span class="float-left">Daily Details Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
               </a>
             </div>
           </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
+        <div class="col-xl-5 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-2.jpg');">
               <div class="card-body">
                 <div class="card-body-icon">
-                  <i class="fas fa-fw fa-life-ring"></i>
+                  <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5"><b><i><?php 
-                require_once ('connect.php');
-                $date1 = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Block' AND `date` LIKE '$date1%'";           
-
-                $res = $con->query($qry);
-                while ($data1 = $res->fetch_assoc()){
-                echo $data1['block1'];
-                }?> Daily Blocks!</b></i></div>
+                <div class="mr-2">Weekly Details!</div>
+                        <ul>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                         <li>Cras justo odio</li>
+                        </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Today Blocks Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-list"></i>
-                </div>
-                <div class="mr-5"><b><i><?php 
-                require_once ('connect.php');
-                $date2 = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as de FROM cbm_cell_block WHERE deblock='Deblock' AND `date` LIKE '$date2%'";           
-
-                $res = $con->query($qry);
-                while ($data1 = $res->fetch_assoc()){
-                echo $data1['de'];
-                }?>  Daily Deblocks!</b></i></div>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Today Deblocks Count</span>
+                <span class="float-left">Weekly Details Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
