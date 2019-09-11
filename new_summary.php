@@ -111,9 +111,15 @@
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-2">Daily Details!</div>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>   
+                   <tr><th>Type</th> 
+                       <th>Count</th>  
+                   </tr>
+                  </thead>
                         <ul>
-                         <li>Cras justo odio</li>
-                         <li>Cras justo odio</li>
+                         <li>Today Block Pending Request Count :-</li>
+                         <li>Today Deblock Pending Request Count :-</li>
                          <li>Cras justo odio</li>
                          <li>Cras justo odio</li>
                         </ul>
@@ -150,85 +156,7 @@
           </div>
         </div>
         
-          <!-- DataTables  -->
-          <div class="card col-xl-12 col-sm-12 mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            Today CELL Block Table</div>
-          <div class="card-body">
-            <div class="table-responsive">
-            <?php 
-              
-              require_once ('connect.php');
-              $date = date('Y-m-d');
-           //   SELECT * FROM cbm_cell_block WHERE `date` LIKE '2019-09-10%'
-              //$qry = "SELECT * FROM cbm_cell_block WHERE `date`= '$date'";                  
-              $qry = "SELECT * FROM cbm_cell_block WHERE `date` LIKE '$date%'";                  
-               
-              echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>   
-                  <tr> 
-                  <th>Date</th> 
-                  <th>Cell </th> 
-                  <th>Site_name </th> 
-                  <th>Controller </th> 
-                  <th>Requestor</th> 
-                  <th>Reason</th> 
-                  <th>Block</th>
-                  <th>Block_by</th>
-                  <th>Block_time</th>
-                  <th>Block_remarks</th>          
-                  <th>Deblock</th>
-                  <th>Deblock_by</th>
-                  <th>Deblock_time</th>        
-                  <th>Deblock_remarks</th> 
-                      </tr></thead>';
-               
-              if ($res = $con->query($qry)) {
-                  while ($row = $res->fetch_assoc()) {
-                      $id=$row["id"];
-                      $field1name = $row["date"];
-                      $field2name = $row["cell"];
-                      $field3name = $row["site_name"];
-                      $field4name = $row["controller"]; 
-                      $field5name = $row["requestor"];
-                      $field6name = $row["reason"]; 
-                      $field7name = $row["block"];
-                      $field8name = $row["block_by"];
-                      $field9name = $row["block_time"];
-                      $field10name = $row["block_remarks"];
-                      $field11name = $row["deblock"];
-                      $field12name = $row["deblock_by"];
-                      $field13name = $row["deblock_time"];
-                      $field14name = $row["deblock_remarks"];
-
-                                  
-                      echo "<tr> 
-                                <td>".$field1name."</td> 
-                                <td>".$field2name."</td> 
-                                <td>".$field3name."</td> 
-                                <td>".$field4name."</td> 
-                                <td>".$field5name."</td> 
-                                <td>".$field6name."</td>
-                                <td>".$field7name."</td> 
-                                <td>".$field8name."</td> 
-                                <td>".$field9name."</td> 
-                                <td>".$field10name."</td> 
-                                <td>".$field11name."</td> 
-                                <td>".$field12name."</td>
-                                <td>".$field13name."</td> 
-                                <td>".$field14name."</td> 
-                                </tr>";
-                  }
-               
-                  $res->free();
-              } 
-              ?></table>            
-
-</div>
-</div>
-</div>
-
+         
 </div>
 
       <!-- /.container-fluid -->

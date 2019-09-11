@@ -101,11 +101,24 @@
           </li>
           <li class="breadcrumb-item active">Overview</li>
         </ol>
+ <!-- Icon Cards-->
+ <div class="row">
+           <div class="col-xl-12 col-sm-12 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-4.jpg');background-size: cover;padding-bottom: 100px;">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-users"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+        <hr>
 
         <!-- Icon Cards-->
         <div class="row">
           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card text-white o-hidden h-100" style="background-color: navy;">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
@@ -117,7 +130,7 @@
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> Pending Cell Messages!</div>
+                }?> Pending Block Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">Pending Messages Details</span>
@@ -127,9 +140,29 @@
               </a>
             </div>
             </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            
-          </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: forestgreen;">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-comments"></i>
+                </div>
+                <div class="mr-5"><?php 
+                require_once ('connect.php');
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..'";           
+
+                $res = $con->query($qry);
+                while ($data2 = $res->fetch_assoc()){
+                echo $data2['deblock1'];
+                }?> Pending Deblock Messages!</div>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="#">
+                <span class="float-left">Pending Messages Details</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+            </div>
           <div class="col-xl-3 col-sm-6 mb-3">
             
           </div>
@@ -307,10 +340,12 @@ $(document).ready(function(){
             html += '<td><input type="hidden" name="controller[]" class="form-control" value="'+$(this).data("controller")+'" />'+$(this).data("controller")+'</td>';
             html += '<td><input type="hidden" name="requestor[]" class="form-control" value="'+$(this).data("requestor")+'" />'+$(this).data("requestor")+'</td>';
             html += '<td><input type="hidden" name="reason[]" class="form-control" value="'+$(this).data("reason")+'" />'+$(this).data("reason")+'</td>';
-            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Unblock">Unblock</option><option value="Block">Block</option></select></td>';  
+            html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
             html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
            // html += '<td><input type="text" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" /></td>';
-            html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock"/></td>';
+            //html += '<td><input type="checkbox" name="deblock[]" class="success" value="Deblock"/></td>';
+            html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
+           
             html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" /><input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
           
     
@@ -331,6 +366,7 @@ $(document).ready(function(){
         }
         $(this).closest('tr').html(html);
         $('#block'+$(this).attr('id')+'').val($(this).data('block'));
+        $('#deblock'+$(this).attr('id')+'').val($(this).data('deblock'));
     });
 
     $('#update_form').on('submit', function(event){

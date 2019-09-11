@@ -79,21 +79,20 @@ if (!isLoggedIn()) {
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
+       
         <!-- Icon Cards-->
         <div class="row">
-          <div class="col-xl-3 col-sm-6 mb-3">
-            
+           <div class="col-xl-12 col-sm-12 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-4.jpg');background-size: cover;padding-bottom: 100px;">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fas fa-fw fa-users"></i>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            
-        </div>
-        </div>
+       </div>
+        <hr>
 
 <!-- Uploader --->
 <div class="card col-xl-12 col-sm-12 mb-3">
