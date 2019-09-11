@@ -106,18 +106,58 @@
         <div class="row">
            <div class="col-xl-5 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
-              <div class="card-body">
+              <div class="card-body" style="font-size: x-large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-2">Daily Details!</div>
                 <hr>
                         <ul>
-                         <li>Today Request Count :-</li>
-                         <li>Today Block Pending Request Count :-</li>
-                         <li>Today Deblock Pending Request Count :-</li>
-                         <li>Today Block Count :-</li>
-                         <li>Today Deblock Count :-</li>
+                         <li>Today Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE `date` LIKE '$d_date%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['da'];
+                }?></li>
+                         <li>Today Block Pending Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND `date` LIKE '$d_date%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block1'];
+                }?></li></li>
+                         <li>Today Deblock Pending Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND `date` LIKE '$d_date%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['deblock1'];
+                }?></li>
+                         <li>Today Block Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND `date` LIKE '$d_date%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block2'];
+                }?></li>
+                         <li>Today Deblock Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE block='Deblock' AND `date` LIKE '$d_date%'";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['deblock2'];
+                }?></li>
                         </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
@@ -130,18 +170,58 @@
           </div>
         <div class="col-xl-5 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-2.jpg');">
-              <div class="card-body">
+              <div class="card-body" style="font-size: x-large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-2">Weekly Details!</div>
                 <hr>
-                <ul>
-                         <li>Weekly Request Count :-</li>
-                         <li>Weekly Block Pending Request Count :-</li>
-                         <li>Weekly Deblock Pending Request Count :-</li>
-                         <li>Weekly Block Count :-</li>
-                         <li>Weekly Deblock Count :-</li>
+                        <ul>
+                         <li>Weekly Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE YEARWEEK(`date`) = YEARWEEK(NOW())";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['da'];
+                }?></li>
+                         <li>Weekly Block Pending Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block1'];
+                }?></li></li>
+                         <li>Weekly Deblock Pending Request Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['deblock1'];
+                }?></li>
+                         <li>Weekly Block Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['block2'];
+                }?></li>
+                         <li>Weekly Deblock Count :- <?php 
+                require_once ('connect.php');
+                $d_date = date('Y-m-d');
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE block='Deblock' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+
+                $res = $con->query($qry);
+                while ($data1 = $res->fetch_assoc()){
+                echo $data1['deblock2'];
+                }?></li>
                         </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
