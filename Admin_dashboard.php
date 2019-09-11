@@ -67,7 +67,7 @@
       <li class="nav-item">
         <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-chart-area"></i>
-          <span>Daily Report</span></a>
+          <span>Daily Log</span></a>
         </a>
       </li>
       <li class="nav-item">

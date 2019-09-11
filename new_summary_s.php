@@ -1,11 +1,9 @@
-<?php 
-	include('functions.php');
-
-	if (!isAdmin()) {
-		$_SESSION['msg'] = "You must log in first";
-		header('location: login.php');
-	}
-
+<?php
+include('functions.php');
+if (!isLoggedIn()) {
+	$_SESSION['msg'] = "You must log in first";
+	header('location: login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,40 +53,30 @@
 
  <div id="wrapper">
  
+   
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       
       <li class="nav-item">
-        <a class="nav-link" href="Admin_dashboard.php">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
           </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Admin_Summary.php">
-          <i class="fas fa-chart-area"></i>
+        <a class="nav-link" href="Summary.php">
+          <i class="fas fa-fw fa-table"></i>
           <span>Daily Log</span></a>
         </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="new_summary.php">
+        <a class="nav-link" href="new_summary_s.php">
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
           </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Report.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Excel Exporter</span></a>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Registration.php">
-          <i class="fas fa-fw fa-user"></i>
-          <span>User Registration</span>
-          </a>
-      </li>
     </ul>
+
 
     <div id="content-wrapper">
 

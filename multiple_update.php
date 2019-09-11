@@ -18,6 +18,7 @@ date_default_timezone_set('Asia/Colombo');
  $id = $_POST['hidden_id'];
  for($count = 0; $count < count($id); $count++)
  {
+  if(($block[$count]=='Block')&&($deblock[$count]=='')){
      //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`
   $data = array(
    
@@ -32,8 +33,7 @@ date_default_timezone_set('Asia/Colombo');
   SET block = :block, block_remarks = :block_remarks, block_time = :block_time, block_by = :block_by
   WHERE id = :id
   ";
-
-  if($deblock[$count]=='Deblock'){
+ }else{
     $data = array(
    
         ':deblock' => $deblock[$count],
