@@ -111,17 +111,13 @@
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-2">Daily Details!</div>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>   
-                   <tr><th>Type</th> 
-                       <th>Count</th>  
-                   </tr>
-                  </thead>
+                <hr>
                         <ul>
+                         <li>Today Request Count :-</li>
                          <li>Today Block Pending Request Count :-</li>
                          <li>Today Deblock Pending Request Count :-</li>
-                         <li>Cras justo odio</li>
-                         <li>Cras justo odio</li>
+                         <li>Today Block Count :-</li>
+                         <li>Today Deblock Count :-</li>
                         </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
@@ -139,11 +135,13 @@
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-2">Weekly Details!</div>
-                        <ul>
-                         <li>Cras justo odio</li>
-                         <li>Cras justo odio</li>
-                         <li>Cras justo odio</li>
-                         <li>Cras justo odio</li>
+                <hr>
+                <ul>
+                         <li>Weekly Request Count :-</li>
+                         <li>Weekly Block Pending Request Count :-</li>
+                         <li>Weekly Deblock Pending Request Count :-</li>
+                         <li>Weekly Block Count :-</li>
+                         <li>Weekly Deblock Count :-</li>
                         </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
