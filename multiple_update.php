@@ -23,7 +23,7 @@ date_default_timezone_set('Asia/Colombo');
   $data = array(
    
    ':block'   => $block[$count],
-   ':block_remarks'  => $block_remarks[$count],
+   ':block_remarks'  => $block_remarks[0],
    ':block_time'   => $block_time,
    ':block_by'   => $block_by,
    ':id'   => $id[$count]
@@ -37,16 +37,15 @@ date_default_timezone_set('Asia/Colombo');
     $data = array(
    
         ':deblock' => $deblock[$count],
-        ':deblock_remarks'   => $deblock_remarks[$count],
+        ':deblock_remarks'   => $deblock_remarks[0],
         ':deblock_by'   => $deblock_by,
         ':deblock_time'   => $deblock_time,
-        ':deblock_remarks'   => $deblock_remarks[$count],
         ':id'   => $id[$count]
        );
     $query = "
   UPDATE cbm_cell_block 
   SET deblock = :deblock, deblock_remarks = :deblock_remarks, deblock_by = :deblock_by, deblock_time = :deblock_time
-  WHERE id = :id
+  WHERE id = :id AND deblock = 'pending..'
   ";
 
   }

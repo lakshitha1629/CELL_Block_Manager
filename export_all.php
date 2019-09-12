@@ -13,7 +13,7 @@ if(isset($_POST['export1'])){
      <th>Date</th> 
      <th>Cell </th> 
      <th>Site_name </th> 
-     <th>Controller </th> 
+     <th>Technology </th> 
      <th>Requestor</th> 
      <th>Reason</th> 
      <th>Block</th>
@@ -32,7 +32,7 @@ if(isset($_POST['export1'])){
                                 <td>".$row['date']."</td> 
                                 <td>".$row['cell']."</td> 
                                 <td>".$row['site_name']."</td> 
-                                <td>".$row['controller']."</td> 
+                                <td>".$row['technology']."</td> 
                                 <td>".$row['requestor']."</td> 
                                 <td>".$row['reason']."</td>
                                 <td>".$row['block']."</td> 
@@ -47,7 +47,7 @@ if(isset($_POST['export1'])){
     }
     $output .= "</table>";
     header('Content-Type: application/xls');
-    header('Content-Disposition: attachment; filename=download.xls');
+    header('Content-Disposition: attachment; filename=Mobitel_INOC_CELL_Report.xls');
     echo $output;
    }else{
      echo "Enter the correct date range";

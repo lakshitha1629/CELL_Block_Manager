@@ -63,7 +63,7 @@ if (!isLoggedIn()) {
       <li class="nav-item active">
         <a class="nav-link" href="Summary.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Daily Log</span></a>
+          <span>Cell Log</span></a>
         </a>
       </li>
       <li class="nav-item ">
@@ -71,6 +71,12 @@ if (!isLoggedIn()) {
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
           </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Report_s.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Excel Exporter</span></a>
+        </a>
       </li>
     </ul>
 
@@ -204,7 +210,7 @@ if (!isLoggedIn()) {
                   <th>Date</th> 
                   <th>Cell </th> 
                   <th>Site_name </th> 
-                  <th>Controller </th> 
+                  <th>Technology </th> 
                   <th>Requestor</th> 
                   <th>Reason</th> 
                   <th>Block</th>
@@ -223,7 +229,7 @@ if (!isLoggedIn()) {
                       $field1name = $row["date"];
                       $field2name = $row["cell"];
                       $field3name = $row["site_name"];
-                      $field4name = $row["controller"]; 
+                      $field4name = $row["technology"]; 
                       $field5name = $row["requestor"];
                       $field6name = $row["reason"]; 
                       $field7name = $row["block"];

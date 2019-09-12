@@ -66,7 +66,7 @@ if (!isLoggedIn()) {
       <li class="nav-item">
         <a class="nav-link" href="Summary.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Daily Log</span></a>
+          <span>Cell Log</span></a>
         </a>
       </li>
       <li class="nav-item active">
@@ -74,6 +74,12 @@ if (!isLoggedIn()) {
           <i class="fas fa-fw fa-list"></i>
           <span>Summary</span>
           </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Report_s.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Excel Exporter</span></a>
+        </a>
       </li>
     </ul>
 

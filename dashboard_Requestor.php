@@ -154,14 +154,14 @@ if(!empty($_FILES['excelfile']['name']))
                     $date = date('Y-m-d H:i:s');
                     $cell = $row[0];
                     $site_name = $row[1];
-                    $controller = $row[2];
+                    $technology = $row[2];
                   // $requestor = $row[3];
                     $requestor = $_SESSION['user_name'];
                     $reason = $row[3];
                     $block ='Pending..';
                     $active='1';
 
-                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
+                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
                     $res = mysqli_query($con,$qry);
 
                 }
@@ -203,7 +203,7 @@ else
                   <tr> 
                   <th>Cell </th> 
                   <th>Site_name </th> 
-                  <th>Controller </th>
+                  <th>Technology </th>
                   <th>Reason</th>
                 </tr></thead>
                 
@@ -255,8 +255,8 @@ else
             </div>
         <div class="form-row">
          <div class="col-md-4 mb-3">
-                 <label>Controller :</label>
-                <input type="text" name="controller" class="form-control" placeholder="BSC/RNC" maxlength="10">
+                 <label>Technology :</label>
+                <input type="text" name="technology" class="form-control" placeholder="BSC/RNC/4G/3G" maxlength="10">
             </div>
          <div class="col-md-4 mb-3">
          <label>Requestor :</label>
@@ -282,13 +282,13 @@ if(isset($_POST['submit1'])){
    //$date = $_POST['date'];
    $cell = $_POST['cell'];
    $site_name = $_POST['site'];
-   $controller = $_POST['controller'];
+   $technology = $_POST['technology'];
    $requestor = $_SESSION['user_name'];
    $reason = $_POST['reason'];
    $block ='Pending..';
    $active='1';
-   //`id`, `date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `controller`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$controller','$requestor','$reason','$active','$block')";
+   //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
    //echo $qry;
    if (!mysqli_query($con,$qry))
      {
@@ -325,7 +325,7 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
     <th>Date</th> 
     <th>Cell </th> 
     <th>Site_name </th> 
-    <th>Controller </th> 
+    <th>Technology </th> 
     <th>Requestor</th> 
     <th>Reason</th> 
     <th>Block</th>
@@ -339,7 +339,7 @@ if ($res = $con->query($qry)) {
         $field1name = $row["date"];
         $field2name = $row["cell"];
         $field3name = $row["site_name"];
-        $field4name = $row["controller"]; 
+        $field4name = $row["technology"]; 
         $field5name = $row["requestor"];
         $field6name = $row["reason"]; 
         $field7name = $row["block"];

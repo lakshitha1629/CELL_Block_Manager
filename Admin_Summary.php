@@ -223,7 +223,7 @@
                   <th>Date</th> 
                   <th>Cell </th> 
                   <th>Site_name </th> 
-                  <th>Controller </th> 
+                  <th>Technology </th> 
                   <th>Requestor</th> 
                   <th>Reason</th> 
                   <th>Block</th>
@@ -242,7 +242,7 @@
                       $field1name = $row["date"];
                       $field2name = $row["cell"];
                       $field3name = $row["site_name"];
-                      $field4name = $row["controller"]; 
+                      $field4name = $row["technology"]; 
                       $field5name = $row["requestor"];
                       $field6name = $row["reason"]; 
                       $field7name = $row["block"];
