@@ -133,9 +133,9 @@
                 }?> Pending Block Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+                <span class="float-left">Pending Block Messages Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -156,9 +156,10 @@
                 }?> Pending Deblock Messages!</div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+                <span class="float-left">Pending Deblock Messages Count
+                </span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -174,11 +175,11 @@
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            CELL Block Table</div>
+            CELL Requests Block/Deblock Table</div>
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
-                        <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
+                        <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
                     </div>
                     <br/>
                     <div class="table-responsive">

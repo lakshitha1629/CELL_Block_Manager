@@ -7,7 +7,7 @@ $id = $_GET['id']; // $id is now defined
 // $id = (int)$_GET['id'];
 
 //mysqli_query($con,"DELETE FROM cbm_cell_block WHERE id='".$id."'");
-mysqli_query($con,"UPDATE `cbm_cell_block` SET deblock='pending..' WHERE `id` = '".$id."' AND `block`='Block'");
+mysqli_query($con,"UPDATE `cbm_cell_block` SET deblock='Pending..' WHERE `id` = '".$id."' AND `block`='Block'");
 // echo mysqli_affected_rows($con);
 // if(mysqli_affected_rows($con) == '0')
 //   {

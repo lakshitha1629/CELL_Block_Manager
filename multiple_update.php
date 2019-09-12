@@ -45,7 +45,7 @@ date_default_timezone_set('Asia/Colombo');
     $query = "
   UPDATE cbm_cell_block 
   SET deblock = :deblock, deblock_remarks = :deblock_remarks, deblock_by = :deblock_by, deblock_time = :deblock_time
-  WHERE id = :id AND deblock = 'pending..'
+  WHERE id = :id AND deblock = 'Pending..'
   ";
 
   }

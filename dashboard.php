@@ -164,7 +164,7 @@ if (!isLoggedIn()) {
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            CELL Block Table</div>
+            CELL Requests Block/Deblock Table</div>
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
