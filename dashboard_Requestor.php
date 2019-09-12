@@ -101,7 +101,7 @@ if (!isLoggedIn()) {
             Multi-CELL Uploader</div>
              <div class="card-body">
              <form method="post" action="" enctype="multipart/form-data">
-
+             
             <div class="form-row">
               <div class="col-md-4 mb-3">  
                 <label>Upload your Multi-CELL Excel File :</label>
@@ -115,6 +115,8 @@ if (!isLoggedIn()) {
                 <div class="form-group">
                     <button class="btn btn-success">Upload</button>
                 </div>
+                
+                
             </form>
             
 <?php 
@@ -155,7 +157,7 @@ if(!empty($_FILES['excelfile']['name']))
                     $controller = $row[2];
                   // $requestor = $row[3];
                     $requestor = $_SESSION['user_name'];
-                    $reason = $row[4];
+                    $reason = $row[3];
                     $block ='Pending..';
                     $active='1';
 
@@ -191,6 +193,39 @@ else
 ?>
 
             </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+            
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-3">
+            Use this table format:- <form><input type="button" value="Download Template" onClick="window.location.href='downloads/Template.xlsx'" class="btn btn-info"></form><hr>
+            <table class="table table-bordered" width="100%" cellspacing="0">
+              <thead style="background-color: aliceblue;"> 
+                  <tr> 
+                  <th>Cell </th> 
+                  <th>Site_name </th> 
+                  <th>Controller </th>
+                  <th>Reason</th>
+                </tr></thead>
+                
+                <tr> 
+                  <td></td> 
+                  <td></td> 
+                  <td></td> 
+                  <td></td> 
+                </tr>
+                <tr> 
+                  <td></td> 
+                  <td></td> 
+                  <td></td> 
+                  <td></td> 
+                </tr>
+                </table>
+                    
+                
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            
+        </div>
             </div>
             </div>
         </div>
@@ -294,7 +329,8 @@ echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacin
     <th>Requestor</th> 
     <th>Reason</th> 
     <th>Block</th>
-    <th>Delete</th> 
+    <th>Deblock</th>
+    <th></th> 
         </tr></thead>';
  
 if ($res = $con->query($qry)) {
@@ -306,7 +342,8 @@ if ($res = $con->query($qry)) {
         $field4name = $row["controller"]; 
         $field5name = $row["requestor"];
         $field6name = $row["reason"]; 
-        $field7name = $row["block"]; 
+        $field7name = $row["block"];
+        $field8name = $row["deblock"];
         						
         echo "<tr> 
                   <td>".$field1name."</td> 
@@ -316,7 +353,10 @@ if ($res = $con->query($qry)) {
                   <td>".$field5name."</td> 
                   <td>".$field6name."</td>
                   <td>".$field7name."</td>
-                  <td><a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn btn-danger'>Delete</a></td> 
+                  <td>".$field8name."</td>
+                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=".$row['id']."\" type='button' class='btn btn-info'>Deblock Req.</a>
+                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn btn-danger'>Delete</a>
+                  </td> 
               </tr>";
     }
  

@@ -140,7 +140,7 @@ if (!isLoggedIn()) {
                          <li>Today Deblock Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE block='Deblock' AND `date` LIKE '$d_date%'";           
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND `date` LIKE '$d_date%'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
@@ -204,7 +204,7 @@ if (!isLoggedIn()) {
                          <li>Weekly Deblock Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE block='Deblock' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
