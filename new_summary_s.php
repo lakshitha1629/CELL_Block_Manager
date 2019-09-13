@@ -97,7 +97,6 @@ if (!isLoggedIn()) {
         </ol>
 
          <!-- Area Chart Example-->
-        
          <div class="row">
           <div class="col-lg-8">
             <div class="card mb-3" style="padding-left: 15px;padding-right: 15px;">
@@ -105,7 +104,7 @@ if (!isLoggedIn()) {
                 <i class="fas fa-chart-bar"></i>
                 Bar Chart Example</div>
               <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
+                <canvas id="mycanvas" width="100%" height="50"></canvas>
               </div>
               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
@@ -310,6 +309,7 @@ if (!isLoggedIn()) {
 
   <!-- Page level plugin JavaScript-->
   <script src="vendor/chart.js/Chart.min.js"></script>
+  <script type="text/javascript" src="jquery/app.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
