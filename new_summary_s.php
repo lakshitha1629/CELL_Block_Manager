@@ -96,9 +96,22 @@ if (!isLoggedIn()) {
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
-        <!-- Icon Cards-->
-        <div class="row">
-           <div class="col-xl-5 col-sm-6 mb-3">
+         <!-- Area Chart Example-->
+        
+         <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-3" style="padding-left: 15px;padding-right: 15px;">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                Bar Chart Example</div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="100%" height="50"></canvas>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+          <div class="mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-2.jpg');">
               <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
@@ -154,16 +167,16 @@ if (!isLoggedIn()) {
                 }?></li>
                         </ul>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1">
                 <span class="float-left">Daily Details Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
-          </div>
-        <div class="col-xl-5 col-sm-6 mb-3">
-        <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
+            </div>
+            <div class="mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
               <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
@@ -218,33 +231,30 @@ if (!isLoggedIn()) {
                 }?></li>
                         </ul>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1">
                 <span class="float-left">Weekly Details Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
+            </div>
+            </div>
             </div>
           </div>
         </div>
+
+
+        <!-- Icon Cards-->
+        <div class="row">
+           <div class="col-xl-5 col-sm-6 mb-3">
+            
+          </div>
+        <div class="col-xl-5 col-sm-6 mb-3">
+       
+          </div>
+        </div>
         
-        <!-- Area Chart Example-->
-        
-        <div class="card col-xl-12 col-sm-12 mb-3">
-          <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
-              <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Daily Details Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
+ 
          
 </div>
 
@@ -290,6 +300,7 @@ if (!isLoggedIn()) {
     </div>
   </div>
 
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -299,14 +310,14 @@ if (!isLoggedIn()) {
 
   <!-- Page level plugin JavaScript-->
   <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
 
   <!-- Demo scripts for this page-->
-  <script src="js/demo/datatables-demo.js"></script>
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
