@@ -100,7 +100,7 @@ if (!isLoggedIn()) {
         <div class="row">
            <div class="col-xl-5 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-2.jpg');">
-              <div class="card-body" style="font-size: larger;font-family: cambria;">
+              <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
@@ -164,7 +164,7 @@ if (!isLoggedIn()) {
           </div>
         <div class="col-xl-5 col-sm-6 mb-3">
         <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
-              <div class="card-body" style="font-size: larger;font-family: cambria;">
+              <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
@@ -228,9 +228,27 @@ if (!isLoggedIn()) {
           </div>
         </div>
         
+        <!-- Area Chart Example-->
+        
+        <div class="card col-xl-12 col-sm-12 mb-3">
+          <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                Bar Chart Example</div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="100%" height="50"></canvas>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" href="#">
+                <span class="float-left">Daily Details Count</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
          
 </div>
 
+   
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
@@ -280,6 +298,7 @@ if (!isLoggedIn()) {
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 

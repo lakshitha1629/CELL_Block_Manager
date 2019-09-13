@@ -10,7 +10,7 @@ if (!isLoggedIn()) {
 <head>
 	<title>Cell Block Manager</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=0.9">	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
@@ -121,10 +121,10 @@ if (!isLoggedIn()) {
                 echo $data1['block1'];
                 }?> Pending Block Messages!</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+              <a class="card-footer text-white clearfix small z-1" href="#DEB">
+                <span class="float-left">Pending Block Messages Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -144,10 +144,10 @@ if (!isLoggedIn()) {
                 echo $data2['deblock1'];
                 }?> Pending Deblock Messages!</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+              <a class="card-footer text-white clearfix small z-1" href="#DED">
+                <span class="float-left">Pending Deblock Messages Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -164,19 +164,18 @@ if (!isLoggedIn()) {
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            CELL Requests Block/Deblock Table</div>
+            CELL Requests Block/Deblock Pending Table</div>
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
                         <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
                     </div>
                     <br/>
+         
                     <div class="table-responsive">
-<?php               
-    require_once ('connect.php');
-              
-    $qry = "SELECT * FROM cbm_cell_block";      
-    echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <div id="DEB">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>   
         <tr>        
         <th width="5%"></th>
@@ -204,12 +203,10 @@ if (!isLoggedIn()) {
         <th>Block_remarks</th>
         <th>Deblock</th>
         <th>Deblock_remarks</th> 
-      </tr></tfoot>';             
-                          
-
-   		echo "<tbody></tbody>";
-
-?>      
+      </tr></tfoot>
+      
+      <tbody></tbody>     
+</div>
                         </table>
                     </div>
                 </form>         
@@ -394,4 +391,5 @@ $(document).ready(function(){
     });
 
 });  
+
 </script>

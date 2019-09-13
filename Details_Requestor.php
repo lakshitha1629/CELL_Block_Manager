@@ -91,7 +91,7 @@ if (!isLoggedIn()) {
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
                 $requestor = $_SESSION['user_name'];
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE requestor='$requestor' AND block='Pending..' AND `date` LIKE '$date3%'";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE requestor='$requestor' AND block='Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
@@ -116,7 +116,7 @@ if (!isLoggedIn()) {
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
                 $requestor = $_SESSION['user_name'];
-                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE requestor='$requestor' AND deblock='Pending..' AND `date` LIKE '$date3%'";           
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE requestor='$requestor' AND deblock='Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data4 = $res->fetch_assoc()){

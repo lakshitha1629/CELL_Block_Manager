@@ -102,18 +102,17 @@ if (!isLoggedIn()) {
                 </div>
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
-                $date3 = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND `date` LIKE '$date3%'";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> Pending Block Messages!</b></i></div>
+                }?> Pending Block Messages!</i></b></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+              <a class="card-footer text-white clearfix small z-1 table-responsive" href="#bl">
+                <span class="float-left">Pending Block Messages Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -127,17 +126,17 @@ if (!isLoggedIn()) {
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND `date` LIKE '$date3%'";           
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data4 = $res->fetch_assoc()){
                 echo $data4['deblock1'];
                 }?> Pending Deblock Messages!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Messages Details</span>
+              <a class="card-footer text-white clearfix small z-1" href="#b2">
+                <span class="float-left">Pending Deblock Messages Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -158,10 +157,10 @@ if (!isLoggedIn()) {
                 echo $data1['block1'];
                 }?> Daily Blocks!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="#bl">
                 <span class="float-left">Today Blocks Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -182,10 +181,10 @@ if (!isLoggedIn()) {
                 echo $data1['de'];
                 }?>  Daily Deblocks!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="#b2">
                 <span class="float-left">Today Deblocks Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
@@ -195,14 +194,15 @@ if (!isLoggedIn()) {
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Today CELL Block Table</div>
+            CELL Requests Block/Deblock Table</div>
           <div class="card-body">
             <div class="table-responsive">
             <?php 
               
               require_once ('connect.php');
+                          
               $date = date('Y-m-d');
-              $qry = "SELECT * FROM cbm_cell_block WHERE `date` LIKE '$date%'";                  
+              $qry = "SELECT * FROM cbm_cell_block";                  
                
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
@@ -213,11 +213,11 @@ if (!isLoggedIn()) {
                   <th>Technology </th> 
                   <th>Requestor</th> 
                   <th>Reason</th> 
-                  <th>Block</th>
+                  <th id="bl">Block</th>
                   <th>Block_by</th>
                   <th>Block_time</th>
                   <th>Block_remarks</th>          
-                  <th>Deblock</th>
+                  <th id="b2">Deblock</th>
                   <th>Deblock_by</th>
                   <th>Deblock_time</th>        
                   <th>Deblock_remarks</th> 
@@ -241,8 +241,16 @@ if (!isLoggedIn()) {
                       $field13name = $row["deblock_time"];
                       $field14name = $row["deblock_remarks"];
 
-                                  
-                      echo "<tr> 
+                      if ($field7name=='Block' && $field11name=='Deblock'){
+
+                          echo '<tr style="background-color: lightgray;">';
+                      }
+                      else{
+                        echo '<tr>';
+                 
+
+                      }           
+                      echo "
                                 <td>".$field1name."</td> 
                                 <td>".$field2name."</td> 
                                 <td>".$field3name."</td> 
