@@ -107,7 +107,7 @@ if (!isLoggedIn()) {
                 <canvas id="mycanvas" width="100%" height="50"></canvas>
               </div>
 
-              <form id="loginform" method="post">   
+              <!-- <form id="loginform" method="post">   
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Date Range :</label>
                 <div class="col-sm-3">
@@ -122,13 +122,12 @@ if (!isLoggedIn()) {
                 </div>
               </div>
               </form>
-  
+   -->
     
                 
          
               
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
+               </div>
           </div>
           <div class="col-lg-4">
           <div class="mb-3">
