@@ -111,21 +111,22 @@
             <i class="fas fa-file"></i>
             Export Cell Details Form</div>
           <div class="card-body">
-        <form method = "post" action = "export.php">
-        <div class="form-row">
-              <div class="col-md-8 mb-3">  
-               <label>Date Range : </label>
-                <input  class="col-md-4" type="date" name="date1" maxlength="10" required >
-               to <input  class="col-md-4" type="date" name="date2"  maxlength="10" required  >
-       
-         </div>
-           
-            </div>
-    
-<input class="btn btn-success" type=submit value="Export" name="export">
-
-</form>
-</div>
+          <form method = "post" action = "export.php">
+        <div class="form-group row">
+                <label class="col-sm-2 col-form-label" style="margin-right: -94px;">Date Range :</label>
+                <div class="col-sm-3">
+                <input  class="form-control" type="date" name="date1" maxlength="10" required >
+               </div>
+               <label class="col-sm-0 col-form-label"> to </label>
+               <div class="col-sm-3">
+                <input  class="form-control" type="date" name="date2"  maxlength="10" required  >
+               </div>
+               <div class="col-sm-2">
+               <input class="btn btn-success" type=submit value="Export" name="export">
+               </div>
+              </div>
+          </form>
+    </div>
 
         </div>
     </div>

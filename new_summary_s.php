@@ -106,6 +106,27 @@ if (!isLoggedIn()) {
               <div class="card-body">
                 <canvas id="mycanvas" width="100%" height="50"></canvas>
               </div>
+
+              <form id="loginform" method="post">   
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Date Range :</label>
+                <div class="col-sm-3">
+                <input  class="form-control" id="date1" type="date" maxlength="10"  >
+               </div>
+               <label class="col-sm-0 col-form-label"> to </label>
+               <div class="col-sm-3">
+                <input  class="form-control" type="date" id="date2" maxlength="10"   >
+               </div>
+               <div class="col-sm-2">
+               <button class="btn btn-success" id="generate"> Generate </button>
+                </div>
+              </div>
+              </form>
+  
+    
+                
+         
+              
               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
           </div>
@@ -309,7 +330,7 @@ if (!isLoggedIn()) {
 
   <!-- Page level plugin JavaScript-->
   <script src="vendor/chart.js/Chart.min.js"></script>
-  <script type="text/javascript" src="jquery/app.js"></script>
+  <!-- <script type="text/javascript" src="jquery/app.js"></script> -->
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
@@ -319,6 +340,91 @@ if (!isLoggedIn()) {
   <script src="js/demo/chart-bar-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
 
+
+  <script>
+$(document).ready(function(){
+ 
+
+ //  $('#generate').click(function (e) {
+                    // e.preventDefault();
+                    // var val1 = $('#date1').val();
+                    // var val2 = $('#date2').val();
+
+                    // $.ajax({
+                    //     type: 'POST',
+                    //     url: "data.php",
+                    //     data: {date1: val1, date2: val2},
+                    //     dataType: "html",
+                    //     success: 
+                        //function (response) {
+  //                           $('#mycanvas').html(response);
+  //                       }
+  //                   });
+
+  //               });
+  $.ajax({
+    url: "data.php",
+    method: "post",
+    success: function(data) {
+      console.log(data);
+           var date = [];
+           var Block = [];
+	       var Deblock = [];
+	       var Request = [];
+	 
+      for(var i in data) {
+        date.push("Date:- " + data[i].a);
+        Block.push(data[i].b);
+		Deblock.push(data[i].c);
+		Request.push(data[i].d);
+      }
+
+      var chartdata = {
+        labels: date,date,date,
+        datasets : [
+          {
+            label: 'Block Count',
+            backgroundColor: '#98FB98',
+            borderColor: '#98FB98',
+            data: Block
+          },{
+            label: 'Deblock Count',
+            backgroundColor: '#b2beb5',
+            borderColor: '#b2beb5',
+            data: Deblock
+          },{
+            label: 'Request Count',
+            backgroundColor: '#87CEEB',
+            borderColor: '#87CEEB',
+            data: Request
+          }
+        ]
+		
+      };
+
+      var ctx = $("#mycanvas");
+
+      var barGraph = new Chart(ctx, {
+        type: 'bar',
+        data: chartdata
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+
+  
+});
+
+// });
+
+
+
+
+
+            
+        </script>  
 </body>
 
 </html>
