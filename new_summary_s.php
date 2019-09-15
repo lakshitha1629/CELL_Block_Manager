@@ -200,49 +200,49 @@ if (!isLoggedIn()) {
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-2">Weekly Details!</div>
+                <div class="mr-2">Monthly Details!</div>
                 <hr>
                         <ul>
-                         <li>Weekly Request Count :- <?php 
+                         <li>Monthly Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['da'];
                 }?></li>
-                         <li>Weekly Block Pending Request Count :- <?php 
+                         <li>Monthly Block Pending Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
                 }?></li></li>
-                         <li>Weekly Deblock Pending Request Count :- <?php 
+                         <li>Monthly Deblock Pending Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['deblock1'];
                 }?></li>
-                         <li>Weekly Block Count :- <?php 
+                         <li>Monthly Block Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block2'];
                 }?></li>
-                         <li>Weekly Deblock Count :- <?php 
+                         <li>Monthly Deblock Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
@@ -251,7 +251,7 @@ if (!isLoggedIn()) {
                         </ul>
               </div>
               <a class="card-footer text-white clearfix small z-1">
-                <span class="float-left">Weekly Details Count</span>
+                <span class="float-left">Monthly Details Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -334,10 +334,10 @@ if (!isLoggedIn()) {
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
 
-  <!-- Demo scripts for this page-->
+  <!-- Demo scripts for this page
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
   <script>

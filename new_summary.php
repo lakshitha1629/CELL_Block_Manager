@@ -102,11 +102,43 @@
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
-        <!-- Icon Cards-->
-        <div class="row">
-           <div class="col-xl-5 col-sm-6 mb-3">
+         <!-- Area Chart Example-->
+         <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-3" style="padding-left: 15px;padding-right: 15px;">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                Bar Chart Example</div>
+              <div class="card-body">
+                <canvas id="mycanvas" width="100%" height="50"></canvas>
+              </div>
+
+              <!-- <form id="loginform" method="post">   
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Date Range :</label>
+                <div class="col-sm-3">
+                <input  class="form-control" id="date1" type="date" maxlength="10"  >
+               </div>
+               <label class="col-sm-0 col-form-label"> to </label>
+               <div class="col-sm-3">
+                <input  class="form-control" type="date" id="date2" maxlength="10"   >
+               </div>
+               <div class="col-sm-2">
+               <button class="btn btn-success" id="generate"> Generate </button>
+                </div>
+              </div>
+              </form>
+   -->
+    
+                
+         
+              
+               </div>
+          </div>
+          <div class="col-lg-4">
+          <div class="mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-2.jpg');">
-              <div class="card-body" style="font-size: larger;font-family: cambria;">
+              <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
@@ -160,63 +192,63 @@
                 }?></li>
                         </ul>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1">
                 <span class="float-left">Daily Details Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
-          </div>
-        <div class="col-xl-5 col-sm-6 mb-3">
-        <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
-              <div class="card-body" style="font-size: larger;font-family: cambria;">
+            </div>
+            <div class="mb-3">
+            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-3.jpg');background-size: cover;">
+              <div class="card-body" style="font-size: large;font-family: cambria;">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-2">Weekly Details!</div>
+                <div class="mr-2">Monthly Details!</div>
                 <hr>
                         <ul>
-                         <li>Weekly Request Count :- <?php 
+                         <li>Monthly Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`date`) as da FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['da'];
                 }?></li>
-                         <li>Weekly Block Pending Request Count :- <?php 
+                         <li>Monthly Block Pending Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
                 }?></li></li>
-                         <li>Weekly Deblock Pending Request Count :- <?php 
+                         <li>Monthly Deblock Pending Request Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['deblock1'];
                 }?></li>
-                         <li>Weekly Block Count :- <?php 
+                         <li>Monthly Block Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`block`) as block2 FROM cbm_cell_block WHERE block='Block' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block2'];
                 }?></li>
-                         <li>Weekly Deblock Count :- <?php 
+                         <li>Monthly Deblock Count :- <?php 
                 require_once ('connect.php');
                 $d_date = date('Y-m-d');
-                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND YEARWEEK(`date`) = YEARWEEK(NOW())";           
+                $qry = "SELECT COUNT(`deblock`) as deblock2 FROM cbm_cell_block WHERE deblock='Deblock' AND MONTH(`date`) = MONTH(NOW())";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
@@ -224,19 +256,34 @@
                 }?></li>
                         </ul>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Weekly Details Count</span>
+              <a class="card-footer text-white clearfix small z-1">
+                <span class="float-left">Monthly Details Count</span>
                 <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
+                  <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Icon Cards-->
+        <div class="row">
+           <div class="col-xl-5 col-sm-6 mb-3">
+            
+          </div>
+        <div class="col-xl-5 col-sm-6 mb-3">
+       
           </div>
         </div>
         
+ 
          
 </div>
 
+   
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
@@ -278,6 +325,7 @@
     </div>
   </div>
 
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -286,15 +334,102 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- <script type="text/javascript" src="jquery/app.js"></script> -->
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
 
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/datatables-demo.js"></script>
+  <!-- Demo scripts for this page
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script> -->
 
+
+  <script>
+$(document).ready(function(){
+ 
+
+ //  $('#generate').click(function (e) {
+                    // e.preventDefault();
+                    // var val1 = $('#date1').val();
+                    // var val2 = $('#date2').val();
+
+                    // $.ajax({
+                    //     type: 'POST',
+                    //     url: "data.php",
+                    //     data: {date1: val1, date2: val2},
+                    //     dataType: "html",
+                    //     success: 
+                        //function (response) {
+  //                           $('#mycanvas').html(response);
+  //                       }
+  //                   });
+
+  //               });
+  $.ajax({
+    url: "data.php",
+    method: "post",
+    success: function(data) {
+      console.log(data);
+           var date = [];
+           var Block = [];
+	       var Deblock = [];
+	       var Request = [];
+	 
+      for(var i in data) {
+        date.push("Date:- " + data[i].a);
+        Block.push(data[i].b);
+		Deblock.push(data[i].c);
+		Request.push(data[i].d);
+      }
+
+      var chartdata = {
+        labels: date,date,date,
+        datasets : [
+          {
+            label: 'Block Count',
+            backgroundColor: '#98FB98',
+            borderColor: '#98FB98',
+            data: Block
+          },{
+            label: 'Deblock Count',
+            backgroundColor: '#b2beb5',
+            borderColor: '#b2beb5',
+            data: Deblock
+          },{
+            label: 'Request Count',
+            backgroundColor: '#87CEEB',
+            borderColor: '#87CEEB',
+            data: Request
+          }
+        ]
+		
+      };
+
+      var ctx = $("#mycanvas");
+
+      var barGraph = new Chart(ctx, {
+        type: 'bar',
+        data: chartdata
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+
+  
+});
+
+// });
+
+
+
+
+
+            
+        </script>  
 </body>
 
 </html>
