@@ -101,7 +101,8 @@
           </li>
           <li class="breadcrumb-item active">Overview</li>
         </ol>
- <!-- Icon Cards-->
+
+        <!-- Icon Cards-->
  <div class="row">
            <div class="col-xl-12 col-sm-12 mb-3">
             <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-4.jpg');background-size: cover;padding-bottom: 100px;">
@@ -132,7 +133,7 @@
                 echo $data1['block1'];
                 }?> Pending Block Messages!</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
+              <a class="card-footer text-white clearfix small z-1" href="#DEB">
                 <span class="float-left">Pending Block Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
@@ -155,9 +156,8 @@
                 echo $data2['deblock1'];
                 }?> Pending Deblock Messages!</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Pending Deblock Messages Count
-                </span>
+              <a class="card-footer text-white clearfix small z-1" href="#DEB">
+                <span class="float-left">Pending Deblock Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -171,23 +171,23 @@
             
         </div>
         </div>
-          <!-- DataTables  -->
+        
+                  <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            CELL Requests Block/Deblock Table</div>
+            CELL Requests Block/Deblock Pending Table</div>
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
                         <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
                     </div>
                     <br/>
+         
                     <div class="table-responsive">
-<?php               
-    require_once ('connect.php');
-              
-    $qry = "SELECT * FROM cbm_cell_block";      
-    echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <div id="DEB">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>   
         <tr>        
         <th width="5%"></th>
@@ -215,12 +215,10 @@
         <th>Block_remarks</th>
         <th>Deblock</th>
         <th>Deblock_remarks</th> 
-      </tr></tfoot>';             
-                          
-
-   		echo "<tbody></tbody>";
-
-?>      
+      </tr></tfoot>
+      
+      <tbody></tbody>     
+</div>
                         </table>
                     </div>
                 </form>         
@@ -284,9 +282,6 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
 
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/datatables-demo.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>
 
 </body>
 
@@ -405,4 +400,5 @@ $(document).ready(function(){
     });
 
 });  
+
 </script>

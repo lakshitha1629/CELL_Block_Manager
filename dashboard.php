@@ -144,7 +144,7 @@ if (!isLoggedIn()) {
                 echo $data2['deblock1'];
                 }?> Pending Deblock Messages!</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#DED">
+              <a class="card-footer text-white clearfix small z-1" href="#DEB">
                 <span class="float-left">Pending Deblock Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
