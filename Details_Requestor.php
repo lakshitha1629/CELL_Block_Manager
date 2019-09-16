@@ -232,9 +232,18 @@ if (!isLoggedIn()) {
                       $field12name = $row["deblock_by"];
                       $field13name = $row["deblock_time"];
                       $field14name = $row["deblock_remarks"];
+					  
+					if ($field7name=='Block' && $field11name=='Deblock'){
 
+                          echo '<tr style="background-color: lightgray;">';
+                      }
+                      else{
+                        echo '<tr>';
+                 
+
+                      }   
                                   
-                      echo "<tr> 
+                      echo "
                                 <td>".$field1name."</td> 
                                 <td>".$field2name."</td> 
                                 <td>".$field3name."</td> 

@@ -158,10 +158,24 @@ if(!empty($_FILES['excelfile']['name']))
                   // $requestor = $row[3];
                     $requestor = $_SESSION['user_name'];
                     $reason = $row[3];
-                    $block ='Pending..';
+                    
+                    $block =$row[4];
+                    $deblock ='Pending..';
                     $active='1';
+                 
+                    if($block=='Block'){
+                     $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
+                 
+                    }else{
+                    //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
+                    $block1 ='Pending..';
+                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
+                    //echo $qry;
+                    }
 
-                    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
+
+
+                    //$qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
                     $res = mysqli_query($con,$qry);
 
                 }
@@ -205,6 +219,7 @@ else
                   <th>Site_name </th> 
                   <th>Technology </th>
                   <th>Reason</th>
+                  <th>Request Type</th>
                 </tr></thead>
                 
                 <tr> 
@@ -212,15 +227,18 @@ else
                   <td></td> 
                   <td></td> 
                   <td></td> 
+                  <td></td> 
                 </tr>
                 <tr> 
                   <td></td> 
                   <td></td> 
                   <td></td> 
                   <td></td> 
+                  <td></td> 
                 </tr>
                 </table>
-                    
+              <p style="margin-bottom: 2px;">Please give Request Type <b>Block</b> or <b>Deblock</b>
+              <div style="color: red;">*(As in the <b>Bold</b> format)</div></p>      
                 
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
@@ -246,28 +264,35 @@ else
             </div>
             <div class="col-md-4 mb-3">
                 <label>Cell :</label>
-                <input type="text" name="cell" class="form-control" placeholder="Cell Name" maxlength="20">
+                <input type="text" name="cell" class="form-control" placeholder="Cell Name" maxlength="20" required>
             </div>
         <div class="col-md-4 mb-3">
                  <label>Site Name :</label>
-                <input type="text" name="site" class="form-control" placeholder="Site Name" maxlength="30">
+                <input type="text" name="site" class="form-control" placeholder="Site Name" maxlength="30" required>
             </div>
             </div>
         <div class="form-row">
          <div class="col-md-4 mb-3">
                  <label>Technology :</label>
-                <input type="text" name="technology" class="form-control" placeholder="BSC/RNC/4G/3G" maxlength="10">
+                <input type="text" name="technology" class="form-control" placeholder="BSC/RNC/4G/3G" maxlength="10" required>
             </div>
          <div class="col-md-4 mb-3">
          <label>Requestor :</label>
          <input type="text" name="requestor" class="form-control" placeholder="<?php echo $_SESSION['user_name'];?>" maxlength="40" readonly>
     </div>
+    <div class="col-md-4 mb-3">
+         <label>Request Type :</label>
+         <select class="form-control" name="block">
+            <option value="Pending..">Block</option>
+            <option value="Block">Deblock</option>  
+          </select>
+      </div>
     </div>
 
     <div class="form-row">
    <div class="col-md-12 mb-3">
                  <label>Reason :</label>
-                <input type="text" name="reason" class="form-control" placeholder="Reason" maxlength="100">
+                <input type="text" name="reason" class="form-control" placeholder="Reason" maxlength="100" required>
             </div>
     </div>
 <input class="btn btn-success" type=submit value="ADD" name="submit1">
@@ -285,11 +310,19 @@ if(isset($_POST['submit1'])){
    $technology = $_POST['technology'];
    $requestor = $_SESSION['user_name'];
    $reason = $_POST['reason'];
-   $block ='Pending..';
+   $block =$_POST['block'];
+   $deblock ='Pending..';
    $active='1';
+
+   if($block=='Block'){
+    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
+
+   }else{
    //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
+   $block1 ='Pending..';
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
    //echo $qry;
+   }
    if (!mysqli_query($con,$qry))
      {
      die('Error: ' . mysqli_error());
@@ -317,7 +350,7 @@ if(isset($_POST['submit1'])){
               
 require_once ('connect.php');
 $user = $_SESSION['user_name'];
-$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user' AND block='Pending..' OR deblock='' OR deblock='Pending..'";           
+$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user' AND (block='Pending..' OR deblock='' OR deblock='Pending..') ORDER BY `date` DESC";           
  
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>   
