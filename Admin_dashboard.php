@@ -116,8 +116,8 @@
        </div>
         <hr>
 
-        <!-- Icon Cards-->
-        <div class="row">
+       <!-- Icon Cards-->
+       <div class="row">
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-100" style="background-color: navy;">
               <div class="card-body">
@@ -130,6 +130,14 @@
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
+
+                  if($data1['block1']=='1'){
+                    echo '<audio controls autoplay>
+
+                    <source src="music/sound.mp3" type="audio/mpeg" >
+                  </audio>
+                  ';
+                  }
                 echo $data1['block1'];
                 }?> Pending Block Messages!</div>
               </div>
@@ -153,6 +161,13 @@
 
                 $res = $con->query($qry);
                 while ($data2 = $res->fetch_assoc()){
+                  if($data2['deblock1']=='1'){
+                    echo '<audio controls autoplay>
+
+                    <source src="music/sound.mp3" type="audio/mpeg" >
+                  </audio>
+                  ';
+                  }
                 echo $data2['deblock1'];
                 }?> Pending Deblock Messages!</div>
               </div>
@@ -171,7 +186,6 @@
             
         </div>
         </div>
-        
                   <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">

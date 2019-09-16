@@ -118,6 +118,14 @@ if (!isLoggedIn()) {
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
+
+                  if($data1['block1']=='1'){
+                    echo '<audio controls autoplay>
+
+                    <source src="music/sound.mp3" type="audio/mpeg" >
+                  </audio>
+                  ';
+                  }
                 echo $data1['block1'];
                 }?> Pending Block Messages!</div>
               </div>
@@ -141,6 +149,13 @@ if (!isLoggedIn()) {
 
                 $res = $con->query($qry);
                 while ($data2 = $res->fetch_assoc()){
+                  if($data2['deblock1']=='1'){
+                    echo '<audio controls autoplay>
+
+                    <source src="music/sound.mp3" type="audio/mpeg" >
+                  </audio>
+                  ';
+                  }
                 echo $data2['deblock1'];
                 }?> Pending Deblock Messages!</div>
               </div>
