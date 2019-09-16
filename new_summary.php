@@ -108,7 +108,7 @@
             <div class="card mb-3" style="padding-left: 15px;padding-right: 15px;">
               <div class="card-header">
                 <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
+                Monthly Count Bar Chart</div>
               <div class="card-body">
                 <canvas id="mycanvas" width="100%" height="50"></canvas>
               </div>
