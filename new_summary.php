@@ -378,7 +378,7 @@ $(document).ready(function(){
 	       var Request = [];
 	 
       for(var i in data) {
-        date.push("Date:- " + data[i].a);
+        date.push("" + data[i].a);
         Block.push(data[i].b);
 		Deblock.push(data[i].c);
 		Request.push(data[i].d);

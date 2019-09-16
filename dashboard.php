@@ -119,7 +119,7 @@ if (!isLoggedIn()) {
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
 
-                  if($data1['block1']=='1'){
+                  if($data1['block1']!='0'){
                     echo '<audio controls autoplay>
 
                     <source src="music/sound.mp3" type="audio/mpeg" >
@@ -149,7 +149,7 @@ if (!isLoggedIn()) {
 
                 $res = $con->query($qry);
                 while ($data2 = $res->fetch_assoc()){
-                  if($data2['deblock1']=='1'){
+                  if($data2['deblock1']!='0'){
                     echo '<audio controls autoplay>
 
                     <source src="music/sound.mp3" type="audio/mpeg" >
