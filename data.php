@@ -1,18 +1,18 @@
 <?php
 //setting header to json
 header('Content-Type: application/json');
-
+require_once ('connect.php');
 //database
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'cell_block_manager');
+// define('DB_HOST', 'localhost');
+// define('DB_USERNAME', 'root');
+// define('DB_PASSWORD', '');
+// define('DB_NAME', 'cell_block_manager');
 
 //get connection
-$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+//$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-if(!$mysqli){
-  die("Connection failed: " . $mysqli->error);
+if(!$con){
+  die("Connection failed: " . $con->error);
 }
 
 
@@ -22,7 +22,7 @@ if(!$mysqli){
 $query = sprintf("SELECT CAST(`date` AS DATE) as a,COUNT(`block`) as b,COUNT(`deblock`) as c,COUNT(`date`) as d FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) GROUP BY CAST(`date` AS DATE)");
 //$query = sprintf("SELECT CAST(`date` AS DATE) as a,COUNT(`block`) as b,COUNT(`deblock`) as c,COUNT(`date`) as d FROM cbm_cell_block GROUP BY CAST(`date` AS DATE)");
 
-$result = $mysqli->query($query);
+$result = $con->query($query);
 
 //loop through the returned data
 $data = array();
@@ -34,7 +34,7 @@ foreach ($result as $row) {
 $result->close();
 
 //close connection
-$mysqli->close();
+$con->close();
 
 //now print the data
 print json_encode($data);

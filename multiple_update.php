@@ -1,7 +1,8 @@
 <?php
 session_start();
+require_once ('PDO.php');
 //$connect = new PDO("mysql:host=localhost;dbname=test", "root", "");
-$connect = new PDO("mysql:host=localhost;dbname=cell_block_manager", "root", "");
+//$connect = new PDO("mysql:host=localhost;dbname=cell_block_manager", "root", "");
 
 
 if(isset($_POST['hidden_id']))

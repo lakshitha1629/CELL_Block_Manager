@@ -1,6 +1,7 @@
 
 <?php
-$connect = new PDO("mysql:host=localhost;dbname=cell_block_manager", "root", "");
+require_once ('PDO.php');
+//$connect = new PDO("mysql:host=localhost;dbname=cell_block_manager", "root", "");
 //$query = "SELECT * FROM cbm_cell_block ORDER BY id DESC";
 //SELECT * FROM cbm_cell_block WHERE `block`='pending..' OR `deblock`='pending..' ORDER BY id DESC
 $query = "SELECT * FROM cbm_cell_block WHERE `block`='Pending..' OR `deblock`='pending..' ORDER BY block DESC";
