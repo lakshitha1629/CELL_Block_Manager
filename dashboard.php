@@ -183,10 +183,10 @@ if (!isLoggedIn()) {
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
-                        <input type="submit" onClick="document.location.reload(true)" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
+                        <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
                     </div>
                     <br/>
-         
+                    <!-- onClick="document.location.reload(true)" -->
                     <div class="table-responsive">
 
                     <div id="DEB">
@@ -397,6 +397,7 @@ $(document).ready(function(){
                 {
                     alert('Your Data Updated Successfull.');
                     fetch_data();
+                    location.reload(true);
                 }
             })
         }
