@@ -10,6 +10,13 @@ if (!isLoggedIn()) {
 <head>
 	<title>Cell Block Manager</title>
 	<meta charset="UTF-8">
+  <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- jQuery UI library -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -264,7 +271,7 @@ else
             </div>
             <div class="col-md-4 mb-3">
                 <label>Cell :</label>
-                <input type="text" name="cell" class="form-control" placeholder="Cell Name" maxlength="20" required>
+                <input type="text" name="cell" id="cell" class="form-control" placeholder="Cell Name" maxlength="20" style="text-transform: uppercase;">
             </div>
         <div class="col-md-4 mb-3">
                  <label>Site Name :</label>
@@ -444,11 +451,11 @@ if ($res = $con->query($qry)) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
   <!-- Page level plugin JavaScript-->
   <script src="vendor/chart.js/Chart.min.js"></script>
@@ -458,6 +465,15 @@ if ($res = $con->query($qry)) {
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
 
+
+  
+  <script>
+$(function() {
+    $("#cell").autocomplete({
+        source: "search.php",
+    });
+});
+</script>
 
 </body>
 
