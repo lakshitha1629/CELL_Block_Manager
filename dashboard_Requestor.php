@@ -10,13 +10,6 @@ if (!isLoggedIn()) {
 <head>
 	<title>Cell Block Manager</title>
 	<meta charset="UTF-8">
-  <!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- jQuery UI library -->
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -271,17 +264,17 @@ else
             </div>
             <div class="col-md-4 mb-3">
                 <label>Cell :</label>
-                <input type="text" name="cell" id="cell" class="form-control" placeholder="Cell Name" maxlength="20" style="text-transform: uppercase;">
+                <input type="text" name="cell" id="cell" class="form-control" placeholder="Cell Name" maxlength="25" style="text-transform: uppercase;" required>
             </div>
         <div class="col-md-4 mb-3">
                  <label>Site Name :</label>
-                <input type="text" name="site" class="form-control" placeholder="Site Name" maxlength="30" required>
+                <input type="text" name="site" class="form-control" placeholder="Site Name" maxlength="35" required>
             </div>
             </div>
         <div class="form-row">
          <div class="col-md-4 mb-3">
                  <label>Technology :</label>
-                <input type="text" name="technology" class="form-control" placeholder="BSC/RNC/4G/3G" maxlength="10" required>
+                <input type="text" name="technology" id="technology" class="form-control" placeholder="BSC/RNC/4G/3G" maxlength="10" style="text-transform: uppercase;" required>
             </div>
          <div class="col-md-4 mb-3">
          <label>Requestor :</label>
@@ -299,7 +292,7 @@ else
     <div class="form-row">
    <div class="col-md-12 mb-3">
                  <label>Reason :</label>
-                <input type="text" name="reason" class="form-control" placeholder="Reason" maxlength="100" required>
+                <input type="text" name="reason" id="reason" class="form-control" placeholder="Reason" required>
             </div>
     </div>
 <input class="btn btn-success" type=submit value="ADD" name="submit1">
@@ -452,6 +445,9 @@ if ($res = $con->query($qry)) {
 
   <!-- Bootstrap core JavaScript-->
   <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -468,9 +464,23 @@ if ($res = $con->query($qry)) {
 
   
   <script>
-$(function() {
+$(function cell() {
     $("#cell").autocomplete({
-        source: "search.php",
+        source: "AutoComplete/cell_search.php",
+    });
+});
+</script>
+ <script>
+$(function technology() {
+    $("#technology").autocomplete({
+        source: "AutoComplete/tech_search.php",
+    });
+});
+</script>
+<script>
+$(function reason() {
+    $("#reason").autocomplete({
+        source: "AutoComplete/reason_search.php",
     });
 });
 </script>
