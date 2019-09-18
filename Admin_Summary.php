@@ -231,8 +231,25 @@
                   <th>Deblock_by</th>
                   <th>Deblock_time</th>        
                   <th>Deblock_remarks</th> 
-                      </tr></thead>';
-               
+                      </tr></thead>
+                      <tfoot> 
+                      <tr> 
+                      <th style="padding-right: 68px;">Date</th> 
+                      <th>Cell </th> 
+                      <th>Site_name </th> 
+                      <th>Technology </th> 
+                      <th>Requestor</th> 
+                      <th>Reason</th> 
+                      <th id="bl">Block</th>
+                      <th>Block_by</th>
+                      <th>Block_time</th>
+                      <th>Block_remarks</th>          
+                      <th id="b2">Deblock</th>
+                      <th>Deblock_by</th>
+                      <th>Deblock_time</th>        
+                      <th>Deblock_remarks</th> 
+                          </tr></tfoot>';
+
               if ($res = $con->query($qry)) {
                   while ($row = $res->fetch_assoc()) {
                       $id=$row["id"];
