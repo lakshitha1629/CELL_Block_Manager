@@ -217,7 +217,7 @@
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
                   <tr> 
-                  <th>Date</th> 
+                  <th style="padding-right: 68px;">Date</th> 
                   <th>Cell </th> 
                   <th>Site_name </th> 
                   <th>Technology </th> 
