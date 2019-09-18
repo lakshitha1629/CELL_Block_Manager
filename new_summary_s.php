@@ -107,13 +107,12 @@ if (!isLoggedIn()) {
                 <canvas id="mycanvas" width="100%" height="50"></canvas>
               </div>
 
-              <!-- <form id="loginform" method="post">   
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Date Range :</label>
-                <div class="col-sm-3">
-                <input  class="form-control" id="date1" type="date" maxlength="10"  >
-               </div>
-               <label class="col-sm-0 col-form-label"> to </label>
+               <!-- <form id="loginform" method="post">    -->
+              <!-- <div class="form-group row">
+                <label class="col-sm-4 col-form-label"><a href="#" id="downloadPdf">Download Report Page as PDF</a></label>
+               
+               </div> -->
+              <!-- <label class="col-sm-0 col-form-label"> to </label>
                <div class="col-sm-3">
                 <input  class="form-control" type="date" id="date2" maxlength="10"   >
                </div>
@@ -333,7 +332,8 @@ if (!isLoggedIn()) {
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
-
+  <!-- <script src="js/jspdf.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script> -->
   <!-- Demo scripts for this page
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
@@ -418,6 +418,8 @@ $(document).ready(function(){
 
 // });
         </script>  
+
+
 </body>
 
 </html>

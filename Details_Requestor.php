@@ -194,8 +194,8 @@ if (!isLoggedIn()) {
               
               require_once ('connect.php');
               $date = date('Y-m-d');
-              $qry = "SELECT * FROM cbm_cell_block";                  
-               
+              $requestor1 = $_SESSION['user_name'];
+              $qry = "SELECT * FROM cbm_cell_block";          
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
                   <tr> 
