@@ -67,7 +67,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="Admin_Summary.php">
           <i class="fas fa-chart-area"></i>
-          <span>Daily Log</span></a>
+          <span>Cell Log</span></a>
         </a>
       </li>
       <li class="nav-item">
@@ -311,7 +311,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Mobitel 2019</span>
+            <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
           </div>
         </div>
       </footer>

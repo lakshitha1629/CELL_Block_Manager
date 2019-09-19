@@ -59,9 +59,18 @@
 						</button>
 					</div>
 					</form>
+       
 
-				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
+
+				<div class="login100-more" style="background-image: url('images/bg-01.jpg');background-size: cover;">
+				
+				
 				</div>
+				<div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Mobitel 2019</span>
+          </div>
+        </div>
 			</div>
 		</div>
 	</div>

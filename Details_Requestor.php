@@ -187,7 +187,7 @@ if (!isLoggedIn()) {
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Today CELL Request Table</div>
+            CELL Request Table</div>
           <div class="card-body">
             <div class="table-responsive">
             <?php 
@@ -277,7 +277,7 @@ if (!isLoggedIn()) {
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Mobitel 2019</span>
+            <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
           </div>
         </div>
       </footer>
