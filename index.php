@@ -21,7 +21,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="dashboard.php" method="post">
+				<form class="login100-form validate-form" action="functions.php" method="post">
 					<h3 style="align-content: center"> 
 					Welcome to Cell Block Manager
 					</h3><br>
@@ -38,7 +38,7 @@
 					
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Enter Password</span>
 					</div>
@@ -54,14 +54,23 @@
 			
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="login_btn">
 							Login
 						</button>
 					</div>
 					</form>
+       
 
-				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
+
+				<div class="login100-more" style="background-image: url('images/bg-01.jpg');background-size: cover;">
+				
+				
 				</div>
+				<div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Mobitel 2019</span>
+          </div>
+        </div>
 			</div>
 		</div>
 	</div>

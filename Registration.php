@@ -131,6 +131,7 @@
                         <option value="" disabled selected>Choose User Type</option>
                         <option value="2">RNO Team Requestor</option>
                         <option value="3">INOC Team Leader</option>
+                        <option value="4">Vendor</option>
                 </select>
             </div>
             </div>  
@@ -179,7 +180,7 @@ if(isset($_POST['submit1'])){
               
               require_once ('connect.php');
 
-              $qry = "SELECT * FROM cbm_user_account WHERE `user_type`='2' OR `user_type`='3'";                  
+              $qry = "SELECT * FROM cbm_user_account WHERE `user_type`='2' OR `user_type`='3' OR `user_type`='4'";                  
                
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
@@ -212,7 +213,7 @@ if($field2name=='2'){
                                   </tr>";
                                 }
                                 
-}else{
+}else if($field2name=='3'){
                      // `user_name`,`user_type`, `password`, `activated`            
                       echo "<tr> 
                                 <td>".$field1name."</td> 
@@ -226,6 +227,22 @@ if($field2name=='2'){
              
                                   </tr>";
                                 }
+}else if($field2name=='4'){
+                                  // `user_name`,`user_type`, `password`, `activated`            
+                  echo "<tr> 
+                            <td>".$field1name."</td> 
+                            <td>Vendor</td>";
+                            if($field3name=='1'){
+                              echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+        
+                              </tr>";
+                            }else{
+                              echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+        
+                              </tr>";
+                            }
+}else{
+  echo "<tr><td>Undefined User</td></tr>";
 }
                   }
                

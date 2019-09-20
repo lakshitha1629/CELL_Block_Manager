@@ -22,7 +22,7 @@ if (!isLoggedIn()) {
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="dashboard_Requestor.php">Welcome</a>
+    <a class="navbar-brand mr-1" href="dashboard_Vendor.php">Welcome</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -43,7 +43,7 @@ if (!isLoggedIn()) {
         <?php endif ?> 
                   <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
-        <a class="dropdown-item" href="dashboard_Requestor.php?logout='1'">Logout</a>
+        <a class="dropdown-item" href="dashboard_Vendor.php?logout='1'">Logout</a>
         </div>
       </li>
     </ul>
@@ -55,21 +55,12 @@ if (!isLoggedIn()) {
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard_Requestor.php">
+        <a class="nav-link" href="dashboard_Vendor.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="Vender_Request.php">
-          <i class="fas fa-blender-phone"></i>
-          <span>Vender Request Log</span></a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="Details_Requestor.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Request Log</span></a>
-      </li>
+        
     </ul>
 
     <div id="content-wrapper">
@@ -79,7 +70,7 @@ if (!isLoggedIn()) {
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="dashboard_Requestor.php">Dashboard</a>
+            <a href="dashboard_Vendor.php">Dashboard</a>
           </li>
           <li class="breadcrumb-item active">Overview</li>
         </ol>
@@ -99,61 +90,6 @@ if (!isLoggedIn()) {
        </div>
         <hr>
 
-
-        <div class="row">
-           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white o-hidden h-100" style="background-color: navy;">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
-                </div>
-                <div class="mr-5"><b><i><?php 
-                require_once ('connect.php');
-                $date3 = date('Y-m-d');
-                $requestor = $_SESSION['user_name'];
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE requestor='$requestor' AND block='Pending..'";           
-
-                $res = $con->query($qry);
-                while ($data1 = $res->fetch_assoc()){
-                echo $data1['block1'];
-                }?> Pending Block Messages!</b></i></div>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Pending Block Messages Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-up"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
-                </div>
-                <div class="mr-5"><b><i><?php 
-                require_once ('connect.php');
-                $date3 = date('Y-m-d');
-                $requestor = $_SESSION['user_name'];
-                $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE requestor='$requestor' AND deblock='Pending..'";           
-
-                $res = $con->query($qry);
-                while ($data4 = $res->fetch_assoc()){
-                echo $data4['deblock1'];
-                }?> Pending Deblock Messages!</b></i></div>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Pending Deblock Messages Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-up"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          </div>
-
-          
 <!-- Uploader --->
 <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
@@ -220,11 +156,11 @@ if(!empty($_FILES['excelfile']['name']))
                     $reason = $row[3];
                     
                     $block =ucfirst($row[4]);
-                    $deblock ='Pending..';
+                    $deblock ='Approval_Pending..';
                     $active='1';
                  
                     if($block=='Block'){
-                      $block1 ='Pending..';
+                      $block1 ='Approval_Pending..';
                       $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
   
                     }else if($block=='Deblock'){
@@ -347,7 +283,7 @@ else
     <div class="col-md-4 mb-3">
          <label>Request Type :</label>
          <select class="form-control" name="block">
-            <option value="Pending..">Block</option>
+            <option value="Approval_Pending..">Block</option>
             <option value="Block">Deblock</option>  
           </select>
       </div>
@@ -375,18 +311,19 @@ if(isset($_POST['submit1'])){
    $requestor = $_SESSION['user_name'];
    $reason = $_POST['reason'];
    $block =$_POST['block'];
-   $deblock ='Pending..';
+   $deblock ='Approval_Pending..';
    $active='1';
 
    if($block=='Block'){
-    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name',strtoupper('$technology'),'$requestor','$reason','$active','$block','$deblock')";
+    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
 
    }else{
    //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-   $block1 ='Pending..';
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name',strtoupper('$technology'),'$requestor','$reason','$active','$block1')";
+   $block1 ='Approval_Pending..';
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
    //echo $qry;
    }
+   
    if (!mysqli_query($con,$qry))
      {
      die('Error: ' . mysqli_error());
@@ -410,11 +347,12 @@ if(isset($_POST['submit1'])){
             CELL Block Table</div>
           <div class="card-body">
             <div class="table-responsive">
+   
 <?php 
               
 require_once ('connect.php');
 $user = $_SESSION['user_name'];
-$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user' AND (block='Pending..' OR deblock='' OR deblock='Pending..') ORDER BY `date` DESC";           
+$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user' AND (block='Approval_Pending..' OR deblock='' OR deblock='Approval_Pending..') ORDER BY `date` DESC";           
  
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>   
@@ -451,18 +389,19 @@ if ($res = $con->query($qry)) {
                   <td>".$field6name."</td>
                   <td>".$field7name."</td>
                   <td>".$field8name."</td>
-                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=".$row['id']."\" type='button' class='btn'><i class='fas fa-mail-bulk' style='font-size:20px;color:blue'></i></a>
-                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn'><i class='fa fa-window-close' style='font-size:20px;color:red'></i></a>
-                  </td>
+                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Vendor.php?id=".$row['id']."\" type='button' class='btn'><i class='fas fa-mail-bulk' style='font-size:20px;color:blue'></i></a>
+                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Vendor.php?id=".$row['id']."\" type='button' class='btn'><i class='fa fa-window-close' style='font-size:20px;color:red'></i></a>
+                  
+                  </td> 
               </tr>";
     }
  
     $res->free();
 } 
 ?></table><br>
-<p style="margin-bottom: 2px;text-align: right;">Deblock Request Use &nbsp;&nbsp; <i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i> 
-&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;Delete Request Use &nbsp;&nbsp;<i class='fa fa-window-close' style='font-size:18px;color:red'></i></p>
-      
+  <p style="margin-bottom: 2px;text-align: right;">Deblock Request Use &nbsp;&nbsp; <i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i> 
+  &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;Delete Request Use &nbsp;&nbsp;<i class='fa fa-window-close' style='font-size:18px;color:red'></i></p>
+              
 </div>
 </div>
 </div>
