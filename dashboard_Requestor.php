@@ -116,10 +116,10 @@ if (!isLoggedIn()) {
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
                 echo $data1['block1'];
-                }?> Pending Block Messages!</b></i></div>
+                }?> Approval Pending Block Messages!</b></i></div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Pending Block Messages Count</span>
+                <span class="float-left">Your Approval Pending Block Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -141,10 +141,10 @@ if (!isLoggedIn()) {
                 $res = $con->query($qry);
                 while ($data4 = $res->fetch_assoc()){
                 echo $data4['deblock1'];
-                }?> Pending Deblock Messages!</b></i></div>
+                }?> Approval Pending Deblock Messages!</b></i></div>
               </div>
               <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Pending Deblock Messages Count</span>
+                <span class="float-left">Your Approval Pending Deblock Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -153,7 +153,7 @@ if (!isLoggedIn()) {
           </div>
           </div>
 
-          
+
 <!-- Uploader --->
 <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
