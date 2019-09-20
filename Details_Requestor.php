@@ -60,15 +60,16 @@ if (!isLoggedIn()) {
           <span>Dashboard</span>
         </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="Vender_Request.php">
-          <i class="fas fa-blender-phone"></i>
-          <span>Vender Request Log</span></a>
-      </li>
+        
         <li class="nav-item active">
         <a class="nav-link" href="Details_Requestor.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Request Log</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Vender_Request.php">
+          <i class="fas fa-blender-phone"></i>
+          <span>Vender Request Log</span></a>
       </li>
     </ul>
 

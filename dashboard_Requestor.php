@@ -60,15 +60,16 @@ if (!isLoggedIn()) {
           <span>Dashboard</span>
         </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="Vender_Request.php">
-          <i class="fas fa-blender-phone"></i>
-          <span>Vender Request Log</span></a>
-      </li>
+        
         <li class="nav-item">
         <a class="nav-link" href="Details_Requestor.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Request Log</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Vender_Request.php">
+          <i class="fas fa-blender-phone"></i>
+          <span>Vender Request Log</span></a>
       </li>
     </ul>
 
@@ -101,7 +102,7 @@ if (!isLoggedIn()) {
 
 
         <div class="row">
-           <div class="col-xl-3 col-sm-6 mb-3">
+           <div class="col-xl-4 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-100" style="background-color: navy;">
               <div class="card-body">
                 <div class="card-body-icon">
@@ -110,7 +111,6 @@ if (!isLoggedIn()) {
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
-                $requestor = $_SESSION['user_name'];
                 $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Approval_Pending..'";           
 
                 $res = $con->query($qry);
@@ -118,16 +118,16 @@ if (!isLoggedIn()) {
                 echo $data1['block1'];
                 }?> Approval Pending Block Messages!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Approval Pending Block Messages Count</span>
+              <a class="card-footer text-white clearfix small z-1" href="Vender_Request.php">
+                <span class="float-left">Venders Approval Pending Block Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
               </a>
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
+          <div class="col-xl-4 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: lightseagreen;">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-comments"></i>
@@ -135,7 +135,6 @@ if (!isLoggedIn()) {
                 <div class="mr-5"><b><i><?php 
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
-                $requestor = $_SESSION['user_name'];
                 $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Approval_Pending..'";           
 
                 $res = $con->query($qry);
@@ -143,8 +142,8 @@ if (!isLoggedIn()) {
                 echo $data4['deblock1'];
                 }?> Approval Pending Deblock Messages!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="">
-                <span class="float-left">Your Approval Pending Deblock Messages Count</span>
+              <a class="card-footer text-white clearfix small z-1" href="Vender_Request.php">
+                <span class="float-left">Venders Approval Pending Deblock Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
