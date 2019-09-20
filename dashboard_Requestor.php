@@ -111,7 +111,7 @@ if (!isLoggedIn()) {
                 require_once ('connect.php');
                 $date3 = date('Y-m-d');
                 $requestor = $_SESSION['user_name'];
-                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE requestor='$requestor' AND block='Pending..'";           
+                $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Approval_Pending..'";           
 
                 $res = $con->query($qry);
                 while ($data1 = $res->fetch_assoc()){
