@@ -136,96 +136,55 @@ if (!isLoggedIn()) {
             </div>
           </div>
           </div>
-
-
-          <!-- DataTables  -->
-          <div class="card col-xl-12 col-sm-12 mb-3">
+ 
+            <!-- DataTables  -->
+            <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
             Request Approval Table</div>
           <div class="card-body">
-            <div class="table-responsive">
-            <?php 
-              
-              require_once ('connect.php');
-              $date = date('Y-m-d');
-              $requestor1 = $_SESSION['user_name'];
-              $qry = "SELECT * FROM cbm_cell_block";          
-              echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>   
-                  <tr> 
-                  <th>Date</th> 
-                  <th>Cell </th> 
-                  <th>Site_name </th> 
-                  <th>Technology </th> 
-                  <th>Requestor</th> 
-                  <th>Reason</th> 
-                  <th>Block</th>
-                  <th>Block_by</th>
-                  <th>Block_time</th>
-                  <th>Block_remarks</th>          
-                  <th>Deblock</th>
-                  <th>Deblock_by</th>
-                  <th>Deblock_time</th>        
-                  <th>Deblock_remarks</th> 
-                      </tr></thead>';
-               
-              if ($res = $con->query($qry)) {
-                  while ($row = $res->fetch_assoc()) {
-                      $id=$row["id"];
-                      $field1name = $row["date"];
-                      $field2name = $row["cell"];
-                      $field3name = $row["site_name"];
-                      $field4name = $row["technology"]; 
-                      $field5name = $row["requestor"];
-                      $field6name = $row["reason"]; 
-                      $field7name = $row["block"];
-                      $field8name = $row["block_by"];
-                      $field9name = $row["block_time"];
-                      $field10name = $row["block_remarks"];
-                      $field11name = $row["deblock"];
-                      $field12name = $row["deblock_by"];
-                      $field13name = $row["deblock_time"];
-                      $field14name = $row["deblock_remarks"];
-					  
-					if ($field7name=='Block' && $field11name=='Deblock'){
+          <form method="post" id="update_form">
+                    <div align="left">
+                        <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Approval" />
+                    </div>
+                    <br/>
+                    <!-- onClick="document.location.reload(true)" -->
+                    <div class="table-responsive">
 
-                          echo '<tr style="background-color: lightgray;">';
-                      }
-                      else{
-                        echo '<tr>';
-                 
-
-                      }   
-                                  
-                      echo "
-                                <td>".$field1name."</td> 
-                                <td>".$field2name."</td> 
-                                <td>".$field3name."</td> 
-                                <td>".$field4name."</td> 
-                                <td>".$field5name."</td> 
-                                <td>".$field6name."</td>
-                                <td>".$field7name."</td> 
-                                <td>".$field8name."</td> 
-                                <td>".$field9name."</td> 
-                                <td>".$field10name."</td> 
-                                <td>".$field11name."</td> 
-                                <td>".$field12name."</td>
-                                <td>".$field13name."</td> 
-                                <td>".$field14name."</td> 
-                                </tr>";
-                  }
-               
-                  $res->free();
-              } 
-              ?></table>            
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>   
+        <tr>        
+        <th width="5%"></th>
+        <th>Date</th> 
+        <th>Cell </th> 
+        <th>Site_name </th> 
+        <th>Technology </th> 
+        <th>Requestor</th> 
+        <th>Reason</th> 
+        <th>Block</th>
+        <th>Deblock</th>
+      </tr></thead>
+      <tfoot>   
+        <tr>  
+        <th width="5%"></th>
+        <th>Date</th> 
+        <th>Cell </th> 
+        <th>Site_name </th> 
+        <th>Technology </th> 
+        <th>Requestor</th> 
+        <th>Reason</th> 
+        <th>Block</th>
+        <th>Deblock</th>
+      </tr></tfoot>
+      
+      <tbody></tbody>     
+</div>
+                        </table>
+                </form>         
 
 </div>
 </div>
-</div>
-
-</div>
-
+</div>      
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
@@ -275,8 +234,8 @@ if (!isLoggedIn()) {
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <!-- <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
@@ -287,3 +246,109 @@ if (!isLoggedIn()) {
 </body>
 
 </html>
+
+<!--jQuary-->
+<script>  
+$(document).ready(function(){  
+    
+    function fetch_data()
+    {
+        $.ajax({
+            url:"update_select_req.php",
+            method:"POST",
+            dataType:"json",
+            success:function(data)
+            {
+                var html = '';
+                for(var count = 0; count < data.length; count++)
+                {
+                    html += '<tr>';
+                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-technology="'+data[count].technology+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_remarks="'+data[count].block_remarks+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
+                    html += '<td>'+data[count].date+'</td>';
+                    html += '<td>'+data[count].cell+'</td>';
+                    html += '<td>'+data[count].site_name+'</td>';
+                    html += '<td>'+data[count].technology+'</td>';
+                    html += '<td>'+data[count].requestor+'</td>';
+                    html += '<td>'+data[count].reason+'</td>';
+                    html += '<td>'+data[count].block+'</td>';
+                    html += '<td>'+data[count].deblock+'</td>';
+                }
+                $('tbody').html(html);
+            }
+        });
+    }
+    fetch_data();
+
+    $(document).on('click', '.check_box', function(){
+        var html = '';
+        if(this.checked)
+        {   
+            
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-technology="'+$(this).data('technology')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
+            html += '<td><input type="hidden" name="date[]" class="form-control" value="'+$(this).data("date")+'" />'+$(this).data("date")+'</td>';
+            html += '<td><input type="hidden" name="cell[]" class="form-control" value="'+$(this).data("cell")+'" />'+$(this).data("cell")+'</td>';
+            html += '<td><input type="hidden" name="site_name[]" class="form-control" value="'+$(this).data("site_name")+'" />'+$(this).data("site_name")+'</td>';
+            html += '<td><input type="hidden" name="technology[]" class="form-control" value="'+$(this).data("technology")+'" />'+$(this).data("technology")+'</td>';
+            html += '<td><input type="hidden" name="requestor[]" class="form-control" value="'+$(this).data("requestor")+'" />'+$(this).data("requestor")+'</td>';
+            html += '<td><input type="hidden" name="reason[]" class="form-control" value="'+$(this).data("reason")+'" />'+$(this).data("reason")+'</td>';
+      //       html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
+      //       html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
+      //       html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
+      //       html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" />';
+     //      html += '<input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
+       
+       if(($(this).data("block")=='Block')){
+        html += '<td><input type="hidden" name="block[]" class="form-control" value="'+$(this).data("block")+'" />'+$(this).data("block")+'</td>';
+            // html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
+           html += '<td><input type="hidden" name="deblock[]" class="form-control" value="Deblock" />Deblock</td>';
+            
+       }else{
+        html += '<td><input type="hidden" name="block[]" class="form-control" value="Block" />Block</td>';
+       
+        //html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
+            html += '<td><input type="hidden" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" />'+$(this).data("deblock")+'</td>';
+            
+         
+       }
+          html += '<input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
+       
+
+        }
+        else
+        {           
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-technology="'+$(this).data('technology')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" /></td>';
+            html += '<td>'+$(this).data('date')+'</td>';
+            html += '<td>'+$(this).data('cell')+'</td>';
+            html += '<td>'+$(this).data('site_name')+'</td>';
+            html += '<td>'+$(this).data('technology')+'</td>';
+            html += '<td>'+$(this).data('requestor')+'</td>';
+            html += '<td>'+$(this).data('reason')+'</td>';
+            html += '<td>'+$(this).data('block')+'</td>';
+            html += '<td>'+$(this).data('deblock')+'</td>';         
+        }
+        $(this).closest('tr').html(html);
+        //$('#block'+$(this).attr('id')+'').val($(this).data('block'));
+        $('#deblock'+$(this).attr('id')+'').val($(this).data('deblock'));
+    });
+
+    $('#update_form').on('submit', function(event){
+        event.preventDefault();
+        if($('.check_box:checked').length > 0)
+        {
+            $.ajax({
+                url:"multiple_update_req.php",
+                method:"POST",
+                data:$(this).serialize(),
+                success:function()
+                {
+                    alert('Your Data Updated Successfull.');
+                    fetch_data();
+                    location.reload(true);
+                }
+            })
+        }
+    });
+
+});  
+
+</script>
