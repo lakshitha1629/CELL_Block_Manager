@@ -263,7 +263,7 @@ $(document).ready(function(){
                 for(var count = 0; count < data.length; count++)
                 {
                     html += '<tr>';
-                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-technology="'+data[count].technology+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-block_remarks="'+data[count].block_remarks+'" data-deblock="'+data[count].deblock+'" data-deblock_remarks="'+data[count].deblock_remarks+'" class="check_box"  /></td>';
+                    html += '<td><input type="checkbox" id="'+data[count].id+'" data-date="'+data[count].date+'" data-cell="'+data[count].cell+'" data-site_name="'+data[count].site_name+'" data-technology="'+data[count].technology+'" data-requestor="'+data[count].requestor+'" data-reason="'+data[count].reason+'" data-block="'+data[count].block+'" data-deblock="'+data[count].deblock+'" class="check_box"  /></td>';
                     html += '<td>'+data[count].date+'</td>';
                     html += '<td>'+data[count].cell+'</td>';
                     html += '<td>'+data[count].site_name+'</td>';
@@ -284,7 +284,7 @@ $(document).ready(function(){
         if(this.checked)
         {   
             
-            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-technology="'+$(this).data('technology')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-block_remarks="'+$(this).data('block_remarks')+'" data-deblock="'+$(this).data('deblock')+'" data-deblock_remarks="'+$(this).data('deblock_remarks')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" id="'+$(this).attr('id')+'" data-date="'+$(this).data('date')+'" data-cell="'+$(this).data('cell')+'" data-site_name="'+$(this).data('site_name')+'" data-technology="'+$(this).data('technology')+'" data-requestor="'+$(this).data('requestor')+'" data-reason="'+$(this).data('reason')+'" data-block="'+$(this).data('block')+'" data-deblock="'+$(this).data('deblock')+'" class="check_box" checked /></td>';
             html += '<td><input type="hidden" name="date[]" class="form-control" value="'+$(this).data("date")+'" />'+$(this).data("date")+'</td>';
             html += '<td><input type="hidden" name="cell[]" class="form-control" value="'+$(this).data("cell")+'" />'+$(this).data("cell")+'</td>';
             html += '<td><input type="hidden" name="site_name[]" class="form-control" value="'+$(this).data("site_name")+'" />'+$(this).data("site_name")+'</td>';
@@ -297,16 +297,21 @@ $(document).ready(function(){
       //       html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" />';
      //      html += '<input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
        
-       if(($(this).data("block")=='Block')){
-        html += '<td><input type="hidden" name="block[]" class="form-control" value="'+$(this).data("block")+'" />'+$(this).data("block")+'</td>';
-            // html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
-           html += '<td><input type="hidden" name="deblock[]" class="form-control" value="Deblock" />Deblock</td>';
+       if(($(this).data("block")=='Approval_Pending..')){
+        //html += '<td><input type="hidden" name="block[]" class="form-control" value="'+$(this).data("block")+'" />'+$(this).data("block")+'</td>';
+        html += '<td><input type="hidden" name="block[]" class="form-control" value="Pending.." />Pending..</td>';
+        html += '<td><input type="hidden" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" />'+$(this).data("deblock")+'</td>';
+           
+        //html += '<td><input type="hidden" name="block[]" class="form-control" value="'+$(this).data("block")+'" />'+$(this).data("block")+'</td>';
+        // html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
+       // html += '<td><input type="hidden" name="deblock[]" class="form-control" value="Deblock" />Deblock</td>';
             
-       }else{
+       }else if(($(this).data("deblock")=='Approval_Pending..')){
         html += '<td><input type="hidden" name="block[]" class="form-control" value="Block" />Block</td>';
+        html += '<td><input type="hidden" name="deblock[]" class="form-control" value="Pending.." />Pending..</td>';
        
         //html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
-            html += '<td><input type="hidden" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" />'+$(this).data("deblock")+'</td>';
+        //   html += '<td><input type="hidden" name="deblock[]" class="form-control" value="'+$(this).data("deblock")+'" />'+$(this).data("deblock")+'</td>';
             
          
        }
@@ -327,7 +332,7 @@ $(document).ready(function(){
             html += '<td>'+$(this).data('deblock')+'</td>';         
         }
         $(this).closest('tr').html(html);
-        //$('#block'+$(this).attr('id')+'').val($(this).data('block'));
+       // $('#block'+$(this).attr('id')+'').val($(this).data('block'));
         $('#deblock'+$(this).attr('id')+'').val($(this).data('deblock'));
     });
 
