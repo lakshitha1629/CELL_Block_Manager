@@ -5,39 +5,39 @@ require_once ('PDO.php');
 
 if(isset($_POST['hidden_id']))
 {
-date_default_timezone_set('Asia/Colombo');
- $deblock_time = date('Y-m-d H:i:s'); 
- $block_time = date("H:i:s");
- $requestor = $_POST['requestor'];
- $approve = $_SESSION['user_name'];
- $block = $_POST['block'];
- $deblock = $_POST['deblock'];
- $id = $_POST['hidden_id'];
- for($count = 0; $count < count($id); $count++)
- {
+   date_default_timezone_set('Asia/Colombo');
+   $deblock_time = date('Y-m-d H:i:s'); 
+   $block_time = date("H:i:s");
+   $requestor = $_POST['requestor'];
+   $approval = $_SESSION['user_name'];
+   $block = $_POST['block'];
+   $deblock = $_POST['deblock'];
+   $id = $_POST['hidden_id'];
+   for($count = 0; $count < count($id); $count++)
+   {
   if(($block[$count]=='Block')&&($deblock[$count]=='Pending..')){
      //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`
  
      $data = array(
-   
+        ':requestor' => $requestor[$count].' (approved by '.$approval.')',
         ':deblock' => $deblock[$count],
         ':id'   => $id[$count]
        );
     $query = "
   UPDATE cbm_cell_block 
-  SET deblock = :deblock
+  SET deblock = :deblock,requestor = :requestor
   WHERE id = :id 
   ";
 
  }else{
     $data = array(
-   
+        ':requestor' => $requestor[$count].'(approved by '.$approval.')',
         ':block'   => $block[$count],
         ':id'   => $id[$count]
        );
        $query = "
        UPDATE cbm_cell_block 
-       SET block = :block
+       SET block = :block,requestor = :requestor
        WHERE id = :id
        ";
     
