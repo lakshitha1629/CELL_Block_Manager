@@ -352,7 +352,8 @@ if(isset($_POST['submit1'])){
               
 require_once ('connect.php');
 $user = $_SESSION['user_name'];
-$qry = "SELECT * FROM cbm_cell_block WHERE `requestor`='$user' AND (block='Approval_Pending..' OR deblock='' OR deblock='Approval_Pending..') ORDER BY `date` DESC";           
+$qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' ORDER BY `date` DESC"; 
+// AND (block='Approval_Pending..' OR deblock='' OR deblock='Approval_Pending..') ORDER BY `date` DESC";           
  
 echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>   

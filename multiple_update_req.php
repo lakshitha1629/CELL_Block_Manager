@@ -31,7 +31,7 @@ if(isset($_POST['hidden_id']))
 
  }else{
     $data = array(
-        ':requestor' => $requestor[$count].'(approved by '.$approval.')',
+        ':requestor' => $requestor[$count].' (approved by '.$approval.')',
         ':block'   => $block[$count],
         ':id'   => $id[$count]
        );

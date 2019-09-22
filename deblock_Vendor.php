@@ -1,13 +1,20 @@
 <?php
+include('functions.php');
+if (!isLoggedIn()) {
+	$_SESSION['msg'] = "You must log in first";
+	header('location: login.php');
+}
+
 require_once ('connect.php');
 
-$id = $_GET['id']; // $id is now defined
+$id = $_GET['id']; 
+$req=$_SESSION['user_name'];// $id is now defined
 
 // column is indeed an int
 // $id = (int)$_GET['id'];
 
-//mysqli_query($con,"DELETE FROM cbm_cell_block WHERE id='".$id."'");
-mysqli_query($con,"UPDATE `cbm_cell_block` SET deblock='Approval_Pending..' WHERE `id` = '".$id."' AND `block`='Block'");
+//mysqli_query($con,"DELETE FROM cbm_cell_block WHERE id='".$id."'");z
+mysqli_query($con,"UPDATE `cbm_cell_block` SET deblock='Approval_Pending..',`requestor`='".$req."' WHERE `id` = '".$id."' AND `block`='Block'");
 // echo mysqli_affected_rows($con);
 // if(mysqli_affected_rows($con) == '0')
 //   {
