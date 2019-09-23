@@ -186,6 +186,8 @@
             
         </div>
         </div>
+                
+                
                   <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
@@ -194,10 +196,10 @@
           <div class="card-body">
           <form method="post" id="update_form">
                     <div align="left">
-                    <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
-                     </div>
+                        <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
+                    </div>
                     <br/>
-         
+                    <!-- onClick="document.location.reload(true)" -->
                     <div class="table-responsive">
 
                     <div id="DEB">

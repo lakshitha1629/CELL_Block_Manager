@@ -202,7 +202,7 @@ if (!isLoggedIn()) {
               require_once ('connect.php');
                           
               $date = date('Y-m-d');
-              $qry = "SELECT * FROM cbm_cell_block";                  
+              $qry = "SELECT * FROM cbm_cell_block WHERE block!='Approval_Pending..' AND deblock!='Approval_Pending..'";                  
                
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   

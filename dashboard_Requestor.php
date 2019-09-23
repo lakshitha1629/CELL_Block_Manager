@@ -378,12 +378,12 @@ if(isset($_POST['submit1'])){
    $active='1';
 
    if($block=='Block'){
-    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name',strtoupper('$technology'),'$requestor','$reason','$active','$block','$deblock')";
+    $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
 
    }else{
    //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
    $block1 ='Pending..';
-   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name',strtoupper('$technology'),'$requestor','$reason','$active','$block1')";
+   $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
    //echo $qry;
    }
    if (!mysqli_query($con,$qry))
@@ -450,8 +450,8 @@ if ($res = $con->query($qry)) {
                   <td>".$field6name."</td>
                   <td>".$field7name."</td>
                   <td>".$field8name."</td>
-                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=".$row['id']."\" type='button' class='btn'><i class='fas fa-mail-bulk' style='font-size:20px;color:blue'></i></a>
-                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" type='button' class='btn'><i class='fa fa-window-close' style='font-size:20px;color:red'></i></a>
+                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=".$row['id']."\" class='btn'><i class='fas fa-mail-bulk' style='font-size:20px;color:blue'></i></a>
+                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=".$row['id']."\" class='btn'><i class='fa fa-window-close' style='font-size:20px;color:red'></i></a>
                   </td>
               </tr>";
     }
