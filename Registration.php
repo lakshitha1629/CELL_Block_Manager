@@ -18,6 +18,13 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="css/sb-admin.css" rel="stylesheet">
 
+  <style>
+            table tr:not(:first-child){
+                cursor: pointer;transition: all .25s ease-in-out;
+            }
+            table tr:not(:first-child):hover{background-color: #ddd;}
+        </style>
+
 </head>
 
 <body id="page-top">
@@ -168,7 +175,38 @@ if(isset($_POST['submit1'])){
 ?>
 
 </div>
-        
+        <!-- form --->
+<div class="card col-xl-12 col-sm-12 mb-3">
+          <div class="card-header">
+            <i class="fas fa-user"></i>
+            Password Reset Form</div>
+          <div class="card-body">
+        <form method = "post" action = "">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">  
+                <label>Username :</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter the username" maxlength="10" required>
+            </div>
+            </div>
+            <div class="form-row">
+           <div class="col-md-4 mb-3">
+                 <label>Password :</label>
+                <input type="password" name="pwd1" id="pwd1" class="form-control" placeholder="Enter the password" maxlength="30" required>
+            </div>
+            <div style="padding-right: 34px;">
+            </div>
+           <div class="col-md-4 mb-3">
+                 <label>Confirm Password :</label>
+                <input type="password" name="pwd2" id="pwd2" class="form-control" placeholder="Enter the password again" maxlength="30" required>
+            </div>
+            </div>
+                 
+        <br>
+<input class="btn btn-success" type=submit value="Reset" name="Reset">
+
+</form>
+</div>
+</div>
           <!-- DataTables  -->
           <div class="card col-xl-12 col-sm-12 mb-3">
           <div class="card-header">
@@ -188,7 +226,7 @@ if(isset($_POST['submit1'])){
                   <th>Username</th>
                   <th>User_Type</th>
                   <th>Activate</th>  
-                  <th width="30%"></th>         
+                  <th width="20%"></th>         
                   </tr>
              </thead>';
                
@@ -205,12 +243,12 @@ if($field2name=='2'){
                                 <td>RNO Team Requestor</td>";
                                 if($field3name=='1'){
                                   echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
+                                  </td> 
              
                                   </tr>";
                                 }else{
                                   echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
+                                  </td> 
              
                                   </tr>";
                                 }
@@ -222,28 +260,29 @@ if($field2name=='2'){
                                 <td>INOC Team Leader</td>";
                                 if($field3name=='1'){
                                   echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
+                                  </td> 
              
                                   </tr>";
                                 }else{
                                   echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                                  <a type='button' class='btn btn-warning'>Reset Password</a></td>  
+                                  </td>  
              
                                   </tr>";
                                 }
 }else if($field2name=='4'){
-                                  // `user_name`,`user_type`, `password`, `activated`            
+                                  // `user_name`,`user_type`, `password`, `activated`   
+                                  //<a type='button' class='btn btn-warning'>Reset Password</a>         
                   echo "<tr> 
                             <td>".$field1name."</td> 
                             <td>Vendor</td>";
                             if($field3name=='1'){
                               echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                              <a type='button' class='btn btn-warning'>Reset Password</a></td> 
+                              </td> 
         
                               </tr>";
                             }else{
                               echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
-                              <a type='button' class='btn btn-warning'>Reset Password</a></td>  
+                              </td>  
         
                               </tr>";
                             }
@@ -319,6 +358,22 @@ if($field2name=='2'){
 
   <!-- Demo scripts for this page-->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <script>
+    
+    var table = document.getElementById('table');
+    
+    for(var i = 1; i < table.rows.length; i++)
+    {
+        table.rows[i].onclick = function()
+        {
+             //rIndex = this.rowIndex;
+             document.getElementById("username").value = this.cells[0].innerHTML;
+             document.getElementById("pwd1").value = this.cells[1].innerHTML;
+        };
+    }  
+
+</script>
 
 </body>
 
