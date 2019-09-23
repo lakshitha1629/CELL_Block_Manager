@@ -9,7 +9,7 @@ if(isset($_POST['hidden_id']))
 {
 date_default_timezone_set('Asia/Colombo');
  $deblock_time = date('Y-m-d H:i:s'); 
- $block_time = date("H:i:s");
+ $block_time = date('Y-m-d H:i:s');
  $block = $_POST['block'];
  $block_by = $_SESSION['user_name'];
  $block_remarks = $_POST['block_remarks'];
