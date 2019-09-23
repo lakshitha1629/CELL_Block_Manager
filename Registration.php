@@ -188,7 +188,7 @@ if(isset($_POST['submit1'])){
                   <th>Username</th>
                   <th>User_Type</th>
                   <th>Activate</th>  
-                  <th></th>         
+                  <th width="30%"></th>         
                   </tr>
              </thead>';
                
@@ -204,11 +204,13 @@ if($field2name=='2'){
                                 <td>".$field1name."</td> 
                                 <td>RNO Team Requestor</td>";
                                 if($field3name=='1'){
-                                  echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                                  echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
              
                                   </tr>";
                                 }else{
-                                  echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                                  echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
              
                                   </tr>";
                                 }
@@ -219,11 +221,13 @@ if($field2name=='2'){
                                 <td>".$field1name."</td> 
                                 <td>INOC Team Leader</td>";
                                 if($field3name=='1'){
-                                  echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                                  echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                                  <a type='button' class='btn btn-warning'>Reset Password</a></td> 
              
                                   </tr>";
                                 }else{
-                                  echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                                  echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                                  <a type='button' class='btn btn-warning'>Reset Password</a></td>  
              
                                   </tr>";
                                 }
@@ -233,11 +237,13 @@ if($field2name=='2'){
                             <td>".$field1name."</td> 
                             <td>Vendor</td>";
                             if($field3name=='1'){
-                              echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                              echo "<td>Activate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                              <a type='button' class='btn btn-warning'>Reset Password</a></td> 
         
                               </tr>";
                             }else{
-                              echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a></td> 
+                              echo "<td>Deactivate</td><td><a href=\"activate.php?id=".$row['user_id']."&active=".$row['activated']."\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                              <a type='button' class='btn btn-warning'>Reset Password</a></td>  
         
                               </tr>";
                             }
