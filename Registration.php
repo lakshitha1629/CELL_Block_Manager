@@ -205,6 +205,32 @@ if(isset($_POST['submit1'])){
 <input class="btn btn-success" type=submit value="Reset" name="Reset">
 
 </form>
+<?php 
+
+if(isset($_POST['Reset'])){ 
+  require_once ('connect.php');
+   //$date = $_POST['date'];
+   $name = $_POST['username'];
+   $password1 = $_POST['pwd1'];
+   $password2 = $_POST['pwd2'];
+   
+   if ($password1 != $password2) {
+    echo "The two passwords do not match";
+}else{
+    $password = md5($password1);
+    
+    $qry = "UPDATE `cbm_user_account` SET `password`='$password' WHERE `user_name` = '$name'";
+   
+ //   $qry = "INSERT INTO `cbm_user_account`(`user_name`,`user_type`, `password`, `activated`) VALUES ('$name','$type','$password','$active')";
+   //echo $qry;
+   if (!mysqli_query($con,$qry))
+     {
+     die('Error: ' . mysqli_error());
+     }
+   echo "Registration Successfull";
+  }
+}
+?>
 </div>
 </div>
           <!-- DataTables  -->
@@ -361,7 +387,7 @@ if($field2name=='2'){
 
   <script>
     
-    var table = document.getElementById('table');
+    var table = document.getElementById('dataTable');
     
     for(var i = 1; i < table.rows.length; i++)
     {
@@ -369,7 +395,7 @@ if($field2name=='2'){
         {
              //rIndex = this.rowIndex;
              document.getElementById("username").value = this.cells[0].innerHTML;
-             document.getElementById("pwd1").value = this.cells[1].innerHTML;
+           //  document.getElementById("pwd1").value = this.cells[1].innerHTML;
         };
     }  
 
