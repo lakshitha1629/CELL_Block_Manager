@@ -13,7 +13,7 @@
 <head>
 	<title>Cell Block Manager</title>
 	<meta charset="UTF-8">
-  <meta http-equiv="Refresh" content="100"> 
+  <meta http-equiv="Refresh" content="75"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
