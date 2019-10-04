@@ -24,26 +24,26 @@
 	- INOC Team Leader marks the request, bock or unblock by the system and sending the email to the Requestor.
 	- Vendor block requests need to be processed through the RNO Team Requestor. so, through this web, RNO Team Requestor can view vendor requests and approve for the process.
 
-4. Requirements identification
-	4.1   Functional requirement
-		- Add and remove requests by RNO Team Requestor and Vendor. (single request or multi request)
-		- The vendor requests approval by the RNO Team Requestor.
-		- View all requests and responses of the requests.
-		- View and playing beep tone the new pending block and deblock counts.
-		- Keep records and update records of the cell block details. (block or unblock)
-		- Update cell block request single and multi-selection. (block or unblock)
-		- Search request, view all requests in the log table, view complete requests highlighted.
-		- Mail and SMS function-> A message is sent to the requestor about the response of the cell block request.
-		- Can export the records. (date range or all records as the excel sheet)
-		- View the analysis of cell block requests. (request count, block pending request count, deblock pending request count, block count, deblock count)
+4. Requirements identification<br/>
+	4.1   Functional requirement<br/>
+		- Add and remove requests by RNO Team Requestor and Vendor. (single request or multi request)<br/>
+		- The vendor requests approval by the RNO Team Requestor.<br/>
+		- View all requests and responses of the requests.<br/>
+		- View and playing beep tone the new pending block and deblock counts.<br/>
+		- Keep records and update records of the cell block details. (block or unblock)<br/>
+		- Update cell block request single and multi-selection. (block or unblock)<br/>
+		- Search request, view all requests in the log table, view complete requests highlighted.<br/>
+		- Mail and SMS function-> A message is sent to the requestor about the response of the cell block request.<br/>
+		- Can export the records. (date range or all records as the excel sheet)<br/>
+		- View the analysis of cell block requests. (request count, block pending request count, deblock pending request count, block count, deblock count)<br/>
 
-	4.2 Non-functional requirements
-		- Usability. (Color combination is valid for even color-blind people, User interface responsive to any device)
-		- User-friendliness – adding icons and information messages.
-		- Increasing Performance. (AJAX form submit use to data insert and search, using table plugging)
-		- Security- prevent unauthorized access and SQL injection by using security functions.
-		- Data adding and update are not reflecting with other accounts.
-		- Reliability.
+	4.2 Non-functional requirements<br/>
+		- Usability. (Color combination is valid for even color-blind people, User interface responsive to any device)<br/>
+		- User-friendliness – adding icons and information messages.<br/>
+		- Increasing Performance. (AJAX form submit use to data insert and search, using table plugging)<br/>
+		- Security- prevent unauthorized access and SQL injection by using security functions.<br/>
+		- Data adding and update are not reflecting with other accounts.<br/>
+		- Reliability.<br/>
 
 5.  User levels
 	- Admin
