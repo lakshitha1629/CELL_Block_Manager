@@ -24,7 +24,7 @@
 	- INOC Team Leader marks the request, bock or unblock by the system and sending the email to the Requestor.
 	- Vendor block requests need to be processed through the RNO Team Requestor. so, through this web, RNO Team Requestor can view vendor requests and approve for the process.
 
-4. Requirements identification<br/>
+4. Requirements identification<br/><br/>
 	4.1   Functional requirement<br/>
 		- Add and remove requests by RNO Team Requestor and Vendor. (single request or multi request)<br/>
 		- The vendor requests approval by the RNO Team Requestor.<br/>
