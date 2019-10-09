@@ -47,6 +47,6 @@
 
 5.  User levels
 	- Admin
-	- INOC Team Leader
-	- RNO Team Requestor
+	- INOC Team Leader(request checker)
+	- RNO Team Requestor(request sender)
 	- Vendor
