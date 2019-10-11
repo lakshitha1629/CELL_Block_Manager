@@ -24,8 +24,9 @@
 	- INOC Team Leader marks the request, bock or unblock by the system and sending the email to the Requestor.
 	- Vendor block requests need to be processed through the RNO Team Requestor. so, through this web, RNO Team Requestor can view vendor requests and approve for the process.
 
-4. Requirements identification<br/><br/>
-	4.1   Functional requirement<br/>
+4. Requirements identification<br/>
+
+	4.1   Functional requirement<br/><br/>
 		- Add and remove requests by RNO Team Requestor and Vendor. (single request or multi request)<br/>
 		- The vendor requests approval by the RNO Team Requestor.<br/>
 		- View all requests and responses of the requests.<br/>
@@ -37,7 +38,7 @@
 		- Can export the records. (date range or all records as the excel sheet)<br/>
 		- View the analysis of cell block requests. (request count, block pending request count, deblock pending request count, block count, deblock count)<br/>
 
-	4.2 Non-functional requirements<br/>
+	4.2 Non-functional requirements<br/><br/>
 		- Usability. (Color combination is valid for even color-blind people, User interface responsive to any device)<br/>
 		- User-friendliness – adding icons and information messages.<br/>
 		- Increasing Performance. (AJAX form submit use to data insert and search, using table plugging)<br/>
