@@ -1,6 +1,6 @@
 ### Cell Block Manager 
 
-1. Project Title -> Cell Block Manager
+1. Project Title -> <i>Cell Block Manager</i>
 
 2. Problem in Brief
 	- In the current situation, there’s very poor communication between RNO Team Requestor and INOC Team Leader and most of the time INOC Team Leader is not aware of their Request.
