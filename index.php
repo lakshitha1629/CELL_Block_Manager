@@ -196,7 +196,7 @@
 				</div>
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Mobitel 2019</span>
+						<span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
 					</div>
 				</div>
 			</div>

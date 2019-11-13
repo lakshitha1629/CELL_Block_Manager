@@ -11,7 +11,7 @@ if (!isLoggedIn()) {
 <head>
   <title>Cell Block Manager</title>
   <meta charset="UTF-8">
-  <meta http-equiv="Refresh" content="75">
+  <meta http-equiv="Refresh" content="100">
   <meta name="viewport" content="width=device-width, initial-scale=0.9">
   <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -187,6 +187,10 @@ if (!isLoggedIn()) {
               <div align="left">
                 <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
               </div>
+              <div align="right">
+                Search : <input type="text" name="search" id="search" class="form-control-sm" />
+              </div>
+
               <br />
               <!-- onClick="document.location.reload(true)" -->
               <div class="table-responsive">
@@ -239,7 +243,7 @@ if (!isLoggedIn()) {
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Mobitel 2019</span>
+            <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
           </div>
         </div>
       </footer>
@@ -298,10 +302,15 @@ if (!isLoggedIn()) {
 <script>
   $(document).ready(function() {
 
-    function fetch_data() {
+    function fetch_data(value) {
       $.ajax({
+        processing: true,
+        serverSide: true,
         url: "update_select.php",
         method: "POST",
+        data: {
+          value: value
+        },
         dataType: "json",
         success: function(data) {
           var html = '';
@@ -327,6 +336,16 @@ if (!isLoggedIn()) {
     //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, 
     //`deblock_date`, `deblock_time`, `deblock_remarks`, `active
     fetch_data();
+
+    $('#search').keyup(function() {
+      var search = $(this).val();
+      if (search != '') {
+        fetch_data(search);
+      } else {
+        fetch_data();
+      }
+    });
+
 
     $(document).on('click', '.check_box', function() {
       var html = '';

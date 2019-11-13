@@ -11,8 +11,8 @@ if (!isLoggedIn()) {
 <head>
   <title>Cell Block Manager</title>
   <meta charset="UTF-8">
-  <meta http-equiv="Refresh" content="75">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Refresh" content="100">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
   <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
@@ -69,9 +69,9 @@ if (!isLoggedIn()) {
           <span>Request Log</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Vender_Request.php">
+        <a class="nav-link" href="Vendor_Request.php">
           <i class="fas fa-blender-phone"></i>
-          <span>Vender Request Log</span></a>
+          <span>Vendor Request Log</span></a>
       </li>
     </ul>
 
@@ -120,8 +120,8 @@ if (!isLoggedIn()) {
                                           echo $data1['block1'];
                                         } ?> Approval Pending Block Messages!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="Vender_Request.php">
-                <span class="float-left">Venders Approval Pending Block Messages Count</span>
+              <a class="card-footer text-white clearfix small z-1" href="Vendor_Request.php">
+                <span class="float-left">Vendors Approval Pending Block Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -144,8 +144,8 @@ if (!isLoggedIn()) {
                                           echo $data4['deblock1'];
                                         } ?> Approval Pending Deblock Messages!</b></i></div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="Vender_Request.php">
-                <span class="float-left">Venders Approval Pending Deblock Messages Count</span>
+              <a class="card-footer text-white clearfix small z-1" href="Vendor_Request.php">
+                <span class="float-left">Vendors Approval Pending Deblock Messages Count</span>
                 <span class="float-right">
                   <i class="fas fa-angle-up"></i>
                 </span>
@@ -211,12 +211,12 @@ if (!isLoggedIn()) {
                       date_default_timezone_set('Asia/Colombo');
 
                       $date = date('Y-m-d H:i:s');
-                      $cell = $row[0];
-                      $site_name = $row[1];
-                      $technology = $row[2];
+                      $cell = strtoupper($row[0]);
+                      $site_name = ucfirst($row[1]);
+                      $technology = strtoupper($row[2]);
                       // $requestor = $row[3];
                       $requestor = $_SESSION['user_name'];
-                      $reason = $row[3];
+                      $reason = ucfirst($row[3]);
 
                       $block = ucfirst($row[4]);
                       $deblock = 'Pending..';
@@ -362,11 +362,11 @@ if (!isLoggedIn()) {
           date_default_timezone_set('Asia/Colombo');
           $date = date('Y-m-d H:i:s');
           //$date = $_POST['date'];
-          $cell = $_POST['cell'];
-          $site_name = $_POST['site'];
-          $technology = $_POST['technology'];
+          $cell = strtoupper($_POST['cell']);
+          $site_name = ucfirst($_POST['site']);
+          $technology = strtoupper($_POST['technology']);
           $requestor = $_SESSION['user_name'];
-          $reason = $_POST['reason'];
+          $reason = ucfirst($_POST['reason']);
           $block = $_POST['block'];
           $deblock = 'Pending..';
           $active = '1';
@@ -401,39 +401,55 @@ if (!isLoggedIn()) {
         CELL Block Table</div>
       <div class="card-body">
         <div class="table-responsive">
-          <?php
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th width="80px">Date</th>
+                <th>Cell </th>
+                <th>Site_name </th>
+                <th>Technology </th>
+                <th width="150px">Requestor</th>
+                <th>Reason</th>
+                <th>Block</th>
+                <th>Deblock</th>
+                <th></th>
+              </tr>
+            </thead>
 
-          require_once('connect.php');
-          $user = $_SESSION['user_name'];
-          $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND (block='Pending..' OR deblock='' OR deblock='Pending..') ORDER BY `date` DESC";
+            <tfoot>
+              <tr>
+                <th width="80px">Date</th>
+                <th>Cell </th>
+                <th>Site_name </th>
+                <th>Technology </th>
+                <th width="150px">Requestor</th>
+                <th>Reason</th>
+                <th>Block</th>
+                <th>Deblock</th>
+                <th></th>
+              </tr>
+            </tfoot>
 
-          echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-<thead>   
-    <tr> 
-    <th>Date</th> 
-    <th>Cell </th> 
-    <th>Site_name </th> 
-    <th>Technology </th> 
-    <th>Requestor</th> 
-    <th>Reason</th> 
-    <th>Block</th>
-    <th>Deblock</th>
-    <th></th> 
-        </tr></thead>';
+            <?php
 
-          if ($res = $con->query($qry)) {
-            while ($row = $res->fetch_assoc()) {
-              $id = $row["id"];
-              $field1name = $row["date"];
-              $field2name = $row["cell"];
-              $field3name = $row["site_name"];
-              $field4name = $row["technology"];
-              $field5name = $row["requestor"];
-              $field6name = $row["reason"];
-              $field7name = $row["block"];
-              $field8name = $row["deblock"];
+            require_once('connect.php');
+            $user = $_SESSION['user_name'];
+            $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND (block='Pending..' OR deblock='' OR deblock='Pending..') ORDER BY `id` DESC";
 
-              echo "<tr> 
+
+            if ($res = $con->query($qry)) {
+              while ($row = $res->fetch_assoc()) {
+                $id = $row["id"];
+                $field1name = $row["date"];
+                $field2name = $row["cell"];
+                $field3name = $row["site_name"];
+                $field4name = $row["technology"];
+                $field5name = $row["requestor"];
+                $field6name = $row["reason"];
+                $field7name = $row["block"];
+                $field8name = $row["deblock"];
+
+                echo "<tr> 
                   <td>" . $field1name . "</td> 
                   <td>" . $field2name . "</td> 
                   <td>" . $field3name . "</td> 
@@ -442,15 +458,16 @@ if (!isLoggedIn()) {
                   <td>" . $field6name . "</td>
                   <td>" . $field7name . "</td>
                   <td>" . $field8name . "</td>
-                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=" . $row['id'] . "\" class='btn'><i class='fas fa-mail-bulk' style='font-size:20px;color:blue'></i></a>
-                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=" . $row['id'] . "\" class='btn'><i class='fa fa-window-close' style='font-size:20px;color:red'></i></a>
+                  <td><a onClick=\"return confirm('Are you sure you want to deblock?')\" href=\"deblock_Requestor.php?id=" . $row['id'] . "\" class=''><i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i></a>
+                  <a onClick=\"return confirm('Are you sure you want to delete?')\" href=\"delete_Requestor.php?id=" . $row['id'] . "\" class=''><i class='fa fa-window-close' style='font-size:18px;color:red'></i></a>
                   </td>
               </tr>";
-            }
+              }
 
-            $res->free();
-          }
-          ?></table><br>
+              $res->free();
+            }
+            ?>
+          </table><br>
           <p style="margin-bottom: 2px;text-align: right;">Deblock Request Use &nbsp;&nbsp; <i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i>
             &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;Delete Request Use &nbsp;&nbsp;<i class='fa fa-window-close' style='font-size:18px;color:red'></i></p>
 
@@ -466,7 +483,7 @@ if (!isLoggedIn()) {
   <footer class="sticky-footer">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Copyright © Mobitel 2019</span>
+        <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
       </div>
     </div>
   </footer>
@@ -500,24 +517,22 @@ if (!isLoggedIn()) {
       </div>
     </div>
   </div>
-
   <!-- Bootstrap core JavaScript-->
-  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
-  <script src="AutoComplete/jquery.min.js"></script>
-  <script src="AutoComplete/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="AutoComplete/jquery-ui.css">
+  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 23, 2019 at 03:21 PM
+-- Generation Time: Sep 23, 2019 at 08:45 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `cbm_cell_block` (
   `reason` varchar(255) NOT NULL,
   `block` varchar(50) DEFAULT NULL,
   `block_by` varchar(50) DEFAULT '',
-  `block_time` datetime DEFAULT NULL,
+  `block_time` time DEFAULT NULL,
   `block_remarks` varchar(200) DEFAULT '',
   `deblock` varchar(50) DEFAULT '',
   `deblock_by` varchar(50) DEFAULT '',
@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `cbm_cell_block` (
 
 INSERT INTO `cbm_cell_block` (`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_by`, `deblock_time`, `deblock_remarks`, `active`) VALUES
 (347, '2019-09-23 09:16:52', 'MTMED1A', 'Mahargama', '4G', 'Vendor01 (approved by lakshitha)', 'Quality Issue', 'Block', '', NULL, '', 'Deblock', 'lakshitha1629', '2019-09-23 09:27:53', 'done', 1),
-(352, '2019-09-23 09:19:55', 'MTMED1A', 'Meddewatta', 'BSC31', 'lakshitha', 'Power Issue', 'Block', 'admin', '2019-09-23 10:07:41', 'done', '', '', NULL, '', 1),
-(353, '2019-09-23 09:22:50', 'qw3ertyu', 'Maharagama', 'BSC', 'lakshitha', 'error', 'Block', 'admin', '2019-09-23 10:07:41', 'done', '', '', NULL, '', 1),
+(352, '2019-09-23 09:19:55', 'MTMED1A', 'Meddewatta', 'BSC31', 'lakshitha', 'Power Issue', 'Block', 'admin', '10:07:41', 'done', '', '', NULL, '', 1),
+(353, '2019-09-23 09:22:50', 'qw3ertyu', 'Maharagama', 'BSC', 'lakshitha', 'error', 'Block', 'admin', '10:07:41', 'done', '', '', NULL, '', 1),
 (351, '2019-09-23 09:19:55', 'MTMED1A', 'Mahargama', '4G', 'lakshitha', 'Quality Issue', 'Block', '', NULL, '', 'Deblock', 'lakshitha1629', '2019-09-23 09:27:53', 'done', 1),
-(349, '2019-09-23 09:17:21', 'QWEEaxd', 'nugegoda', 'LTE', 'Vendor01 (approved by lakshitha)', 'Power Issue', 'Block', 'lakshitha1629', '2019-09-23 09:27:19', 'done', 'Pending..', '', NULL, '', 1),
+(349, '2019-09-23 09:17:21', 'QWEEaxd', 'nugegoda', 'LTE', 'Vendor01 (approved by lakshitha)', 'Power Issue', 'Block', 'lakshitha1629', '09:27:19', 'done', 'Pending..', '', NULL, '', 1),
 (350, '2019-09-23 09:18:27', 'ASDFGHJKL', 'Colombo', '2G', 'Vendor01', 'Quality Issue', 'Block', '', NULL, '', 'Pending..', '', NULL, '', 1);
 
 -- --------------------------------------------------------

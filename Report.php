@@ -148,6 +148,7 @@ if (!isAdmin()) {
                   <div class="form-row">
                     <div class="col-md-8 mb-3">
                       <label>Export Full File : </label>
+
                       <input class="btn btn-success" type="submit" name="export1" value="Export">
                     </div>
 

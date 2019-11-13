@@ -19,8 +19,12 @@ if(!$con){
   //$date1=$_POST['date1'];
 //  $date2=$_POST['date2'];
 //query to get data from the table
-$query = sprintf("SELECT CAST(`date` AS DATE) as a,COUNT(`block`) as b,COUNT(`deblock`) as c,COUNT(`date`) as d FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) GROUP BY CAST(`date` AS DATE)");
-//$query = sprintf("SELECT CAST(`date` AS DATE) as a,COUNT(`block`) as b,COUNT(`deblock`) as c,COUNT(`date`) as d FROM cbm_cell_block GROUP BY CAST(`date` AS DATE)");
+// $query = sprintf("SELECT CAST(`date` AS DATE) as a,COUNT(`block`) as b,COUNT(`deblock`) as c,COUNT(`date`) as d FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) GROUP BY CAST(`date` AS DATE)");
+$query = sprintf("SELECT CAST(`date` AS DATE) as a,
+(SELECT COUNT(`block`) FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) AND `block`='Block' GROUP BY CAST(`date` AS DATE))as b,
+(SELECT COUNT(`deblock`) FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) AND `block`='Deblock' GROUP BY CAST(`date` AS DATE))as c,
+(SELECT COUNT(`date`) FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) GROUP BY CAST(`date` AS DATE)) as d 
+FROM cbm_cell_block WHERE MONTH(`date`) = MONTH(NOW()) GROUP BY CAST(`date` AS DATE)");
 
 $result = $con->query($query);
 

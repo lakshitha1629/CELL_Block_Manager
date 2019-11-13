@@ -45,7 +45,7 @@ if(isset($_POST['hidden_id']))
   }
   $statement = $connect->prepare($query);
   $statement->execute($data); 
-  header("Location: Vender_Request.php");
+  header("Location: Vendor_Request.php");
  }
  
 }
