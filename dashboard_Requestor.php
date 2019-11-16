@@ -222,20 +222,27 @@ if (!isLoggedIn()) {
                       $deblock = 'Pending..';
                       $active = '1';
 
-                      if ($block == 'Block') {
-                        $block1 = 'Pending..';
-                        $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
-                      } else if ($block == 'Deblock') {
-                        //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-                        $block2 = 'Block';
-                        $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block2','$deblock')";
-                        //echo $qry;
+                      $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `site_name`='$site_name' AND `technology`='$technology' AND (`block`='$block' OR `deblock`='$deblock')");
+                      // echo $check;
+                      $checkrows = mysqli_num_rows($check);
+
+                      if ($checkrows > 0) {
+                        echo "<div style='color: red;'>*Cell request already exists.</div>";
                       } else {
 
-                        echo "error";
+                        if ($block == 'Block') {
+                          $block1 = 'Pending..';
+                          $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
+                        } else if ($block == 'Deblock') {
+                          //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
+                          $block2 = 'Block';
+                          $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block2','$deblock')";
+                          //echo $qry;
+                        } else {
+
+                          echo "error";
+                        }
                       }
-
-
 
                       //$qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
                       $res = mysqli_query($con, $qry);
@@ -371,20 +378,32 @@ if (!isLoggedIn()) {
           $deblock = 'Pending..';
           $active = '1';
 
-          if ($block == 'Block') {
-            $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
-          } else {
-            //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-            $block1 = 'Pending..';
-            $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
-            //echo $qry;
-          }
-          if (!mysqli_query($con, $qry)) {
-            die('Error: ' . mysqli_error());
-          }
-          echo "Your record added Successfull";
-        }
+          //checkin query
+          //$check = mysqli_query($con, "select * from clients where firstname='$firstname' and lastname='$lastname'");
+          $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `site_name`='$site_name' AND `technology`='$technology' AND (`block`='$block' OR `deblock`='$deblock')");
+          // echo $check;
+          $checkrows = mysqli_num_rows($check);
 
+          if ($checkrows > 0) {
+            echo "<div style='color: red;'>*Cell request already exists.</div>";
+          } else {
+
+
+
+            if ($block == 'Block') {
+              $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
+            } else {
+              //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
+              $block1 = 'Pending..';
+              $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
+              //echo $qry;
+            }
+            if (!mysqli_query($con, $qry)) {
+              die('Error: ' . mysqli_error());
+            }
+            echo "Your record added Successfull";
+          }
+        }
 
         ?>
 
