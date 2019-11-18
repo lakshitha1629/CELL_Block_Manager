@@ -100,19 +100,25 @@
 									} else if ($logged_in_user['user_type'] == '2') {
 										$_SESSION['user_name'] = $logged_in_user['user_name'];
 										$_SESSION['user'] = $logged_in_user;
-										$_SESSION['user_type'] = "RNO Team Requestor";
+										$_SESSION['user_type'] = "RNO Requestor";
 										$_SESSION['success']  = "You are now logged in";
 										header('location: dashboard_Requestor.php');
 									} else if ($logged_in_user['user_type'] == '3') {
 										$_SESSION['user_name'] = $logged_in_user['user_name'];
 										$_SESSION['user'] = $logged_in_user;
-										$_SESSION['user_type'] = "INOC Team Leader";
+										$_SESSION['user_type'] = "INOC Team";
 										$_SESSION['success']  = "You are now logged in";
 										header('location: dashboard.php');
 									} else if ($logged_in_user['user_type'] == '4') {
 										$_SESSION['user_name'] = $logged_in_user['user_name'];
 										$_SESSION['user'] = $logged_in_user;
-										$_SESSION['user_type'] = "Vendor";
+										$_SESSION['user_type'] = "ZTE";
+										$_SESSION['success']  = "You are now logged in";
+										header('location: dashboard_Vendor.php');
+									} else if ($logged_in_user['user_type'] == '5') {
+										$_SESSION['user_name'] = $logged_in_user['user_name'];
+										$_SESSION['user'] = $logged_in_user;
+										$_SESSION['user_type'] = "Huawei";
 										$_SESSION['success']  = "You are now logged in";
 										header('location: dashboard_Vendor.php');
 									} else {
