@@ -33,26 +33,7 @@ if (!isAdmin()) {
     </button>
 
 
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
-          <?php if (isset($_SESSION['success'])) : ?>
-            <p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i>
-            </p>
-          <?php endif ?>
-          <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
-          <a class="dropdown-item" href="Admin_dashboard.php?logout='1'">Logout</a>
-        </div>
-      </li>
-    </ul>
-
-  </nav>
+    <?php include 'common/nav.php'; ?>
 
   <div id="wrapper">
     <!-- Sidebar -->

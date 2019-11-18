@@ -42,27 +42,7 @@ if (!isAdmin()) {
       <i class="fas fa-bars"></i>
     </button>
 
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
-          <?php if (isset($_SESSION['success'])) : ?>
-            <p class="dropdown-item" style="color: darkmagenta;"><b><?php echo $_SESSION['user_name']; ?></b><br><i>(<?php echo $_SESSION['user_type']; ?>)</i>
-            </p>
-          <?php endif ?>
-          <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          <a href="Admin_dashboard.php?logout='1'" style="color: red;"> -->
-          <a class="dropdown-item" href="Admin_dashboard.php?logout='1'">Logout</a>
-        </div>
-      </li>
-    </ul>
-
-  </nav>
+    <?php include 'common/nav.php'; ?>
 
   <div id="wrapper">
     <!-- Sidebar -->
@@ -143,7 +123,8 @@ if (!isAdmin()) {
                     <option value="" disabled selected>Choose User Type</option>
                     <option value="2">RNO Team Requestor</option>
                     <option value="3">INOC Team Leader</option>
-                    <option value="4">Vendor</option>
+                    <option value="4">ZTE</option>
+                    <option value="5">Huawei</option>
                   </select>
                 </div>
               </div>
@@ -247,7 +228,7 @@ if (!isAdmin()) {
 
               require_once('connect.php');
 
-              $qry = "SELECT * FROM cbm_user_account WHERE `user_type`='2' OR `user_type`='3' OR `user_type`='4'";
+              $qry = "SELECT * FROM cbm_user_account WHERE `user_type`='2' OR `user_type`='3' OR `user_type`='4' OR `user_type`='5'";
 
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
@@ -302,7 +283,24 @@ if (!isAdmin()) {
                     //<a type='button' class='btn btn-warning'>Reset Password</a>         
                     echo "<tr> 
                             <td>" . $field1name . "</td> 
-                            <td>Vendor</td>";
+                            <td>ZTE</td>";
+                    if ($field3name == '1') {
+                      echo "<td>Activate</td><td><a href=\"activate.php?id=" . $row['user_id'] . "&active=" . $row['activated'] . "\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                              </td> 
+        
+                              </tr>";
+                    } else {
+                      echo "<td>Deactivate</td><td><a href=\"activate.php?id=" . $row['user_id'] . "&active=" . $row['activated'] . "\" type='button' class='btn btn-info'>Activate / Deactivate</a>
+                              </td>  
+        
+                              </tr>";
+                    }
+                  } else if ($field2name == '5') {
+                    // `user_name`,`user_type`, `password`, `activated`   
+                    //<a type='button' class='btn btn-warning'>Reset Password</a>         
+                    echo "<tr> 
+                            <td>" . $field1name . "</td> 
+                            <td>Huawei</td>";
                     if ($field3name == '1') {
                       echo "<td>Activate</td><td><a href=\"activate.php?id=" . $row['user_id'] . "&active=" . $row['activated'] . "\" type='button' class='btn btn-info'>Activate / Deactivate</a>
                               </td> 
