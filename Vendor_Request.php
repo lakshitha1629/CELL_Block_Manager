@@ -128,7 +128,7 @@ if (!isLoggedIn()) {
           <div class="card-body">
             <form method="post" id="update_form">
               <div align="left">
-                <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Approval" />
+                <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Approve" />
               </div>
               <div align="right">
                 Search : <input type="text" name="search" id="search" class="form-control-sm" />
