@@ -50,8 +50,8 @@
 
 						</div>
 					</div>
-					<i>
-						<div style="text-align: center;padding-bottom: 10px;color: darkblue;">
+					
+						<div style="text-align: center;padding-bottom: 10px;color: red;">
 							<?php
 							session_start();
 
@@ -122,11 +122,11 @@
 										$_SESSION['success']  = "You are now logged in";
 										header('location: dashboard_Vendor.php');
 									} else {
-										echo "Undefined User";
+										echo "*Undefined User";
 									}
 								} else {
 
-									echo "Wrong username/password combination";
+									echo "*Wrong username/password combination";
 								}
 							}
 
@@ -179,13 +179,9 @@
 									echo '</div>';
 								}
 							}
-
-
-
-
 							?>
 						</div>
-					</i>
+					
 
 					<div class="container-login100-form-btn">
 						<input class="login100-form-btn" id="but_submit" name="login_btn" type="submit" value="Login" />
