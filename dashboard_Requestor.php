@@ -412,15 +412,13 @@ if (!isLoggedIn()) {
             $active = '1';
 
             // $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='$block' OR `deblock`='$block')");
-
             // $checkrows = mysqli_num_rows($check);
-
             // if ($checkrows > 0) {
             //   echo "<div style='color: red;'>*Cell request already exists.</div>";
             // } else {
 
             if ($block == 'Block') {
-              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `deblock`='Deblock' OR `deblock`='Pending..')");
+              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='' OR (`block`='Block' AND `deblock`!='Deblock'))");
               $checkrows = mysqli_num_rows($check);
 
               if ($checkrows > 0) {
@@ -435,7 +433,7 @@ if (!isLoggedIn()) {
               }
             } else {
               //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Block' OR `deblock`='Pending..' OR `block`='Pencing..')");
+              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='' OR `deblock`='Pending..' OR `deblock`='')");
               $checkrows = mysqli_num_rows($check);
 
               if ($checkrows > 0) {
