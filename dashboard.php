@@ -35,247 +35,247 @@ if (!isLoggedIn()) {
     <!-- Navbar -->
     <?php include 'common/nav_inoc.php'; ?>
 
-  <div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Summary.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Cell Log</span></a>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="new_summary_s.php">
-          <i class="fas fa-fw fa-list"></i>
-          <span>Summary</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Report_s.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Excel Exporter</span></a>
-        </a>
-      </li>
-    </ul>
-    <div id="content-wrapper">
+        <li class="nav-item active">
+          <a class="nav-link" href="dashboard.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Summary.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Cell Log</span></a>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="new_summary_s.php">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Summary</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Report_s.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Excel Exporter</span></a>
+          </a>
+        </li>
+      </ul>
+      <div id="content-wrapper">
 
-      <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Overview</li>
-        </ol>
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+          </ol>
 
-        <!-- Icon Cards-->
-        <div class="row">
-          <div class="col-xl-12 col-sm-12 mb-3">
-            <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-4.jpg');background-size: cover;padding-bottom: 100px;">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-users"></i>
+          <!-- Icon Cards-->
+          <div class="row">
+            <div class="col-xl-12 col-sm-12 mb-3">
+              <div class="card text-white o-hidden h-100" style="background-image: url('images/bg-4.jpg');background-size: cover;padding-bottom: 100px;">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-users"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr>
+          <hr>
 
-        <!-- Icon Cards-->
-        <div class="row">
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white o-hidden h-100" style="background-color: navy;">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
-                </div>
-                <div class="mr-5"><?php
-                                  require_once('connect.php');
-                                  $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..'";
+          <!-- Icon Cards-->
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white o-hidden h-100" style="background-color: navy;">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-comments"></i>
+                  </div>
+                  <div class="mr-5"><?php
+                                    require_once('connect.php');
+                                    $qry = "SELECT COUNT(`block`) as block1 FROM cbm_cell_block WHERE block='Pending..'";
 
-                                  $res = $con->query($qry);
-                                  while ($data1 = $res->fetch_assoc()) {
+                                    $res = $con->query($qry);
+                                    while ($data1 = $res->fetch_assoc()) {
 
-                                    if ($data1['block1'] != '0') {
-                                      echo '<audio controls autoplay>
+                                      if ($data1['block1'] != '0') {
+                                        echo '<audio controls autoplay>
 
                     <source src="music/sound.mp3" type="audio/mpeg" >
                   </audio>
                   ';
-                                    }
-                                    echo $data1['block1'];
-                                  } ?> Pending Block Messages!</div>
-              </div>
-              <a class="card-footer text-white clearfix small z-1" href="#DEB">
-                <span class="float-left">Pending Block Messages Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-up"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white o-hidden h-100" style="background-color: forestgreen;">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
+                                      }
+                                      echo $data1['block1'];
+                                    } ?> Pending Block Messages!</div>
                 </div>
-                <div class="mr-5"><?php
-                                  require_once('connect.php');
-                                  $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..'";
+                <a class="card-footer text-white clearfix small z-1" href="#DEB">
+                  <span class="float-left">Pending Block Messages Count</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-up"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white o-hidden h-100" style="background-color: forestgreen;">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-comments"></i>
+                  </div>
+                  <div class="mr-5"><?php
+                                    require_once('connect.php');
+                                    $qry = "SELECT COUNT(`deblock`) as deblock1 FROM cbm_cell_block WHERE deblock='Pending..'";
 
-                                  $res = $con->query($qry);
-                                  while ($data2 = $res->fetch_assoc()) {
-                                    if ($data2['deblock1'] != '0') {
-                                      echo '<audio controls autoplay>
+                                    $res = $con->query($qry);
+                                    while ($data2 = $res->fetch_assoc()) {
+                                      if ($data2['deblock1'] != '0') {
+                                        echo '<audio controls autoplay>
 
                     <source src="music/sound.mp3" type="audio/mpeg" >
                   </audio>
                   ';
-                                    }
-                                    echo $data2['deblock1'];
-                                  } ?> Pending Deblock Messages!</div>
+                                      }
+                                      echo $data2['deblock1'];
+                                    } ?> Pending Deblock Messages!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#DEB">
+                  <span class="float-left">Pending Deblock Messages Count</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-up"></i>
+                  </span>
+                </a>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#DEB">
-                <span class="float-left">Pending Deblock Messages Count</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-up"></i>
-                </span>
-              </a>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
 
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-
-          </div>
-        </div>
-
-        <!-- DataTables  -->
-        <div class="card col-xl-12 col-sm-12 mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            CELL Requests Block/Deblock Pending Table</div>
-          <div class="card-body">
-            <form method="post" id="update_form">
-              <div align="left">
-                <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
-              </div>
-              <div align="right">
-                Search : <input type="text" name="search" id="search" class="form-control-sm" />
-              </div>
-
-              <br />
-              <!-- onClick="document.location.reload(true)" -->
-              <div class="table-responsive">
-
-                <div id="DEB">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th width="5%"></th>
-                        <th>Date</th>
-                        <th>Cell </th>
-                        <th>Site_name </th>
-                        <th>Technology </th>
-                        <th>Requestor</th>
-                        <th>Reason</th>
-                        <th>Block</th>
-                        <th>Block_remarks</th>
-                        <th>Deblock</th>
-                        <th>Deblock_remarks</th>
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-                        <th width="5%"></th>
-                        <th>Date</th>
-                        <th>Cell </th>
-                        <th>Site_name </th>
-                        <th>Technology </th>
-                        <th>Requestor</th>
-                        <th>Reason</th>
-                        <th>Block</th>
-                        <th>Block_remarks</th>
-                        <th>Deblock</th>
-                        <th>Deblock_remarks</th>
-                      </tr>
-                    </tfoot>
-
-                    <tbody></tbody>
+          <!-- DataTables  -->
+          <div class="card col-xl-12 col-sm-12 mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              CELL Requests Block/Deblock Pending Table</div>
+            <div class="card-body">
+              <form method="post" id="update_form">
+                <div align="left">
+                  <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Update" />
                 </div>
-                </table>
-              </div>
-            </form>
+                <div align="right">
+                  Search : <input type="text" name="search" id="search" class="form-control-sm" />
+                </div>
 
+                <br />
+                <!-- onClick="document.location.reload(true)" -->
+                <div class="table-responsive">
+
+                  <div id="DEB">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th width="5%"></th>
+                          <th>Date</th>
+                          <th>Cell </th>
+                          <th>Site_name </th>
+                          <th>Technology </th>
+                          <th>Requestor</th>
+                          <th>Reason</th>
+                          <th>Block</th>
+                          <th>Block_remarks</th>
+                          <th>Deblock</th>
+                          <th>Deblock_remarks</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th width="5%"></th>
+                          <th>Date</th>
+                          <th>Cell </th>
+                          <th>Site_name </th>
+                          <th>Technology </th>
+                          <th>Requestor</th>
+                          <th>Reason</th>
+                          <th>Block</th>
+                          <th>Block_remarks</th>
+                          <th>Deblock</th>
+                          <th>Deblock_remarks</th>
+                        </tr>
+                      </tfoot>
+
+                      <tbody></tbody>
+                  </div>
+                  </table>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.php">Logout</a>
           </div>
         </div>
       </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Mobitel 2019 (Developed by Uva Wellassa University)</span>
-          </div>
-        </div>
-      </footer>
-
     </div>
-    <!-- /.content-wrapper -->
 
-  </div>
-  <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <!-- <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
 
 
 </body>
@@ -342,26 +342,20 @@ if (!isLoggedIn()) {
         html += '<td><input type="hidden" name="technology[]" class="form-control" value="' + $(this).data("technology") + '" />' + $(this).data("technology") + '</td>';
         html += '<td><input type="hidden" name="requestor[]" class="form-control" value="' + $(this).data("requestor") + '" />' + $(this).data("requestor") + '</td>';
         html += '<td><input type="hidden" name="reason[]" class="form-control" value="' + $(this).data("reason") + '" />' + $(this).data("reason") + '</td>';
-        //       html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
-        //       html += '<td><input type="text" name="block_remarks[]" class="form-control" value="'+$(this).data("block_remarks")+'" /></td>';
-        //       html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
-        //       html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="'+$(this).data("deblock_remarks")+'" />';
-        //      html += '<input type="hidden" name="hidden_id[]" value="'+$(this).attr('id')+'" /></td>';
 
-        if (($(this).data("block") == 'Block')) {
+        if (($(this).data("block") == 'Pending..')) {
+          html += '<td><input type="hidden" name="block[]" class="form-control" value="Block" />Block</td>';
+          //html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
+          html += '<td><input type="text" name="block_remarks[]" class="form-control" value="' + $(this).data("block_remarks") + '" /></td>';
+          html += '<td><input type="hidden" name="deblock[]" class="form-control" value="' + $(this).data("deblock") + '" />' + $(this).data("deblock") + '</td>';
+          html += '<td><input type="hidden" name="deblock_remarks[]" class="form-control" value="' + $(this).data("deblock_remarks") + '" />' + $(this).data("deblock_remarks") + '</td>';
+
+        } else if (($(this).data("deblock") == 'Pending..')) {
           html += '<td><input type="hidden" name="block[]" class="form-control" value="' + $(this).data("block") + '" />' + $(this).data("block") + '</td>';
           html += '<td><input type="hidden" name="block_remarks[]" class="form-control" value="' + $(this).data("block_remarks") + '" />' + $(this).data("block_remarks") + '</td>';
           // html += '<td><select name="deblock[]" id="deblock_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("deblock")+'" selected>Choose type</option><option value="Deblock">Deblock</option></select></td>';  
           html += '<td><input type="hidden" name="deblock[]" class="form-control" value="Deblock" />Deblock</td>';
           html += '<td><input type="text" name="deblock_remarks[]" class="form-control" value="' + $(this).data("deblock_remarks") + '" />';
-
-        } else {
-          html += '<td><input type="hidden" name="block[]" class="form-control" value="Block" />Block</td>';
-
-          //html += '<td><select name="block[]" id="block_'+$(this).attr('id')+'" class="form-control"><option value="'+$(this).data("block")+'" selected>Choose type</option><option value="Block">Block</option></select></td>';  
-          html += '<td><input type="text" name="block_remarks[]" class="form-control" value="' + $(this).data("block_remarks") + '" /></td>';
-          html += '<td><input type="hidden" name="deblock[]" class="form-control" value="' + $(this).data("deblock") + '" />' + $(this).data("deblock") + '</td>';
-          html += '<td><input type="hidden" name="deblock_remarks[]" class="form-control" value="' + $(this).data("deblock_remarks") + '" />' + $(this).data("deblock_remarks") + '</td>';
 
 
         }

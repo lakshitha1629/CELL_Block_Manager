@@ -1,9 +1,6 @@
 <?php
 session_start();
 require_once ('PDO.php');
-//$connect = new PDO("mysql:host=localhost;dbname=test", "root", "");
-//$connect = new PDO("mysql:host=localhost;dbname=cell_block_manager", "root", "");
-
 
 if(isset($_POST['hidden_id']))
 {
@@ -17,6 +14,7 @@ date_default_timezone_set('Asia/Colombo');
  $deblock_by = $_SESSION['user_name'];
  $deblock_remarks = $_POST['deblock_remarks'];
  $id = $_POST['hidden_id'];
+
  for($count = 0; $count < count($id); $count++)
  {
   if(($block[$count]=='Block')&&($deblock[$count]=='')){
@@ -34,7 +32,7 @@ date_default_timezone_set('Asia/Colombo');
   SET block = :block, block_remarks = :block_remarks, block_time = :block_time, block_by = :block_by
   WHERE id = :id
   ";
- }else{
+ }elseif(($block[$count]=='')&&($deblock[$count]=='Deblock')){
     $data = array(
    
         ':deblock' => $deblock[$count],
