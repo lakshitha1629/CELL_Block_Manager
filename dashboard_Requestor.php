@@ -498,7 +498,7 @@ if (!isLoggedIn()) {
 
               require_once('connect.php');
               $user = $_SESSION['user_name'];
-              $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND ((`block`='Block' AND `deblock`!='Deblock') OR (`block`!='Block' AND `deblock`='Deblock')) ORDER BY `id` DESC";
+              $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND ((`block`='Block' AND `deblock`!='Deblock') OR (`block`!='Block' AND `deblock`='Deblock') OR `block`='Pending..' OR `deblock`='Pending..') ORDER BY `id` DESC";
 
 
               if ($res = $con->query($qry)) {
