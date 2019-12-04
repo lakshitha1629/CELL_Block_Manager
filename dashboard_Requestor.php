@@ -498,7 +498,7 @@ if (!isLoggedIn()) {
 
               require_once('connect.php');
               $user = $_SESSION['user_name'];
-              $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND (block='Pending..' OR deblock='' OR deblock='Pending..') ORDER BY `id` DESC";
+              $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` LIKE '%$user%' AND ((`block`='Block' AND `deblock`!='Deblock') OR (`block`!='Block' AND `deblock`='Deblock')) ORDER BY `id` DESC";
 
 
               if ($res = $con->query($qry)) {
@@ -532,7 +532,7 @@ if (!isLoggedIn()) {
               }
               ?>
             </table><br>
-            <p style="margin-bottom: 2px;text-align: right;">Deblock Request Use &nbsp;&nbsp; <i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i>
+            <p style="margin-bottom: 2px;text-align: right;">Deblock or Block Request Use &nbsp;&nbsp; <i class='fas fa-mail-bulk' style='font-size:18px;color:blue'></i>
               &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;Delete Request Use &nbsp;&nbsp;<i class='fa fa-window-close' style='font-size:18px;color:red'></i></p>
 
           </div>
