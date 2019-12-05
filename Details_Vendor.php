@@ -38,21 +38,16 @@ if (!isLoggedIn()) {
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="dashboard_Requestor.php">
+        <a class="nav-link" href="dashboard_Vendor.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="Details_Requestor.php">
+        <a class="nav-link" href="Details_Vendor.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Log Details</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Vendor_Request.php">
-          <i class="fas fa-blender-phone"></i>
-          <span>Vendor Request</span></a>
       </li>
     </ul>
 
@@ -85,7 +80,7 @@ if (!isLoggedIn()) {
               require_once('connect.php');
               $date = date('Y-m-d');
               $requestor1 = $_SESSION['user_name'];
-              $qry = "SELECT * FROM cbm_cell_block WHERE `block`!='Approval_Pending..' AND deblock!='Approval_Pending..' ORDER BY `id` DESC";
+              $qry = "SELECT * FROM cbm_cell_block WHERE `requestor` ='$requestor1' ORDER BY `id` DESC";
               echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>   
                   <tr> 
