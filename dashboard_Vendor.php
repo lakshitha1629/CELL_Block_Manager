@@ -138,34 +138,32 @@ if (!isLoggedIn()) {
                         $reason = ucfirst($row[3]);
 
                         $block = ucfirst($row[4]);
-                        $deblock = 'Approval_Pending..';
+                        // $deblock = 'Approval_Pending..';
                         $active = '1';
 
-                        $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `site_name`='$site_name' AND `technology`='$technology' AND (`block`='$block' OR `deblock`='$deblock')");
-                        // echo $check;
-                        $checkrows = mysqli_num_rows($check);
+                        if ($block == 'Block') {
+                          $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='Approval_Pending..' OR `block`='' OR (`block`='Block' AND `deblock`!='Deblock'))");
+                          $checkrows = mysqli_num_rows($check);
 
-                        if ($checkrows > 0) {
-
-                          echo "<div style='color: red;'>*Cell request already exists.</div>";
-                        } else {
-
-                          if ($block == 'Block') {
+                          if ($checkrows > 0) {
+                            echo "<div style='color: red;'>*Cell request already exists.</div>";
+                          } else {
                             $block1 = 'Approval_Pending..';
                             $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
-                          } else if ($block == 'Deblock') {
-                            //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
-                            $block2 = 'Block';
-                            $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block2','$deblock')";
-                            //echo $qry;
-                          } else {
+                          }
+                        } else {
+                          $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='Approval_Pending..' OR `block`='' OR `deblock`='Pending..' OR `deblock`='Approval_Pending..' OR `deblock`='')");
+                          $checkrows = mysqli_num_rows($check);
 
-                            echo "error";
+                          if ($checkrows > 0) {
+                            echo "<div style='color: red;'>*Cell request already exists.</div>";
+                          } else {
+                            $block1 = 'Approval_Pending..';
+                            $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
                           }
                         }
 
 
-                        //$qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block')";
                         $res = mysqli_query($con, $qry);
                       }
                       $count++;
@@ -268,8 +266,8 @@ if (!isLoggedIn()) {
               <div class="col-md-4 mb-3">
                 <label>Request Type :</label>
                 <select class="form-control" name="block">
-                  <option value="Approval_Pending..">Block</option>
-                  <option value="Block">Deblock</option>
+                  <option value="Block">Block</option>
+                  <option value="Deblock">Deblock</option>
                 </select>
               </div>
             </div>
@@ -296,34 +294,41 @@ if (!isLoggedIn()) {
             $requestor = $_SESSION['user_name'];
             $reason = ucfirst($_POST['reason']);
             $block = $_POST['block'];
-            $deblock = 'Approval_Pending..';
+            // $deblock = 'Approval_Pending..';
             $active = '1';
 
-            $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `site_name`='$site_name' AND `technology`='$technology' AND (`block`='$block' OR `deblock`='$deblock')");
-            // echo $check;
-            $checkrows = mysqli_num_rows($check);
 
-            if ($checkrows > 0) {
+            if ($block == 'Block') {
+              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='Approval_Pending..' OR `block`='' OR (`block`='Block' AND `deblock`!='Deblock'))");
+              $checkrows = mysqli_num_rows($check);
 
-              echo "<div style='color: red;'>*Cell request already exists.</div>";
-            } else {
-
-              if ($block == 'Block') {
-                $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block','$deblock')";
+              if ($checkrows > 0) {
+                echo "<div style='color: red;'>*Cell request already exists.</div>";
               } else {
-                //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
                 $block1 = 'Approval_Pending..';
                 $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `block`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
-                //echo $qry;
+                if (!mysqli_query($con, $qry)) {
+                  die('Error: ' . mysqli_error());
+                }
+                echo "Your record added Successfull";
               }
+            } else {
+              //`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`, `active`
+              $check = mysqli_query($con, "SELECT * FROM `cbm_cell_block` WHERE `cell`='$cell' AND (`block`='Pending..' OR `block`='Approval_Pending..' OR `block`='' OR `deblock`='Pending..' OR `deblock`='Approval_Pending..' OR `deblock`='')");
+              $checkrows = mysqli_num_rows($check);
 
-              if (!mysqli_query($con, $qry)) {
-                die('Error: ' . mysqli_error());
+              if ($checkrows > 0) {
+                echo "<div style='color: red;'>*Cell request already exists.</div>";
+              } else {
+                $block1 = 'Approval_Pending..';
+                $qry = "INSERT INTO `cbm_cell_block`(`date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `active`, `deblock`) VALUES ('$date','$cell','$site_name','$technology','$requestor','$reason','$active','$block1')";
+                if (!mysqli_query($con, $qry)) {
+                  die('Error: ' . mysqli_error());
+                }
+                echo "Your record added Successfull";
               }
-              echo "Your record added Successfull";
             }
           }
-
           ?>
 
 
