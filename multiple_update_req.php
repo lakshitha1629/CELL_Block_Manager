@@ -15,8 +15,8 @@ if(isset($_POST['hidden_id']))
    $id = $_POST['hidden_id'];
    for($count = 0; $count < count($id); $count++)
    {
-  if(($block[$count]=='Block')&&($deblock[$count]=='Pending..')){
-     //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`
+  if($deblock[$count]=='Pending..'){
+   //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`
  
      $data = array(
         ':requestor' => $requestor[$count].' (approved by '.$approval.')',
@@ -29,7 +29,7 @@ if(isset($_POST['hidden_id']))
   WHERE id = :id 
   ";
 
- }else{
+ }elseif($block[$count]=='Pending..'){
     $data = array(
         ':requestor' => $requestor[$count].' (approved by '.$approval.')',
         ':block'   => $block[$count],
