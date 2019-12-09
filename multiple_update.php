@@ -17,7 +17,7 @@ date_default_timezone_set('Asia/Colombo');
 
  for($count = 0; $count < count($id); $count++)
  {
-  if(($block[$count]=='Block')&&($deblock[$count]=='')){
+  if(($block[$count]=='Block')){
      //`block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_date`, `deblock_time`, `deblock_remarks`
   $data = array(
    
@@ -32,7 +32,7 @@ date_default_timezone_set('Asia/Colombo');
   SET block = :block, block_remarks = :block_remarks, block_time = :block_time, block_by = :block_by
   WHERE id = :id
   ";
- }elseif(($block[$count]=='')&&($deblock[$count]=='Deblock')){
+ }elseif(($deblock[$count]=='Deblock')){
     $data = array(
    
         ':deblock' => $deblock[$count],
