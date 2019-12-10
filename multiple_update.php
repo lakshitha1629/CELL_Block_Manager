@@ -32,6 +32,7 @@ date_default_timezone_set('Asia/Colombo');
   SET block = :block, block_remarks = :block_remarks, block_time = :block_time, block_by = :block_by
   WHERE id = :id
   ";
+  
  }elseif(($deblock[$count]=='Deblock')){
     $data = array(
    
