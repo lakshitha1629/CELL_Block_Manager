@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 10, 2020 at 05:01 AM
+-- Generation Time: Apr 17, 2020 at 05:28 PM
 -- Server version: 5.7.19
--- PHP Version: 7.0.23
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -54,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `cbm_cell_block` (
 --
 
 INSERT INTO `cbm_cell_block` (`id`, `date`, `cell`, `site_name`, `technology`, `requestor`, `reason`, `block`, `block_by`, `block_time`, `block_remarks`, `deblock`, `deblock_by`, `deblock_time`, `deblock_remarks`, `active`) VALUES
-(411, '2019-12-09 11:37:11', 'EEEEEEEE', 'Nugegoda', '2G', 'RNO_001', 'Nn', 'Block', 'INOC_001', '2019-12-09 11:48:30', '', '', '', NULL, '', 1),
+(411, '2019-12-09 11:37:11', 'EEEEEEEE', 'Nugegoda', '2G', 'RNO_001', 'Nn', 'Block', 'INOC_001', '2020-01-30 14:21:29', '', 'Pending..', '', NULL, '', 1),
 (412, '2019-12-09 11:37:33', 'CCCCCC', 'Nugegoda', '2G', 'RNO_001', 'Done', '', '', NULL, '', 'Deblock', 'INOC_001', '2019-12-09 11:48:30', '', 1),
 (409, '2019-12-07 13:41:02', 'WWWWW', 'Maharagama', '2G', 'ZTE_001', 'Power issue', '', 'INOC_001', '2019-12-07 14:00:48', 'done', 'Approval_Pending..', '', NULL, '', 1),
 (410, '2019-12-08 21:08:04', 'SSSSSSSSS', 'Nugegoda', 'LTE', 'ZTE_001 (approved by RNO_001)', 'Test', 'Block', 'INOC_001', '2019-12-09 11:36:21', '', 'Deblock', 'INOC_001', '2019-12-08 21:28:40', '', 1);
